@@ -1,0 +1,4528 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#163d31">
+  <meta name="description" content="NutriViva: nutricionistas e pacientes conectados em uma rotina mais saudável.">
+  <title>NutriViva · Demonstração local</title>
+  <style>
+:root {
+  --bg:#f7f8fa;
+  --paper:#fff;
+  --ink:#1d332b;
+  --muted:#8b9691;
+  --green:#163d31;
+  --green-2:#2c6350;
+  --lime:#d7ef96;
+  --line:#e9eeeb;
+  --soft:#f3f7f1;
+  --danger:#b94b4b;
+  --shadow:0 5px 22px rgba(22,61,49,.025);
+  font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  color:var(--ink);
+  font-synthesis:none;
+  text-rendering:optimizeLegibility;
+  -webkit-font-smoothing:antialiased;
+  font-weight:400
+}
+
+* {
+  box-sizing:border-box
+}
+
+body {
+  margin:0;
+  background:var(--bg);
+  font-size:14px;
+  line-height:1.5
+}
+
+button,input,select,textarea {
+  font:inherit
+}
+
+button,a,input,textarea,select {
+  -webkit-tap-highlight-color:transparent
+}
+
+button,a {
+  touch-action:manipulation
+}
+
+button {
+  cursor:pointer
+}
+
+button:disabled {
+  cursor:wait;
+  opacity:.6
+}
+
+button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible {
+  outline:3px solid #afca6a;
+  outline-offset:3px
+}
+
+a {
+  color:inherit
+}
+
+h1,h2,h3,p {
+  margin:0
+}
+
+h1,h2,h3 {
+  line-height:1.25
+}
+
+svg {
+  width:20px;
+  height:20px;
+  fill:none;
+  stroke:currentColor;
+  stroke-width:1.7;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  flex-shrink:0
+}
+
+button {
+  border:0
+}
+
+input,textarea,select {
+  min-width:0
+}
+
+textarea {
+  resize:vertical
+}
+
+::selection {
+  background:var(--lime);
+  color:var(--green)
+}
+
+[hidden] {
+  display:none!important
+}
+
+.app-shell {
+  min-height:100vh;
+  padding-left:238px
+}
+
+.sidebar {
+  width:238px;
+  background:var(--green);
+  color:#c1d0c8;
+  position:fixed;
+  left:0;
+  top:0;
+  bottom:0;
+  display:flex;
+  flex-direction:column;
+  padding:38px 20px 20px;
+  z-index:40
+}
+
+.brand {
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:0 15px;
+  color:#fff;
+  font-size:24px;
+  font-weight:650;
+  letter-spacing:-1.2px;
+  text-decoration:none
+}
+
+.brand-mark {
+  color:var(--lime);
+  display:grid;
+  place-items:center
+}
+
+.brand-mark svg {
+  width:29px;
+  height:29px;
+  stroke-width:1.8
+}
+
+.brand span:last-child em {
+  font-style:normal;
+  color:var(--lime)
+}
+
+.nav-links {
+  display:grid;
+  gap:9px;
+  margin-top:57px
+}
+
+.nav-link {
+  display:flex;
+  align-items:center;
+  gap:13px;
+  padding:14px 16px;
+  border-radius:10px;
+  color:#b8cdc1;
+  text-decoration:none;
+  background:transparent;
+  width:100%;
+  text-align:left;
+  font-weight:500;
+  font-size:13px;
+  transition:background .18s,color .18s
+}
+
+.nav-link svg {
+  width:19px;
+  height:19px
+}
+
+.nav-link:hover {
+  background:#244a3d;
+  color:#fff
+}
+
+.nav-link.active {
+  background:var(--lime);
+  color:var(--green);
+  font-weight:650
+}
+
+.nav-icon {
+  display:flex;
+  align-items:center
+}
+
+.sidebar-bottom {
+  margin-top:auto;
+  padding:24px 10px 0
+}
+
+.sidebar-tip {
+  padding:18px 17px;
+  background:#214839;
+  border:1px solid #355747;
+  border-radius:14px;
+  color:#c9d8cd;
+  margin-bottom:27px;
+  font-size:11px;
+  line-height:1.6
+}
+
+.sidebar-tip svg {
+  color:var(--lime);
+  margin-bottom:9px
+}
+
+.sidebar-tip strong {
+  color:#fff;
+  display:block;
+  font-size:13px;
+  margin-bottom:6px
+}
+
+.profile-row {
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding-top:22px;
+  border-top:1px solid #345446
+}
+
+.profile-avatar,.profile-small {
+  width:37px;
+  height:37px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  background:#d9e8bf;
+  color:var(--green);
+  font-weight:650;
+  flex-shrink:0;
+  font-size:12px
+}
+
+.profile-details {
+  min-width:0;
+  flex:1
+}
+
+.profile-details strong {
+  display:block;
+  color:#fff;
+  font-size:12px;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap
+}
+
+.profile-details small {
+  display:block;
+  font-size:10px;
+  color:#94b3a1;
+  margin-top:3px
+}
+
+.logout {
+  width:28px;
+  height:32px;
+  background:none;
+  color:#a9bfaf;
+  display:grid;
+  place-items:center
+}
+
+.logout:hover {
+  color:#fff
+}
+
+.logout svg {
+  width:17px;
+  height:17px
+}
+
+.main-content {
+  max-width:1580px;
+  margin:0 auto;
+  padding:31px 42px 40px
+}
+
+.topbar {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  min-height:42px;
+  margin-bottom:36px
+}
+
+.topbar-date {
+  color:#8d9793;
+  font-size:12px;
+  display:flex;
+  gap:9px;
+  align-items:center
+}
+
+.topbar-date svg {
+  width:15px;
+  height:15px;
+  color:#8d9e92
+}
+
+.topbar-date:first-letter {
+  text-transform:uppercase
+}
+
+.topbar-tools {
+  display:flex;
+  align-items:center;
+  gap:16px
+}
+
+.icon-button {
+  width:34px;
+  height:34px;
+  display:inline-grid;
+  place-items:center;
+  background:transparent;
+  border:1px solid transparent;
+  border-radius:8px;
+  color:#7a8980
+}
+
+.icon-button:hover {
+  background:#edf1ec
+}
+
+.profile-small {
+  width:34px;
+  height:34px;
+  font-size:11px;
+  border:3px solid white;
+  box-shadow:0 0 0 1px var(--line);
+  background:#f0e0ce
+}
+
+.mobile-menu,.mobile-brand {
+  display:none
+}
+
+.page-heading {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:25px;
+  margin-bottom:29px
+}
+
+.eyebrow {
+  font-size:11px;
+  font-weight:600;
+  letter-spacing:.03em;
+  color:#819286;
+  margin-bottom:9px
+}
+
+.page-heading h1 {
+  font-size:29px;
+  letter-spacing:-1.15px;
+  font-weight:620;
+  margin-bottom:10px
+}
+
+.page-heading p {
+  font-size:12px;
+  color:#8a9690
+}
+
+.page-actions {
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex-shrink:0
+}
+
+.button {
+  border-radius:9px;
+  min-height:43px;
+  padding:11px 17px;
+  display:inline-flex;
+  gap:9px;
+  align-items:center;
+  justify-content:center;
+  text-decoration:none;
+  font-size:12px;
+  font-weight:600;
+  white-space:nowrap;
+  border:1px solid transparent;
+  transition:background .18s,transform .18s
+}
+
+.button:hover {
+  transform:translateY(-1px)
+}
+
+.button svg {
+  width:16px;
+  height:16px
+}
+
+.button.primary {
+  background:var(--green);
+  color:white;
+  box-shadow:0 3px 5px rgba(22,61,49,.06)
+}
+
+.button.primary:hover {
+  background:#225340
+}
+
+.button.secondary {
+  background:white;
+  border-color:var(--line);
+  color:#61766a
+}
+
+.button.secondary:hover {
+  border-color:#b8cbb9;
+  background:#fbfdf9
+}
+
+.button.ghost {
+  background:transparent;
+  color:#557664;
+  border-color:#dce6dd
+}
+
+.button.small {
+  min-height:33px;
+  font-size:11px;
+  padding:7px 11px
+}
+
+.button.danger {
+  color:var(--danger);
+  background:#fff2f0;
+  border-color:#f7dfdc
+}
+
+.button.wide {
+  width:100%
+}
+
+.demo-banner {
+  display:flex;
+  align-items:center;
+  gap:9px;
+  background:#eff4e5;
+  border:1px solid #e5edd6;
+  border-radius:9px;
+  padding:10px 14px;
+  margin-bottom:22px;
+  color:#74875a;
+  font-size:11px
+}
+
+.demo-banner svg {
+  width:15px;
+  height:15px
+}
+
+.demo-banner span {
+  flex:1
+}
+
+.demo-banner button {
+  background:transparent;
+  color:var(--green);
+  font-size:11px;
+  font-weight:600;
+  display:flex;
+  align-items:center;
+  gap:7px;
+  padding:0
+}
+
+.stats-grid {
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:18px;
+  margin-bottom:27px
+}
+
+.stat-card {
+  position:relative;
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:15px;
+  padding:21px 23px 18px;
+  box-shadow:var(--shadow);
+  min-height:149px;
+  overflow:hidden
+}
+
+.stat-top {
+  display:flex;
+  align-items:center;
+  gap:11px;
+  margin-bottom:12px
+}
+
+.stat-icon {
+  width:35px;
+  height:35px;
+  display:grid;
+  place-items:center;
+  border-radius:10px;
+  background:#eef5e8;
+  color:#729f50;
+  flex-shrink:0
+}
+
+.stat-icon svg {
+  width:18px;
+  height:18px
+}
+
+.stat-card:nth-child(2) .stat-icon {
+  background:#fff5e8;
+  color:#c79c5a
+}
+
+.stat-card:nth-child(3) .stat-icon {
+  background:#f1effb;
+  color:#9384bc
+}
+
+.stat-copy {
+  font-size:11px;
+  color:#8a9690;
+  font-weight:450
+}
+
+.stat-value {
+  font-size:31px;
+  letter-spacing:-1.4px;
+  font-weight:620;
+  color:#243a2e;
+  line-height:1.2;
+  margin-top:7px
+}
+
+.stat-value small {
+  font-size:13px;
+  font-weight:400;
+  letter-spacing:0;
+  color:#9ca79f;
+  margin-left:5px
+}
+
+.stat-footer {
+  display:flex;
+  align-items:center;
+  gap:6px;
+  color:#a0aaa5;
+  font-size:10px;
+  margin-top:13px
+}
+
+.stat-trend {
+  color:#719657;
+  display:inline-flex;
+  align-items:center;
+  gap:2px
+}
+
+.stat-trend svg {
+  width:12px;
+  height:12px
+}
+
+.sparkline {
+  position:absolute;
+  right:20px;
+  bottom:24px;
+  width:90px;
+  height:32px;
+  color:#bad29c
+}
+
+.sparkline svg {
+  width:90px;
+  height:32px;
+  stroke-width:2
+}
+
+.content-grid {
+  display:grid;
+  grid-template-columns:minmax(270px, .77fr) minmax(0,1.65fr);
+  gap:24px;
+  align-items:start
+}
+
+.panel {
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:15px;
+  box-shadow:var(--shadow);
+  overflow:hidden
+}
+
+.panel-heading {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:13px;
+  padding:23px 22px 18px
+}
+
+.panel-heading svg {
+  width:17px;
+  height:17px;
+  color:#91a094
+}
+
+.panel-title {
+  font-size:14px;
+  letter-spacing:-.2px;
+  font-weight:600
+}
+
+.subtle {
+  font-size:11px;
+  color:#99a39d;
+  margin-top:6px;
+  line-height:1.6
+}
+
+.text-button {
+  background:none;
+  color:#557c60;
+  font-size:11px;
+  font-weight:600;
+  padding:4px 0;
+  display:inline-flex;
+  gap:5px;
+  align-items:center
+}
+
+.text-button:hover {
+  color:#173f2e
+}
+
+.text-button svg {
+  width:13px;
+  height:13px
+}
+
+.search-field {
+  position:relative;
+  margin:0 20px 17px
+}
+
+.search-field svg {
+  position:absolute;
+  left:12px;
+  top:11px;
+  width:15px;
+  height:15px;
+  color:#9aa69e
+}
+
+.search-field input {
+  background:#f8faf8;
+  border:1px solid #eef1ec;
+  border-radius:8px;
+  padding:10px 11px 10px 35px;
+  width:100%;
+  font-size:11px;
+  color:#536d5a
+}
+
+.search-field input::placeholder {
+  color:#a3ada6
+}
+
+.patient-list {
+  display:grid;
+  gap:5px;
+  padding:0 12px 14px
+}
+
+.patient-row {
+  position:relative;
+  background:transparent;
+  width:100%;
+  display:flex;
+  align-items:center;
+  gap:11px;
+  border-radius:9px;
+  padding:15px 11px;
+  text-align:left;
+  color:inherit;
+  transition:background .18s;
+  border:1px solid transparent
+}
+
+.patient-row:hover {
+  background:#f7faf4
+}
+
+.patient-row.selected {
+  background:#f1f6e9;
+  border-color:#e6edda
+}
+
+.avatar {
+  width:40px;
+  height:40px;
+  border-radius:50%;
+  background:#e8ede0;
+  color:#6d8052;
+  font-size:12px;
+  font-weight:650;
+  display:grid;
+  place-items:center;
+  flex-shrink:0
+}
+
+.avatar.lilac,.avatar.color-1 {
+  background:#ebe7f4;
+  color:#8c7ba2
+}
+
+.avatar.peach,.avatar.color-2 {
+  background:#f6e8df;
+  color:#a27b62
+}
+
+.avatar.green,.avatar.color-0 {
+  background:#e6eddd;
+  color:#73885c
+}
+
+.patient-info {
+  flex:1;
+  min-width:0
+}
+
+.patient-info strong {
+  font-size:12px;
+  font-weight:600;
+  display:block;
+  margin-bottom:4px;
+  white-space:nowrap;
+  text-overflow:ellipsis;
+  overflow:hidden
+}
+
+.patient-info small {
+  color:#9ba398;
+  font-size:10px
+}
+
+.mini-progress {
+  height:4px;
+  background:#e7eede;
+  border-radius:4px;
+  overflow:hidden;
+  margin-top:9px;
+  max-width:138px
+}
+
+.mini-progress span {
+  height:100%;
+  display:block;
+  background:#95b875;
+  border-radius:4px;
+  transition:width .3s
+}
+
+.patient-pct {
+  font-size:11px;
+  font-weight:600;
+  color:#78965c;
+  align-self:center
+}
+
+.patient-pct small {
+  display:block;
+  font-size:9px;
+  font-weight:400;
+  color:#a0aca0;
+  margin-top:3px
+}
+
+.panel-footer {
+  border-top:1px solid var(--line);
+  padding:16px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#8ba079;
+  font-size:11px
+}
+
+.panel-footer svg {
+  width:14px;
+  height:14px;
+  margin-right:7px
+}
+
+.panel-footer button {
+  width:100%;
+  justify-content:center
+}
+
+.diary-header {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:23px 24px 19px;
+  border-bottom:1px solid #f0f3ee
+}
+
+.diary-user {
+  display:flex;
+  align-items:center;
+  gap:11px;
+  min-width:0
+}
+
+.diary-avatar {
+  width:41px;
+  height:41px;
+  border-radius:12px;
+  background:#e8efdf;
+  color:#7e9763;
+  display:grid;
+  place-items:center;
+  font-size:13px;
+  font-weight:600
+}
+
+.diary-user h2 {
+  font-size:15px;
+  letter-spacing:-.2px
+}
+
+.diary-user p {
+  color:#9aa59e;
+  font-size:10px;
+  margin-top:5px
+}
+
+.date-controls {
+  display:flex;
+  align-items:center;
+  gap:4px
+}
+
+.date-controls .icon-button {
+  width:25px;
+  height:30px
+}
+
+.date-controls .icon-button svg {
+  width:14px;
+  height:14px
+}
+
+.date-controls input[type=date] {
+  font-size:10px;
+  color:#7d8c81;
+  border:1px solid var(--line);
+  border-radius:7px;
+  background:#fff;
+  padding:6px 5px;
+  width:113px;
+  min-height:31px
+}
+
+.date-label {
+  font-size:10px;
+  color:#8b9b8e;
+  margin-right:4px
+}
+
+.daily-summary {
+  display:flex;
+  align-items:center;
+  gap:19px;
+  margin:20px 24px;
+  background:#f7f9f3;
+  border:1px solid #edf2e6;
+  padding:17px 18px;
+  border-radius:12px
+}
+
+.progress-ring {
+  --progress:0%;
+  width:70px;
+  height:70px;
+  border-radius:50%;
+  background:conic-gradient(#80a85c var(--progress),#e6eddd 0);
+  display:grid;
+  place-items:center;
+  flex-shrink:0;
+  position:relative
+}
+
+.ring-inner {
+  width:58px;
+  height:58px;
+  border-radius:50%;
+  background:#f7f9f3;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center
+}
+
+.ring-inner strong {
+  font-size:16px;
+  font-weight:650;
+  letter-spacing:-.6px
+}
+
+.ring-inner small {
+  font-size:8px;
+  color:#96a189;
+  margin-top:1px
+}
+
+.summary-detail h3 {
+  font-size:12px;
+  font-weight:600;
+  margin-bottom:5px
+}
+
+.summary-detail p {
+  font-size:10px;
+  color:#95a18d;
+  line-height:1.7
+}
+
+.goal-tag {
+  display:inline-flex;
+  align-items:center;
+  gap:5px;
+  font-size:9px;
+  border-radius:5px;
+  padding:3px 7px;
+  background:#eaf0df;
+  color:#7d9261;
+  margin-top:8px
+}
+
+.goal-tag svg {
+  width:10px;
+  height:10px
+}
+
+.meal-list {
+  padding:0 24px 23px;
+  display:grid;
+  gap:11px
+}
+
+.meal-card {
+  border:1px solid #edf0eb;
+  border-radius:11px;
+  padding:15px 14px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  transition:border-color .2s,background .2s;
+  position:relative
+}
+
+.meal-card.completed {
+  border-color:#e1ead9;
+  background:#fcfdf9
+}
+
+.meal-time {
+  font-size:10px;
+  line-height:1.5;
+  color:#a1aaa3;
+  text-align:center;
+  width:37px;
+  flex-shrink:0
+}
+
+.meal-time small {
+  display:block;
+  font-size:8px;
+  color:#b1b8b2
+}
+
+.meal-symbol {
+  width:34px;
+  height:34px;
+  border-radius:9px;
+  background:#f5f3ed;
+  color:#b8a783;
+  display:grid;
+  place-items:center;
+  flex-shrink:0
+}
+
+.meal-symbol svg {
+  width:18px;
+  height:18px
+}
+
+.meal-card:nth-child(2) .meal-symbol {
+  color:#8aa774;
+  background:#f1f5e9
+}
+
+.meal-card:nth-child(3) .meal-symbol {
+  color:#ba9e75;
+  background:#faf4e8
+}
+
+.meal-card:nth-child(4) .meal-symbol {
+  color:#a490b1;
+  background:#f5f0f8
+}
+
+.meal-card:nth-child(5) .meal-symbol {
+  color:#81a2aa;
+  background:#edf6f6
+}
+
+.meal-content {
+  flex:1;
+  min-width:0
+}
+
+.meal-content h3 {
+  font-size:11px;
+  font-weight:600;
+  margin-bottom:4px
+}
+
+.meal-content p {
+  font-size:9px;
+  color:#9aa69c;
+  line-height:1.6;
+  overflow-wrap:anywhere
+}
+
+.meal-status {
+  font-size:9px;
+  white-space:nowrap;
+  color:#a8b0a6;
+  display:flex;
+  align-items:center;
+  gap:5px
+}
+
+.meal-status.done {
+  color:#82a263
+}
+
+.meal-status svg {
+  width:12px;
+  height:12px
+}
+
+.meal-check {
+  width:23px;
+  height:23px;
+  display:inline-grid;
+  place-items:center;
+  border:1.5px solid #dbe3d5;
+  border-radius:50%;
+  background:#fff;
+  color:transparent;
+  flex-shrink:0;
+  transition:all .15s
+}
+
+.meal-check:hover {
+  border-color:#7ba45e;
+  background:#f1f7e8
+}
+
+.completed .meal-check {
+  background:#87a967;
+  border-color:#87a967;
+  color:white
+}
+
+.meal-check svg {
+  width:13px;
+  height:13px;
+  stroke-width:2.4
+}
+
+.meal-note {
+  font-size:10px;
+  color:#84937f;
+  margin-top:6px;
+  display:flex;
+  align-items:flex-start;
+  gap:5px
+}
+
+.meal-note svg {
+  width:11px;
+  height:11px;
+  margin-top:2px
+}
+
+.meal-actions {
+  display:flex;
+  align-items:center;
+  gap:3px
+}
+
+.meal-actions .icon-button {
+  width:25px;
+  height:25px;
+  color:#a6b0a3
+}
+
+.meal-actions .icon-button svg {
+  width:13px;
+  height:13px
+}
+
+.insight-card {
+  background:#f0f5e7;
+  display:flex;
+  align-items:flex-start;
+  gap:13px;
+  padding:19px 19px;
+  border:1px solid #e4ecd8;
+  border-radius:12px;
+  margin-top:19px;
+  color:#819669
+}
+
+.insight-icon {
+  width:30px;
+  height:30px;
+  border-radius:8px;
+  display:grid;
+  place-items:center;
+  background:#e5eed5;
+  color:#8eac66;
+  flex-shrink:0
+}
+
+.insight-icon svg {
+  width:17px;
+  height:17px
+}
+
+.insight-card h3 {
+  font-size:11px;
+  margin-bottom:5px;
+  color:#627d4d
+}
+
+.insight-card p {
+  font-size:10px;
+  line-height:1.8;
+  color:#93a383
+}
+
+.section-label {
+  font-size:9px;
+  font-weight:600;
+  letter-spacing:1.3px;
+  text-transform:uppercase;
+  color:#acb5ad;
+  margin:27px 0 10px;
+  padding-left:4px
+}
+
+.full-panel {
+  padding:25px
+}
+
+.full-panel .panel-heading {
+  padding:0 0 24px
+}
+
+.patients-grid {
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:20px
+}
+
+.patient-card {
+  border-radius:14px;
+  padding:23px;
+  background:#fff;
+  border:1px solid var(--line);
+  box-shadow:var(--shadow)
+}
+
+.patient-card-top {
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:19px
+}
+
+.patient-card h3 {
+  font-size:14px
+}
+
+.patient-card p {
+  font-size:11px;
+  color:#96a198;
+  margin-top:5px;
+  overflow-wrap:anywhere
+}
+
+.patient-card .goal-tag {
+  margin-top:14px
+}
+
+.patient-card-actions {
+  display:flex;
+  gap:7px;
+  margin-top:18px;
+  flex-wrap:wrap
+}
+
+.patient-card .mini-progress {
+  max-width:none;
+  margin-top:18px;
+  height:5px
+}
+
+.empty-state {
+  text-align:center;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  min-height:280px;
+  padding:38px 25px
+}
+
+.empty-icon {
+  width:65px;
+  height:65px;
+  border-radius:20px;
+  background:#f0f5e8;
+  color:#8ba56a;
+  display:grid;
+  place-items:center;
+  margin-bottom:20px
+}
+
+.empty-icon svg {
+  width:28px;
+  height:28px
+}
+
+.empty-state h2,.empty-state h3 {
+  font-size:18px;
+  font-weight:600;
+  margin-bottom:12px;
+  letter-spacing:-.4px
+}
+
+.empty-state p {
+  font-size:12px;
+  color:#93a092;
+  max-width:300px;
+  line-height:1.8;
+  margin-bottom:20px
+}
+
+.empty-state .button {
+  margin-top:3px
+}
+
+.sidebar-backdrop {
+  display:none
+}
+
+.loading {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  min-height:300px;
+  color:#8b9b8d;
+  font-size:13px
+}
+
+.loading::before {
+  content:"";
+  width:22px;
+  height:22px;
+  border:2px solid #e0e8da;
+  border-top-color:#688d50;
+  border-radius:50%;
+  animation:spin .7s linear infinite
+}
+
+@keyframes spin {
+  to {
+    transform:rotate(360deg)
+  }
+}
+
+.status-dot {
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:#88ae64;
+  display:inline-block
+}
+
+.badge {
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  padding:4px 8px;
+  border-radius:5px;
+  color:#8ba26d;
+  background:#f0f5e7;
+  font-size:9px
+}
+
+.overlay {
+  position:fixed;
+  inset:0;
+  background:rgba(9,31,22,.36);
+  backdrop-filter:blur(4px);
+  z-index:70;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+  animation:fadeIn .15s ease
+}
+
+.modal {
+  width:100%;
+  max-width:480px;
+  background:#fff;
+  border-radius:18px;
+  box-shadow:0 25px 100px rgba(9,31,22,.2);
+  max-height:calc(100dvh - 48px);
+  overflow:auto
+}
+
+.modal-header {
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:20px;
+  padding:27px 27px 19px
+}
+
+.modal-header h2 {
+  font-size:20px;
+  font-weight:600;
+  letter-spacing:-.5px
+}
+
+.modal-header p {
+  font-size:12px;
+  color:#92a08f;
+  margin-top:8px
+}
+
+.close-modal {
+  background:#f6f8f3;
+  border:1px solid #edf0e8;
+  border-radius:8px;
+  color:#7d8e79;
+  width:29px;
+  height:29px;
+  display:grid;
+  place-items:center;
+  flex-shrink:0
+}
+
+.close-modal svg {
+  width:16px;
+  height:16px
+}
+
+.modal-body {
+  padding:0 27px 24px
+}
+
+.modal-footer {
+  border-top:1px solid var(--line);
+  padding:18px 27px;
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  gap:10px
+}
+
+.form-stack {
+  display:grid;
+  gap:17px
+}
+
+.form-field {
+  display:grid;
+  gap:7px
+}
+
+.form-field label {
+  font-size:11px;
+  font-weight:600;
+  color:#5d735e
+}
+
+.form-field input,.form-field textarea,.form-field select {
+  border:1px solid #e2e8df;
+  background:#fff;
+  border-radius:8px;
+  min-height:43px;
+  padding:11px 12px;
+  color:#2e4a36;
+  width:100%;
+  font-size:12px;
+  transition:border-color .18s
+}
+
+.form-field input::placeholder,.form-field textarea::placeholder {
+  color:#a5aea1
+}
+
+.form-field input:focus,.form-field textarea:focus,.form-field select:focus {
+  border-color:#9ab97c
+}
+
+.form-field textarea {
+  min-height:88px
+}
+
+.hint {
+  color:#9ba591;
+  font-size:10px;
+  line-height:1.7
+}
+
+.form-error {
+  color:#b34f4f;
+  font-size:11px;
+  background:#fff3f0;
+  border:1px solid #f7e2dd;
+  padding:10px 12px;
+  border-radius:7px
+}
+
+.invite-link {
+  display:flex;
+  align-items:center;
+  gap:7px;
+  margin-top:18px
+}
+
+.invite-link input {
+  flex:1;
+  min-width:0
+}
+
+.note-form {
+  display:grid;
+  gap:14px
+}
+
+.toast {
+  position:fixed;
+  bottom:25px;
+  left:calc(50% + 119px);
+  transform:translate(-50%,20px);
+  background:#163d31;
+  color:#f4f9ed;
+  border:1px solid #47634c;
+  padding:12px 20px;
+  border-radius:10px;
+  box-shadow:0 8px 35px #163d3125;
+  font-size:12px;
+  z-index:100;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .2s,transform .2s;
+  max-width:calc(100% - 40px);
+  text-align:center
+}
+
+.toast.visible {
+  opacity:1;
+  transform:translate(-50%,0)
+}
+
+@keyframes fadeIn {
+  from {
+    opacity:0
+  }
+  to {
+    opacity:1
+  }
+}
+
+.auth-layout {
+  min-height:100dvh;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  background:#fff
+}
+
+.auth-art {
+  background:var(--green);
+  color:#fff;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  padding:48px 11%;
+  position:relative;
+  overflow:hidden
+}
+
+.auth-art:before {
+  content:"";
+  position:absolute;
+  width:650px;
+  height:650px;
+  border:1px solid #ffffff08;
+  border-radius:50%;
+  left:-280px;
+  bottom:-310px;
+  box-shadow:0 0 0 85px #ffffff03,0 0 0 170px #ffffff02;
+  pointer-events:none
+}
+
+.auth-brand {
+  display:flex;
+  align-items:center;
+  gap:9px;
+  font-size:25px;
+  letter-spacing:-1.1px;
+  font-weight:600;
+  z-index:1
+}
+
+.auth-brand svg {
+  width:29px;
+  height:29px;
+  color:var(--lime)
+}
+
+.auth-brand em {
+  font-style:normal;
+  color:var(--lime)
+}
+
+.auth-pitch {
+  position:relative;
+  z-index:1;
+  max-width:420px;
+  padding:45px 0 30px
+}
+
+.auth-pitch .eyebrow {
+  color:#b9d49d;
+  font-size:10px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  margin-bottom:21px
+}
+
+.auth-pitch h1 {
+  font-size:42px;
+  font-weight:500;
+  letter-spacing:-1.5px;
+  line-height:1.14
+}
+
+.auth-pitch h1 em {
+  color:var(--lime);
+  font-style:normal
+}
+
+.auth-pitch p {
+  font-size:13px;
+  color:#b3c9b8;
+  line-height:1.9;
+  margin-top:22px;
+  max-width:330px
+}
+
+.auth-preview {
+  border:1px solid #487052;
+  background:#214a3a;
+  border-radius:16px;
+  padding:19px;
+  margin-top:32px;
+  box-shadow:0 18px 40px #08231833;
+  max-width:350px;
+  transform:rotate(-2deg)
+}
+
+.auth-preview-top {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  font-size:11px;
+  color:#d7e2ce;
+  margin-bottom:17px
+}
+
+.auth-preview .badge {
+  background:#344f32;
+  color:#c9e59b;
+  font-size:8px
+}
+
+.auth-preview-row {
+  display:flex;
+  align-items:center;
+  gap:11px;
+  padding:11px 0;
+  border-top:1px solid #ffffff0a
+}
+
+.auth-preview-row>svg {
+  width:18px;
+  height:18px;
+  color:#c5dfa0
+}
+
+.auth-preview-row div {
+  flex:1;
+  font-size:11px;
+  color:#edf3e6
+}
+
+.auth-preview-row small {
+  display:block;
+  color:#91b09b;
+  font-size:9px;
+  margin-top:4px
+}
+
+.auth-preview-row .meal-check {
+  width:20px;
+  height:20px;
+  background:#badb85;
+  border-color:#badb85;
+  color:#163d31
+}
+
+.auth-preview-row .meal-check svg {
+  width:12px;
+  height:12px
+}
+
+.auth-proof {
+  font-size:10px;
+  color:#86a991;
+  display:flex;
+  align-items:center;
+  gap:7px;
+  position:relative;
+  z-index:1
+}
+
+.auth-proof svg {
+  width:14px;
+  height:14px;
+  color:#b8d88f
+}
+
+.auth-form-side {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:48px;
+  background:#fff
+}
+
+.auth-card {
+  width:100%;
+  max-width:365px
+}
+
+.auth-card .eyebrow {
+  color:#97a48d;
+  margin-bottom:10px
+}
+
+.auth-card h1,.auth-card h2 {
+  font-size:29px;
+  font-weight:600;
+  letter-spacing:-1px;
+  margin-bottom:12px
+}
+
+.auth-card>p {
+  font-size:12px;
+  color:#93a18f;
+  line-height:1.8;
+  margin-bottom:29px
+}
+
+.auth-tabs {
+  display:flex;
+  align-items:center;
+  padding:4px;
+  background:#f5f7f1;
+  border:1px solid #edf0e7;
+  border-radius:9px;
+  gap:5px;
+  margin-bottom:25px
+}
+
+.auth-tab {
+  flex:1;
+  text-align:center;
+  background:transparent;
+  color:#91a083;
+  font-size:12px;
+  font-weight:500;
+  padding:10px;
+  border-radius:6px
+}
+
+.auth-tab.active {
+  background:#fff;
+  box-shadow:0 2px 5px #102f1510;
+  color:#34562d
+}
+
+.auth-card .form-stack {
+  gap:16px
+}
+
+.auth-card .button {
+  min-height:46px
+}
+
+.auth-card .button.primary {
+  font-size:12px
+}
+
+.divider {
+  display:flex;
+  align-items:center;
+  gap:12px;
+  color:#aeb5a7;
+  font-size:10px;
+  margin:24px 0
+}
+
+.divider:before,.divider:after {
+  content:"";
+  height:1px;
+  background:#e9ede3;
+  flex:1
+}
+
+.auth-bottom {
+  margin-top:25px;
+  font-size:10px;
+  line-height:1.8;
+  color:#a8b09f;
+  text-align:center
+}
+
+.auth-bottom a {
+  color:#799562;
+  text-decoration:none
+}
+
+.invite-person {
+  display:flex;
+  align-items:center;
+  gap:14px;
+  background:#f6f9f0;
+  border:1px solid #e8efdc;
+  border-radius:10px;
+  padding:16px;
+  margin-bottom:23px
+}
+
+.invite-icon {
+  width:39px;
+  height:39px;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  background:#e9f0d8;
+  color:#7b965b;
+  flex-shrink:0
+}
+
+.invite-icon svg {
+  width:20px;
+  height:20px
+}
+
+.invite-person h3 {
+  font-size:13px
+}
+
+.invite-person p {
+  font-size:11px;
+  color:#96a488;
+  margin-top:5px
+}
+
+.plan-heading {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  margin:0 24px 17px
+}
+
+.plan-heading p {
+  font-size:11px;
+  color:#8fa18c
+}
+
+.inline-filters {
+  display:flex;
+  align-items:center;
+  gap:12px;
+  flex-wrap:wrap
+}
+
+.inline-filters select {
+  font-size:11px;
+  border:1px solid var(--line);
+  background:#fff;
+  padding:9px 12px;
+  border-radius:8px;
+  color:#718468
+}
+
+.history-intro {
+  font-size:12px;
+  color:#93a18b;
+  margin-bottom:20px
+}
+
+@media(min-width:1600px) {
+  .main-content {
+    padding-top:38px
+  }
+  .topbar {
+    margin-bottom:45px
+  }
+  .page-heading {
+    margin-bottom:35px
+  }
+  .stats-grid {
+    gap:24px
+  }
+  .content-grid {
+    grid-template-columns:340px minmax(0,1fr)
+  }
+  .stat-card {
+    min-height:160px;
+    padding:24px 27px
+  }
+}
+
+@media(max-width:1200px) {
+  .main-content {
+    padding:28px 28px 35px
+  }
+  .sidebar {
+    width:216px;
+    padding-left:15px;
+    padding-right:15px
+  }
+  .app-shell {
+    padding-left:216px
+  }
+  .brand {
+    font-size:22px;
+    padding-left:12px
+  }
+  .content-grid {
+    grid-template-columns:270px minmax(0,1fr);
+    gap:18px
+  }
+  .stats-grid {
+    gap:13px
+  }
+  .stat-card {
+    padding:18px;
+    min-height:142px
+  }
+  .sparkline {
+    width:65px;
+    right:14px
+  }
+  .sparkline svg {
+    width:65px
+  }
+  .panel-heading {
+    padding:20px 18px 17px
+  }
+  .diary-header {
+    padding:20px 18px 17px
+  }
+  .diary-user h2 {
+    font-size:13px
+  }
+  .daily-summary {
+    margin:18px;
+    padding:15px;
+    gap:14px
+  }
+  .meal-list {
+    padding:0 18px 20px
+  }
+  .meal-card {
+    padding:13px 10px;
+    gap:9px
+  }
+  .meal-status {
+    font-size:8px
+  }
+  .meal-time {
+    width:31px
+  }
+  .date-label {
+    display:none
+  }
+  .meal-content p {
+    font-size:9px
+  }
+  .patients-grid {
+    grid-template-columns:repeat(2,minmax(0,1fr))
+  }
+  .toast {
+    left:calc(50% + 108px)
+  }
+}
+
+@media(max-width:1050px) {
+  .page-heading {
+    align-items:flex-start;
+    gap:15px
+  }
+  .page-heading h1 {
+    font-size:25px
+  }
+  .page-actions {
+    align-self:center
+  }
+  .page-actions .button {
+    padding:10px 12px;
+    font-size:11px
+  }
+  .content-grid {
+    grid-template-columns:minmax(210px,.8fr) minmax(0,1.4fr)
+  }
+  .stat-top {
+    gap:8px
+  }
+  .stat-icon {
+    width:31px;
+    height:31px
+  }
+  .stat-value {
+    font-size:28px
+  }
+  .stat-copy {
+    font-size:10px
+  }
+  .sparkline {
+    display:none
+  }
+  .stat-footer {
+    font-size:9px
+  }
+  .diary-header {
+    align-items:flex-start;
+    flex-direction:column;
+    gap:16px
+  }
+  .date-controls {
+    width:100%;
+    justify-content:flex-end
+  }
+  .date-controls .date-label {
+    display:inline;
+    margin-right:auto
+  }
+  .meal-status {
+    display:none
+  }
+  .daily-summary {
+    gap:12px
+  }
+  .progress-ring {
+    width:59px;
+    height:59px
+  }
+  .ring-inner {
+    width:49px;
+    height:49px
+  }
+  .ring-inner strong {
+    font-size:14px
+  }
+  .ring-inner small {
+    font-size:7px
+  }
+  .summary-detail h3 {
+    font-size:11px
+  }
+  .summary-detail p {
+    font-size:9px
+  }
+  .auth-art {
+    padding:40px 12%
+  }
+  .auth-pitch h1 {
+    font-size:36px
+  }
+  .auth-form-side {
+    padding:40px
+  }
+  .demo-banner {
+    font-size:10px
+  }
+  .demo-banner button {
+    font-size:10px
+  }
+}
+
+@media(max-width:800px) {
+  .app-shell {
+    padding-left:0
+  }
+  .sidebar {
+    width:238px;
+    transform:translateX(-100%);
+    transition:transform .2s ease;
+    z-index:55;
+    padding-top:30px
+  }
+  .menu-open .sidebar {
+    transform:translateX(0)
+  }
+  .sidebar-backdrop {
+    display:block;
+    position:fixed;
+    inset:0;
+    z-index:50;
+    background:#092b1a66;
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .2s
+  }
+  .menu-open .sidebar-backdrop {
+    opacity:1;
+    pointer-events:auto
+  }
+  .main-content {
+    padding:20px 23px 30px
+  }
+  .topbar {
+    margin-bottom:28px;
+    min-height:38px;
+    gap:12px
+  }
+  .topbar-date {
+    margin-left:auto;
+    font-size:10px
+  }
+  .topbar-date svg {
+    width:14px;
+    height:14px
+  }
+  .topbar-tools {
+    gap:5px
+  }
+  .topbar-tools .icon-button {
+    display:none
+  }
+  .mobile-menu {
+    display:grid;
+    background:#fff;
+    border-color:#e8eee2;
+    border-radius:8px;
+    width:35px;
+    height:35px;
+    color:#44683d
+  }
+  .mobile-brand {
+    display:flex;
+    align-items:center;
+    gap:5px;
+    font-size:18px;
+    font-weight:650;
+    letter-spacing:-.6px;
+    color:#214a30
+  }
+  .mobile-brand svg {
+    width:21px;
+    height:21px;
+    color:#85a85d
+  }
+  .mobile-brand em {
+    font-style:normal;
+    color:#91ac71
+  }
+  .profile-small {
+    width:30px;
+    height:30px;
+    font-size:9px
+  }
+  .page-heading h1 {
+    font-size:27px
+  }
+  .page-heading p {
+    font-size:11px
+  }
+  .eyebrow {
+    font-size:10px
+  }
+  .content-grid {
+    grid-template-columns:260px minmax(0,1.4fr);
+    gap:17px
+  }
+  .patient-row {
+    padding:13px 8px
+  }
+  .diary-header {
+    align-items:center;
+    flex-direction:row;
+    flex-wrap:wrap
+  }
+  .date-controls {
+    width:auto
+  }
+  .date-controls .date-label {
+    display:none
+  }
+  .page-actions .button.secondary {
+    display:none
+  }
+  .stats-grid {
+    gap:12px
+  }
+  .stat-card {
+    padding:17px
+  }
+  .stat-copy {
+    font-size:10px
+  }
+  .stat-value {
+    font-size:28px
+  }
+  .toast {
+    left:50%
+  }
+  .auth-art {
+    padding:35px 10%
+  }
+  .auth-pitch h1 {
+    font-size:32px
+  }
+  .auth-preview {
+    padding:15px
+  }
+  .auth-form-side {
+    padding:35px
+  }
+  .auth-card h1,.auth-card h2 {
+    font-size:25px
+  }
+  .auth-card>p {
+    font-size:11px
+  }
+  .auth-art .auth-pitch p {
+    font-size:12px
+  }
+}
+
+@media(max-width:670px) {
+  .main-content {
+    padding:18px 18px 30px
+  }
+  .topbar {
+    margin-bottom:26px
+  }
+  .topbar-date {
+    display:none
+  }
+  .topbar-tools {
+    margin-left:auto
+  }
+  .mobile-brand {
+    font-size:19px
+  }
+  .page-heading {
+    flex-wrap:wrap;
+    margin-bottom:22px;
+    gap:18px
+  }
+  .page-heading h1 {
+    font-size:26px;
+    line-height:1.2;
+    max-width:300px;
+    margin-bottom:8px
+  }
+  .page-heading p {
+    font-size:11px;
+    line-height:1.8
+  }
+  .page-actions {
+    width:100%;
+    justify-content:space-between
+  }
+  .page-actions .button {
+    min-height:38px
+  }
+  .page-actions .button.secondary {
+    display:inline-flex
+  }
+  .stats-grid {
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:9px;
+    margin-bottom:20px
+  }
+  .stat-card {
+    padding:13px 10px;
+    min-height:127px;
+    border-radius:12px
+  }
+  .stat-top {
+    gap:7px;
+    flex-direction:column;
+    align-items:flex-start;
+    margin-bottom:8px
+  }
+  .stat-icon {
+    width:27px;
+    height:27px;
+    border-radius:7px
+  }
+  .stat-icon svg {
+    width:15px;
+    height:15px
+  }
+  .stat-copy {
+    font-size:9px;
+    line-height:1.4
+  }
+  .stat-value {
+    font-size:24px;
+    letter-spacing:-.9px;
+    margin-top:5px
+  }
+  .stat-value small {
+    font-size:10px;
+    margin-left:2px
+  }
+  .stat-footer {
+    font-size:8px;
+    line-height:1.5;
+    margin-top:8px;
+    gap:3px
+  }
+  .stat-footer .stat-trend svg {
+    width:10px;
+    height:10px
+  }
+  .stat-footer>span:last-child {
+    display:none
+  }
+  .content-grid {
+    grid-template-columns:minmax(0,1fr);
+    gap:20px
+  }
+  .panel {
+    border-radius:13px
+  }
+  .panel-heading {
+    padding:20px 18px 15px
+  }
+  .panel-title {
+    font-size:14px
+  }
+  .subtle {
+    font-size:10px
+  }
+  .patient-list {
+    display:flex;
+    overflow:auto;
+    gap:7px;
+    padding:0 14px 16px;
+    scrollbar-width:thin
+  }
+  .patient-row {
+    width:180px;
+    min-width:180px;
+    border-color:#edf0e8;
+    padding:13px 10px
+  }
+  .patient-info strong {
+    font-size:11px
+  }
+  .patient-pct {
+    font-size:10px
+  }
+  .patient-pct small {
+    font-size:8px
+  }
+  .avatar {
+    width:34px;
+    height:34px;
+    font-size:10px
+  }
+  .search-field {
+    margin:0 17px 13px
+  }
+  .patient-list .mini-progress {
+    max-width:72px
+  }
+  .patient-row .patient-info small {
+    font-size:9px
+  }
+  .panel-footer {
+    padding:13px 18px;
+    font-size:10px
+  }
+  .insight-card {
+    margin-top:14px;
+    padding:16px 17px;
+    gap:11px
+  }
+  .insight-card p {
+    font-size:10px
+  }
+  .insight-card h3 {
+    font-size:11px
+  }
+  .diary-header {
+    padding:20px 18px 16px;
+    gap:13px
+  }
+  .diary-user {
+    gap:10px
+  }
+  .diary-avatar {
+    width:37px;
+    height:37px;
+    border-radius:11px;
+    font-size:12px
+  }
+  .diary-user h2 {
+    font-size:14px
+  }
+  .date-controls input[type=date] {
+    width:111px;
+    font-size:9px;
+    padding:6px 4px
+  }
+  .date-controls .icon-button {
+    width:21px
+  }
+  .daily-summary {
+    margin:17px;
+    padding:15px 14px;
+    gap:15px
+  }
+  .progress-ring {
+    width:65px;
+    height:65px
+  }
+  .ring-inner {
+    width:53px;
+    height:53px
+  }
+  .ring-inner strong {
+    font-size:15px
+  }
+  .ring-inner small {
+    font-size:7px
+  }
+  .summary-detail h3 {
+    font-size:12px
+  }
+  .summary-detail p {
+    font-size:10px
+  }
+  .goal-tag {
+    font-size:9px
+  }
+  .meal-list {
+    padding:0 17px 20px;
+    gap:10px
+  }
+  .meal-card {
+    padding:14px 10px;
+    gap:10px
+  }
+  .meal-time {
+    font-size:9px;
+    width:30px
+  }
+  .meal-symbol {
+    width:30px;
+    height:30px;
+    border-radius:8px
+  }
+  .meal-symbol svg {
+    width:16px;
+    height:16px
+  }
+  .meal-content h3 {
+    font-size:11px
+  }
+  .meal-content p {
+    font-size:9px;
+    line-height:1.7
+  }
+  .meal-check {
+    width:22px;
+    height:22px
+  }
+  .meal-actions .icon-button {
+    width:23px;
+    height:23px
+  }
+  .meal-status {
+    display:none
+  }
+  .demo-banner {
+    padding:10px 12px;
+    margin-bottom:19px;
+    align-items:flex-start;
+    font-size:9px;
+    gap:7px
+  }
+  .demo-banner svg {
+    width:13px;
+    height:13px;
+    margin-top:1px
+  }
+  .demo-banner span {
+    line-height:1.7
+  }
+  .demo-banner button {
+    font-size:9px;
+    white-space:nowrap;
+    line-height:1.7
+  }
+  .demo-banner button svg {
+    display:none
+  }
+  .patients-grid {
+    grid-template-columns:1fr;
+    gap:15px
+  }
+  .patient-card {
+    padding:20px
+  }
+  .full-panel {
+    padding:19px 17px
+  }
+  .overlay {
+    padding:16px
+  }
+  .modal {
+    max-height:calc(100dvh - 32px);
+    border-radius:15px
+  }
+  .modal-header {
+    padding:23px 21px 17px
+  }
+  .modal-header h2 {
+    font-size:19px
+  }
+  .modal-body {
+    padding:0 21px 22px
+  }
+  .modal-footer {
+    padding:16px 21px
+  }
+  .empty-state {
+    min-height:270px;
+    padding:32px 20px
+  }
+  .empty-state h2,.empty-state h3 {
+    font-size:17px
+  }
+  .empty-state p {
+    font-size:11px
+  }
+  .auth-layout {
+    display:flex;
+    flex-direction:column
+  }
+  .auth-art {
+    padding:26px 27px 27px;
+    min-height:auto
+  }
+  .auth-brand {
+    font-size:23px
+  }
+  .auth-brand svg {
+    width:27px;
+    height:27px
+  }
+  .auth-pitch {
+    padding:31px 0 0;
+    max-width:330px
+  }
+  .auth-pitch .eyebrow {
+    font-size:8px;
+    letter-spacing:1.5px;
+    margin-bottom:13px
+  }
+  .auth-pitch h1 {
+    font-size:31px;
+    letter-spacing:-1px;
+    line-height:1.15;
+    max-width:290px
+  }
+  .auth-pitch p {
+    font-size:11px;
+    line-height:1.9;
+    margin-top:16px;
+    max-width:305px
+  }
+  .auth-preview,.auth-proof {
+    display:none
+  }
+  .auth-form-side {
+    padding:30px 26px 38px
+  }
+  .auth-card {
+    max-width:420px
+  }
+  .auth-card .eyebrow {
+    display:none
+  }
+  .auth-card h1,.auth-card h2 {
+    font-size:24px;
+    letter-spacing:-.6px;
+    margin-bottom:10px
+  }
+  .auth-card>p {
+    font-size:11px;
+    margin-bottom:23px
+  }
+  .auth-tabs {
+    margin-bottom:21px
+  }
+  .auth-card .form-stack {
+    gap:15px
+  }
+  .auth-bottom {
+    font-size:9px
+  }
+  .divider {
+    margin:22px 0
+  }
+  .plan-heading {
+    margin:0 17px 15px
+  }
+  .plan-heading p {
+    font-size:10px
+  }
+  .toast {
+    bottom:18px;
+    font-size:11px;
+    padding:11px 16px
+  }
+  .section-label {
+    margin-top:22px
+  }
+  .sidebar-bottom .sidebar-tip {
+    display:none
+  }
+}
+
+/* Interface components shared by the live application. */
+.brand small {
+  display:block;
+  font-size:7px;
+  letter-spacing:1.55px;
+  font-weight:400;
+  line-height:1.5;
+  color:#85a38f;
+  margin-top:4px
+}
+
+.brand-light {
+  color:var(--lime)
+}
+
+.sidebar-section-label {
+  font-size:8px;
+  color:#648a73;
+  font-weight:600;
+  letter-spacing:1.6px;
+  margin:43px 16px 0
+}
+
+.nav-links {
+  margin-top:17px
+}
+
+.nav-count {
+  margin-left:auto;
+  background:#2c5141;
+  color:#b7ccbc;
+  min-width:19px;
+  height:19px;
+  border-radius:5px;
+  display:grid;
+  place-items:center;
+  font-size:9px
+}
+
+.nav-link.active .nav-count {
+  color:#486433;
+  background:#bddc7c
+}
+
+.sidebar-note {
+  position:relative;
+  margin: auto 13px 28px;
+  padding:24px 13px 21px;
+  border:1px solid #315a44;
+  border-radius:13px;
+  background:#1c4435;
+  overflow:hidden
+}
+
+.sidebar-note>svg {
+  color:#b4cc7c;
+  width:23px;
+  height:23px;
+  margin-bottom:13px
+}
+
+.sidebar-note p {
+  font-size:11px;
+  color:#9db69f;
+  line-height:1.8
+}
+
+.sidebar-note strong {
+  color:#d8e4cb;
+  font-size:12px;
+  font-weight:500
+}
+
+.sidebar-decoration {
+  position:absolute;
+  right:-13px;
+  bottom:-23px;
+  width:81px;
+  height:81px;
+  border-radius:60% 0;
+  border:1px solid #6c945e40;
+  transform:rotate(-12deg)
+}
+
+.sidebar-decoration:after {
+  content:"";
+  position:absolute;
+  right:12px;
+  bottom:5px;
+  width:55px;
+  height:55px;
+  border:1px solid #6c945e40;
+  border-radius:60% 0
+}
+
+.sidebar-bottom {
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-top:0;
+  padding:20px 3px 3px;
+  border-top:1px solid #315541
+}
+
+.sidebar-bottom .profile-details strong {
+  font-size:11px
+}
+
+.sidebar-bottom .profile-details small {
+  font-size:10px
+}
+
+.sidebar-bottom .profile-avatar {
+  width:34px;
+  height:34px;
+  font-size:11px
+}
+
+.sidebar-bottom .logout {
+  width:25px
+}
+
+.connection-status {
+  display:flex;
+  align-items:center;
+  gap:7px;
+  color:#8f9b90;
+  font-size:10px
+}
+
+.connection-status i {
+  width:5px;
+  height:5px;
+  border-radius:50%;
+  background:#92ae71
+}
+
+.app-footer {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:7px;
+  color:#b1b9b1;
+  font-size:10px;
+  padding-top:30px
+}
+
+.app-footer span {
+  color:#c4cbbf
+}
+
+.eyebrow {
+  display:inline-block
+}
+
+.demo-banner>span {
+  display:flex;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:6px
+}
+
+.demo-banner>span>strong {
+  font-weight:550
+}
+
+.demo-banner .demo-description {
+  display:inline;
+  flex:0 1 auto
+}
+
+.stat-top {
+  justify-content:space-between;
+  margin-bottom:14px
+}
+
+.stat-tag {
+  font-size:10px;
+  color:#a6afa5;
+  border:1px solid #edf1e8;
+  background:#fafbf8;
+  padding:3px 7px;
+  border-radius:5px
+}
+
+.stat-copy strong,.stat-copy>span {
+  display:block
+}
+
+.stat-copy>span {
+  font-size:11px;
+  margin-top:6px
+}
+
+.stat-value {
+  margin-top:0
+}
+
+.stat-denominator {
+  font-size:17px;
+  font-weight:400;
+  letter-spacing:0;
+  color:#bac3b7
+}
+
+.stat-footer {
+  font-size:10px;
+  margin-top:15px
+}
+
+.stat-card {
+  min-height:178px
+}
+
+.stat-card .stat-trend {
+  color:#93b66b;
+  font-size:9px
+}
+
+.count-badge {
+  font-weight:500;
+  color:#95a586;
+  background:#f1f5e9;
+  padding:3px 6px;
+  border-radius:5px;
+  font-size:10px;
+  margin-left:5px
+}
+
+.patient-info>span {
+  display:block;
+  font-size:11px;
+  color:#9aa692
+}
+
+.avatar-1 {
+  background:#eee7de;
+  color:#a38d73
+}
+
+.avatar-2 {
+  background:#eeeaf5;
+  color:#9284ab
+}
+
+.avatar-3 {
+  background:#e4edf0;
+  color:#7d9ca0
+}
+
+.patient-row {
+  padding-top:17px;
+  padding-bottom:17px
+}
+
+.patient-panel>.insight-card {
+  margin:0 17px 18px;
+  border:0;
+  background:#f5f8ee;
+  padding:17px 14px;
+  gap:11px
+}
+
+.insight-card>svg {
+  color:#9db378;
+  width:20px;
+  height:20px;
+  flex-shrink:0;
+  margin-top:1px
+}
+
+.insight-card strong {
+  display:block;
+  font-size:11px;
+  color:#788e61;
+  font-weight:550;
+  margin-bottom:5px
+}
+
+.insight-card p {
+  font-size:11px;
+  color:#9da98e;
+  line-height:1.8
+}
+
+.diary-header {
+  padding:22px 24px 19px;
+  align-items:center;
+  flex-direction:row
+}
+
+.diary-header .subtle {
+  font-size:11px
+}
+
+.diary-user {
+  display:flex;
+  align-items:center;
+  gap:11px;
+  padding:20px 24px 0
+}
+
+.diary-user>div {
+  min-width:0;
+  flex:1
+}
+
+.diary-user strong {
+  font-size:13px;
+  font-weight:600;
+  display:block
+}
+
+.diary-user>div>span {
+  font-size:11px;
+  color:#9da695;
+  margin-top:4px;
+  display:block;
+  line-height:1.6
+}
+
+.diary-user .invite-button {
+  margin-left:auto;
+  width:29px;
+  height:29px;
+  border:1px solid #e8eee1;
+  background:#fafcf7;
+  flex-shrink:0
+}
+
+.diary-user .invite-button svg {
+  width:14px;
+  height:14px;
+  color:#9aac8d
+}
+
+.date-label {
+  display:inline-flex!important;
+  align-items:center;
+  gap:6px;
+  font-size:11px;
+  margin-right:0
+}
+
+.date-label>svg {
+  width:13px;
+  height:13px;
+  display:none
+}
+
+.date-controls {
+  width:auto;
+  flex-shrink:0
+}
+
+.date-controls input[type=date] {
+  font-size:11px;
+  width:121px;
+  min-height:32px;
+  padding:5px 4px
+}
+
+.date-controls .icon-button {
+  width:22px;
+  height:30px
+}
+
+.date-controls .icon-button[disabled] {
+  opacity:.25;
+  cursor:default
+}
+
+.date-controls .rotate {
+  display:flex;
+  transform:rotate(180deg)
+}
+
+.summary-detail>strong {
+  display:block;
+  font-size:12px;
+  font-weight:600
+}
+
+.summary-detail p {
+  font-size:11px;
+  margin-top:5px
+}
+
+.goal-tag {
+  font-size:10px;
+  padding:3px 7px
+}
+
+.meal-card {
+  gap:12px;
+  padding:16px 14px
+}
+
+.meal-title {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:5px
+}
+
+.meal-title h3 {
+  font-size:12px;
+  margin-bottom:0
+}
+
+.meal-title .meal-status {
+  font-size:10px;
+  flex-shrink:0
+}
+
+.meal-content p {
+  font-size:11px;
+  line-height:1.7
+}
+
+.meal-content .meal-note {
+  font-size:11px
+}
+
+.meal-time {
+  font-size:11px;
+  width:35px
+}
+
+.meal-actions {
+  margin-top:7px;
+  display:flex;
+  gap:15px;
+  align-items:center;
+  flex-wrap:wrap
+}
+
+.meal-actions .text-button {
+  font-size:10px;
+  font-weight:400;
+  color:#a7b49a;
+  padding:0;
+  gap:5px
+}
+
+.meal-actions .text-button svg {
+  width:11px;
+  height:11px
+}
+
+.meal-actions .text-button:hover {
+  color:#698450
+}
+
+.meal-actions .danger-text {
+  color:#c29281
+}
+
+.meal-check {
+  width:25px;
+  height:25px;
+  margin-left:3px
+}
+
+.diary-footer {
+  justify-content:space-between;
+  gap:12px
+}
+
+.diary-footer .subtle {
+  font-size:10px;
+  margin:0
+}
+
+.patient-footer {
+  font-size:10px;
+  line-height:1.7;
+  text-align:center;
+  justify-content:center
+}
+
+.patient-footer svg {
+  flex-shrink:0
+}
+
+.patient-welcome {
+  padding:8px 24px 24px
+}
+
+.welcome-leaf {
+  width:58px;
+  height:58px;
+  border-radius:19px;
+  background:#f1f5e7;
+  color:#9aaf72;
+  display:grid;
+  place-items:center;
+  margin-bottom:21px
+}
+
+.welcome-leaf svg {
+  width:28px;
+  height:28px
+}
+
+.patient-welcome h3 {
+  font-size:21px;
+  font-weight:500;
+  letter-spacing:-.6px;
+  line-height:1.35
+}
+
+.patient-welcome>p {
+  font-size:12px;
+  color:#9aa58f;
+  line-height:1.9;
+  margin-top:15px
+}
+
+.personal-goal {
+  margin-top:22px;
+  padding:16px;
+  background:#f6f8f1;
+  border:1px solid #edf1e4;
+  border-radius:10px
+}
+
+.personal-goal .eyebrow {
+  font-size:9px;
+  margin-bottom:6px;
+  letter-spacing:1px;
+  color:#8e9c7a
+}
+
+.personal-goal p {
+  font-size:12px;
+  color:#7e906b;
+  line-height:1.8
+}
+
+.patient-card-top {
+  justify-content:space-between
+}
+
+.patient-card .avatar {
+  width:45px;
+  height:45px;
+  font-size:13px
+}
+
+.patient-card h2 {
+  font-size:17px;
+  font-weight:550;
+  letter-spacing:-.4px
+}
+
+.patient-card .patient-email {
+  font-size:11px;
+  margin-top:6px
+}
+
+.patient-card .patient-card-goal {
+  line-height:1.8;
+  min-height:40px;
+  font-size:11px;
+  color:#a3ad99;
+  margin-top:16px
+}
+
+.patient-card-progress {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  font-size:10px;
+  color:#9ca890;
+  margin-top:20px
+}
+
+.patient-card-progress strong {
+  font-size:11px;
+  font-weight:500;
+  color:#90ab72
+}
+
+.patient-card .mini-progress {
+  margin-top:8px
+}
+
+.patient-card-actions {
+  justify-content:space-between;
+  align-items:center;
+  margin-top:20px
+}
+
+.patient-card-actions .icon-button {
+  border:1px solid #e9efe1;
+  color:#8da178;
+  border-radius:8px
+}
+
+.new-patient-card {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding:32px 25px;
+  border:1px dashed #cfdbc4;
+  border-radius:14px;
+  min-height:290px;
+  background:#f8faf4;
+  color:#839a6e;
+  transition:background .18s,border-color .18s
+}
+
+.new-patient-card:hover {
+  background:#f1f7e7;
+  border-color:#a1b985
+}
+
+.new-patient-card>span {
+  width:47px;
+  height:47px;
+  display:grid;
+  place-items:center;
+  border:1px solid #e0e9d5;
+  border-radius:50%;
+  background:#fff;
+  margin-bottom:18px;
+  color:#a5b78e
+}
+
+.new-patient-card strong {
+  font-size:14px;
+  font-weight:550
+}
+
+.new-patient-card p {
+  font-size:11px;
+  color:#abb7a0;
+  margin-top:8px;
+  line-height:1.8
+}
+
+.empty-state.compact {
+  min-height:190px;
+  padding:22px 17px
+}
+
+.empty-state.compact>svg {
+  color:#a2b789;
+  margin-bottom:17px;
+  width:25px;
+  height:25px
+}
+
+.empty-state.compact h3 {
+  font-size:14px
+}
+
+.empty-state.compact p {
+  font-size:11px;
+  margin-bottom:0
+}
+
+.empty-state.large {
+  min-height:375px
+}
+
+.auth-form-side {
+  position:relative;
+  flex-direction:column;
+  gap:38px
+}
+
+.auth-form-side .auth-card {
+  flex-shrink:0
+}
+
+.auth-copyright {
+  font-size:10px;
+  color:#b0b9a7;
+  text-align:center
+}
+
+.auth-card .button {
+  width:100%
+}
+
+.auth-security {
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:6px;
+  padding-top:29px;
+  color:#a7b39a;
+  font-size:10px
+}
+
+.auth-security svg {
+  width:12px;
+  height:12px
+}
+
+.auth-card .auth-intro {
+  font-size:12px;
+  line-height:1.8;
+  color:#94a18a;
+  margin-bottom:27px
+}
+
+.auth-art>.auth-brand {
+  padding:0
+}
+
+.auth-art .brand small {
+  font-size:7px;
+  color:#92ac8a
+}
+
+.auth-preview {
+  margin-top:0;
+  max-width:355px;
+  transform:rotate(-2deg)
+}
+
+.auth-preview-head {
+  display:flex;
+  align-items:center;
+  gap:9px;
+  margin-bottom:17px
+}
+
+.auth-preview-head .avatar {
+  width:32px;
+  height:32px;
+  font-size:10px;
+  background:#456646;
+  color:#d7e6bc
+}
+
+.auth-preview-head>div {
+  flex:1
+}
+
+.auth-preview-head strong {
+  font-size:11px;
+  font-weight:500;
+  color:#e7eedc;
+  display:block
+}
+
+.auth-preview-head small {
+  display:block;
+  font-size:9px;
+  color:#8dad8a;
+  margin-top:4px
+}
+
+.auth-preview-head .badge {
+  font-size:9px;
+  background:#35563a;
+  border:1px solid #4a6844;
+  color:#bcd68c
+}
+
+.preview-meal {
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:16px 0;
+  border-top:1px solid #406043;
+  border-bottom:1px solid #406043
+}
+
+.preview-meal>svg {
+  width:20px;
+  height:20px;
+  color:#c5e195;
+  background:#51723f;
+  border-radius:50%;
+  padding:4px
+}
+
+.preview-meal span {
+  flex:1
+}
+
+.preview-meal strong {
+  display:block;
+  font-size:11px;
+  font-weight:500;
+  color:#dce8cc
+}
+
+.preview-meal small {
+  display:block;
+  font-size:9px;
+  color:#87a684;
+  margin-top:5px
+}
+
+.preview-meal b {
+  color:#a2b693;
+  font-size:10px;
+  font-weight:400
+}
+
+.preview-progress {
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  font-size:9px;
+  color:#87a882;
+  margin-top:17px
+}
+
+.preview-progress b {
+  font-weight:400;
+  color:#b6cba2
+}
+
+.auth-preview .mini-progress {
+  height:4px;
+  background:#35593a;
+  max-width:none;
+  margin-top:9px
+}
+
+.auth-preview .mini-progress span {
+  background:#bbd88b
+}
+
+.invite-person>div>strong {
+  font-size:12px;
+  font-weight:550
+}
+
+.invite-person>div>span {
+  display:block;
+  color:#96a788;
+  font-size:11px;
+  margin-top:5px
+}
+
+.auth-card>.invite-icon {
+  display:grid;
+  margin-bottom:22px;
+  background:#edf4e0;
+  width:49px;
+  height:49px;
+  border-radius:15px
+}
+
+.modal-body>p {
+  color:#96a08e;
+  font-size:12px;
+  line-height:1.9;
+  margin-bottom:18px
+}
+
+.modal-body>.hint {
+  font-size:11px
+}
+
+.modal-body>.form-field {
+  margin-bottom:12px
+}
+
+.modal-intro {
+  font-size:12px;
+  line-height:1.8;
+  color:#9ca98e;
+  margin-bottom:22px
+}
+
+.form-field label span {
+  font-weight:400;
+  color:#a5b19b;
+  font-size:10px
+}
+
+.form-error:empty {
+  display:none
+}
+
+.form-row {
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 106px;
+  gap:13px
+}
+
+.form-row .time-field input {
+  padding-right:8px;
+  padding-left:9px
+}
+
+.invite-success {
+  width:48px;
+  height:48px;
+  display:grid;
+  place-items:center;
+  background:#edf5df;
+  color:#94ae70;
+  border-radius:14px;
+  margin-bottom:18px
+}
+
+.invite-success svg {
+  width:23px;
+  height:23px
+}
+
+.modal-open {
+  overflow:hidden
+}
+
+.demo-hint {
+  background:#f5f7ed;
+  padding:10px 12px;
+  border-radius:7px
+}
+
+.form-field label,.form-field input,.form-field textarea,.form-field select {
+  font-size:12px
+}
+
+.hint {
+  font-size:11px
+}
+
+.badge {
+  font-size:10px
+}
+
+.auth-bottom {
+  font-size:11px
+}
+
+.auth-proof {
+  font-size:11px
+}
+
+.subtle {
+  font-size:11px
+}
+
+@media(max-width:1200px) {
+  .sidebar-bottom .profile-details strong {
+    font-size:10px
+  }
+  .sidebar-bottom .profile-avatar {
+    width:31px;
+    height:31px;
+    font-size:10px
+  }
+  .sidebar-bottom {
+    gap:7px
+  }
+  .sidebar-bottom .logout {
+    width:22px
+  }
+  .diary-user {
+    padding:18px 18px 0
+  }
+  .diary-header {
+    padding:20px 18px 18px
+  }
+  .meal-card {
+    padding:14px 11px;
+    gap:9px
+  }
+  .meal-title h3 {
+    font-size:11px
+  }
+  .meal-content p {
+    font-size:10px
+  }
+  .meal-actions .text-button {
+    font-size:10px
+  }
+  .meal-title .meal-status {
+    font-size:9px
+  }
+  .meal-time {
+    font-size:10px;
+    width:31px
+  }
+  .diary-user>div>span {
+    font-size:10px
+  }
+  .stat-copy>span {
+    font-size:11px
+  }
+  .stat-footer {
+    font-size:10px;
+    line-height:1.6
+  }
+  .patient-info>span {
+    font-size:10px
+  }
+  .sidebar-note {
+    margin-right:9px;
+    margin-left:9px
+  }
+  .connection-status {
+    font-size:10px
+  }
+  .diary-footer .subtle {
+    display:none
+  }
+}
+
+@media(max-width:1050px) {
+  .diary-header {
+    flex-direction:column;
+    align-items:stretch;
+    gap:14px
+  }
+  .date-controls {
+    justify-content:flex-end
+  }
+  .stat-copy>span {
+    font-size:10px
+  }
+  .stat-value {
+    font-size:28px
+  }
+  .stat-tag {
+    font-size:9px;
+    padding:2px 5px
+  }
+  .diary-user>div>span {
+    font-size:10px
+  }
+  .auth-pitch {
+    padding-top:35px;
+    padding-bottom:25px
+  }
+  .sidebar-note {
+    padding:20px 12px
+  }
+  .patient-info strong {
+    font-size:11px
+  }
+}
+
+@media(max-width:800px) {
+  .sidebar-bottom .profile-details strong {
+    font-size:11px
+  }
+  .sidebar-bottom {
+    gap:9px
+  }
+  .diary-header {
+    flex-direction:row;
+    align-items:center
+  }
+  .date-controls {
+    width:auto
+  }
+  .auth-form-side {
+    padding:35px;
+    gap:26px
+  }
+  .auth-art {
+    gap:25px;
+    justify-content:flex-start
+  }
+  .auth-pitch {
+    margin-top:20px;
+    padding:30px 0 0
+  }
+  .auth-preview {
+    margin:auto 0
+  }
+  .auth-proof {
+    margin-top:auto
+  }
+  .connection-status {
+    font-size:9px
+  }
+  .app-footer {
+    font-size:9px
+  }
+  .diary-user strong {
+    font-size:12px
+  }
+}
+
+@media(max-width:670px) {
+  .stat-top {
+    align-items:flex-start;
+    flex-direction:row;
+    gap:5px;
+    margin-bottom:12px
+  }
+  .stat-tag {
+    font-size:8px;
+    padding:2px 4px;
+    white-space:nowrap;
+    display:none
+  }
+  .stat-card {
+    min-height:155px;
+    padding:15px 11px
+  }
+  .stat-copy>span {
+    font-size:10px;
+    margin-top:5px;
+    line-height:1.5
+  }
+  .stat-value {
+    font-size:25px
+  }
+  .stat-denominator {
+    font-size:13px
+  }
+  .stat-footer {
+    font-size:10px;
+    line-height:1.6;
+    display:block;
+    margin-top:10px
+  }
+  .stat-footer .stat-trend {
+    display:none
+  }
+  .patient-info>span {
+    font-size:10px
+  }
+  .patient-row {
+    width:190px;
+    min-width:190px;
+    padding:14px 10px
+  }
+  .diary-header {
+    padding:20px 17px 17px;
+    align-items:flex-start;
+    flex-direction:column;
+    gap:14px
+  }
+  .diary-header .date-controls {
+    width:100%;
+    justify-content:flex-end
+  }
+  .diary-header .subtle {
+    font-size:10px
+  }
+  .diary-user {
+    padding:18px 17px 0
+  }
+  .diary-user strong {
+    font-size:13px
+  }
+  .diary-user>div>span {
+    font-size:10px;
+    line-height:1.7
+  }
+  .diary-user .diary-avatar {
+    width:37px;
+    height:37px
+  }
+  .diary-user .invite-button {
+    width:28px;
+    height:28px
+  }
+  .date-controls input[type=date] {
+    font-size:11px;
+    width:127px;
+    min-height:31px
+  }
+  .date-label {
+    display:inline-flex!important
+  }
+  .date-label>svg {
+    display:none
+  }
+  .summary-detail>strong {
+    font-size:11px
+  }
+  .summary-detail p {
+    font-size:10px
+  }
+  .goal-tag {
+    font-size:9px
+  }
+  .meal-title {
+    gap:6px;
+    margin-bottom:4px
+  }
+  .meal-title h3 {
+    font-size:11px
+  }
+  .meal-title .meal-status {
+    display:none
+  }
+  .meal-content p {
+    font-size:10px
+  }
+  .meal-content .meal-note {
+    font-size:10px
+  }
+  .meal-time {
+    font-size:10px;
+    width:30px
+  }
+  .meal-actions .text-button {
+    font-size:10px
+  }
+  .meal-actions {
+    gap:11px;
+    margin-top:7px
+  }
+  .meal-check {
+    width:23px;
+    height:23px;
+    margin-left:0
+  }
+  .meal-card {
+    gap:9px;
+    padding:14px 10px
+  }
+  .meal-symbol {
+    width:28px;
+    height:28px
+  }
+  .patient-panel>.insight-card {
+    margin-top:0;
+    margin-bottom:16px
+  }
+  .insight-card p,.insight-card strong {
+    font-size:10px
+  }
+  .demo-banner>span {
+    font-size:10px;
+    gap:5px;
+    line-height:1.7
+  }
+  .demo-banner .demo-description {
+    display:none
+  }
+  .demo-banner button {
+    font-size:10px
+  }
+  .demo-banner {
+    align-items:center;
+    gap:9px
+  }
+  .connection-status {
+    font-size:9px
+  }
+  .app-footer {
+    font-size:9px;
+    gap:5px;
+    padding-top:26px;
+    line-height:1.8
+  }
+  .patient-welcome {
+    padding:7px 22px 25px
+  }
+  .patient-welcome h3 {
+    font-size:22px
+  }
+  .patient-welcome>p {
+    font-size:11px
+  }
+  .personal-goal p {
+    font-size:11px
+  }
+  .new-patient-card {
+    min-height:210px
+  }
+  .auth-art {
+    gap:0;
+    padding:26px 27px 29px
+  }
+  .auth-pitch {
+    margin-top:0;
+    padding-top:28px
+  }
+  .auth-proof,.auth-preview {
+    display:none
+  }
+  .auth-form-side {
+    padding:32px 26px;
+    gap:29px
+  }
+  .auth-card .auth-intro {
+    font-size:12px;
+    margin-bottom:22px
+  }
+  .auth-copyright {
+    font-size:9px
+  }
+  .auth-security {
+    font-size:10px;
+    padding-top:25px
+  }
+  .auth-bottom {
+    font-size:10px;
+    line-height:1.9
+  }
+  .sidebar-note {
+    display:block;
+    margin-top:auto
+  }
+  .form-row {
+    grid-template-columns:minmax(0,1fr) 104px;
+    gap:12px
+  }
+  .modal-body>p,.modal-intro {
+    font-size:12px
+  }
+  .hint {
+    font-size:11px
+  }
+  .form-field label,.form-field input,.form-field textarea,.form-field select {
+    font-size:12px
+  }
+  .sidebar-section-label {
+    margin-top:38px
+  }
+  .auth-card>.invite-icon {
+    margin-bottom:18px
+  }
+  .patient-footer {
+    font-size:10px;
+    line-height:1.8
+  }
+  .badge {
+    font-size:10px
+  }
+  .auth-card .auth-bottom {
+    font-size:11px
+  }
+  .brand small {
+    font-size:7px
+  }
+  .auth-art .brand small {
+    font-size:7px
+  }
+}
+
+@media(max-height:740px) and (min-width:801px) {
+  .sidebar-note {
+    margin-top:35px;
+    padding:17px 12px
+  }
+  .sidebar-note>svg {
+    margin-bottom:7px
+  }
+  .sidebar-bottom {
+    margin-top:auto
+  }
+  .sidebar {
+    padding-top:30px
+  }
+  .sidebar-section-label {
+    margin-top:34px
+  }
+  .auth-art {
+    padding-top:35px;
+    padding-bottom:35px
+  }
+  .auth-pitch {
+    padding-top:25px;
+    padding-bottom:25px
+  }
+  .auth-pitch h1 {
+    font-size:36px
+  }
+  .auth-pitch p {
+    margin-top:17px
+  }
+  .auth-preview {
+    padding:15px
+  }
+  .auth-preview-head {
+    margin-bottom:12px
+  }
+  .preview-meal {
+    padding:12px 0
+  }
+}
+
+@media(prefers-reduced-motion:reduce) {
+  *,*:before,*:after {
+    animation-duration:.01ms!important;
+    transition-duration:.01ms!important;
+    scroll-behavior:auto!important
+  }
+}
+
+/* Readable supporting text at every viewport size. */
+.meal-content p {
+  font-size: 13px;
+  line-height: 1.75;
+  color: #66766e;
+}
+.meal-title h3 {
+  font-size: 13px;
+}
+.meal-title .meal-status,
+.meal-time,
+.meal-actions .text-button,
+.meal-content .meal-note {
+  font-size: 11px;
+  color: #71816d;
+}
+.meal-actions .text-button {
+  padding: 3px 0;
+}
+.meal-title .meal-status.done {
+  color: #5b8044;
+}
+.patient-info > span,
+.diary-user > div > span,
+.summary-detail p,
+.patient-card .patient-email,
+.patient-card .patient-card-goal,
+.patient-card-progress,
+.insight-card p,
+.subtle {
+  font-size: 12px;
+  color: #71806d;
+}
+.patient-info strong,
+.patient-card-progress strong {
+  font-size: 12px;
+}
+.patient-card .patient-card-goal {
+  font-size: 13px;
+  line-height: 1.8;
+}
+.patient-info > span {
+  font-size: 11px;
+}
+.diary-header .subtle,
+.stat-copy > span,
+.stat-footer,
+.goal-tag,
+.badge,
+.patient-footer,
+.diary-footer .subtle {
+  font-size: 11px;
+  color: #75836b;
+}
+.stat-footer {
+  line-height: 1.65;
+}
+.patient-pct,
+.patient-card p,
+.insight-card strong {
+  font-size: 12px;
+}
+.auth-intro,
+.auth-card .auth-intro,
+.auth-bottom,
+.auth-card .auth-bottom,
+.modal-intro,
+.modal-body > p {
+  color: #71806d;
+}
+@media (max-width: 670px) {
+  .meal-content p {
+    font-size: 12px;
+    line-height: 1.8;
+  }
+  .meal-title h3 {
+    font-size: 12px;
+  }
+  .meal-time,
+  .meal-actions .text-button,
+  .meal-content .meal-note,
+  .patient-info > span,
+  .diary-user > div > span,
+  .summary-detail p,
+  .insight-card p,
+  .insight-card strong,
+  .stat-copy > span,
+  .stat-footer,
+  .goal-tag,
+  .diary-header .subtle,
+  .patient-footer {
+    font-size: 11px;
+  }
+  .meal-card {
+    align-items: flex-start;
+    padding-top: 17px;
+    padding-bottom: 17px;
+  }
+  .meal-time,
+  .meal-symbol,
+  .meal-check {
+    margin-top: 3px;
+  }
+  .patient-row {
+    width: 210px;
+    min-width: 210px;
+  }
+  .patient-info strong,
+  .patient-card .patient-email,
+  .patient-card .patient-card-goal {
+    font-size: 12px;
+  }
+}
+
+/* No celular, o paciente encontra suas refeições antes do conteúdo de apoio. */
+@media (max-width: 670px) {
+  .patient-view > .diary-panel {
+    order: -1;
+  }
+  .meal-check {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+  }
+}
+
+html { scroll-padding-top: 82px; }
+body { padding-top: 66px; }
+.local-demo-warning { position: fixed; z-index: 120; inset: 0 0 auto; min-height: 66px;
+  display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 3px 8px;
+  padding: 10px 20px; text-align: center; background: #f4f8e9; color: #214333;
+  border-bottom: 1px solid #cad9af; font: 12px/1.6 system-ui,sans-serif; }
+.local-demo-warning strong { font-weight: 700; }
+.local-demo-warning small { font-size: 11px; flex-basis: 100%; }
+.local-demo-warning[data-persistent="false"] small::after {
+  content: ' O navegador bloqueou o armazenamento: alterações só duram enquanto esta página estiver aberta.';
+  color: #9b3f29;
+}
+.sidebar { top: 66px; }
+.auth-layout { min-height: calc(100dvh - 66px); }
+@media (max-width: 670px) {
+  body { padding-top: 100px; }
+  .local-demo-warning { min-height: 100px; padding: 9px 14px; font-size: 11px; }
+  .local-demo-warning small { font-size: 10px; }
+  .sidebar { top: 100px; }
+}
+
+</style>
+</head>
+<body>
+<aside id="local-demo-warning" class="local-demo-warning" role="note"><strong>Demonstração local</strong><span>· Dados ficam neste navegador. Sem sincronização com outros dispositivos.</span><small>Use somente dados fictícios. Este arquivo não cria contas reais e não envia informações pela internet.</small></aside>
+  <div id="app"><div class="loading" role="status">Preparando seu espaço…</div></div>
+  <div id="modal-root"></div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script>
+
+(() => {
+  'use strict';
+  const key = 'nutriviva.offline-demo.v1';
+  const localDay = () => new Intl.DateTimeFormat('en-CA', {
+    timeZone: 'America/Sao_Paulo', year: 'numeric', month: '2-digit', day: '2-digit'
+  }).format(new Date());
+  const clone = value => JSON.parse(JSON.stringify(value));
+  function seed() {
+    const users = [
+      {id: 1, name: 'Clara Mendes', email: 'clara@exemplo.invalid', role: 'nutritionist', is_demo: true},
+      {id: 2, name: 'Ana Oliveira', email: 'ana@exemplo.invalid', role: 'patient', is_demo: true},
+      {id: 3, name: 'Lucas Almeida', email: 'lucas@exemplo.invalid', role: 'patient', is_demo: true},
+      {id: 4, name: 'Marina Costa', email: 'marina@exemplo.invalid', role: 'patient', is_demo: true}
+    ];
+    const templates = [
+      ['Café da manhã', '07:00', '1 iogurte natural + 2 colheres de aveia + 1 banana.'],
+      ['Lanche da manhã', '10:00', '1 fruta da estação e um punhado de castanhas.'],
+      ['Almoço', '12:30', 'Arroz integral, feijão, frango grelhado e salada colorida.'],
+      ['Lanche da tarde', '15:30', '1 sanduíche de pão integral com queijo branco.'],
+      ['Jantar', '19:30', 'Omelete com legumes e salada de folhas.']
+    ];
+    const patients = users.slice(1).map((user, index) => ({
+      id: index + 1, owner_id: 1, user_id: user.id, name: user.name, email: user.email,
+      goal: ['Construir uma rotina alimentar mais equilibrada.', 'Ter mais disposição no dia a dia.', 'Cuidar da alimentação com leveza e consistência.'][index],
+      created_at: new Date().toISOString(),
+      meals: templates.map(([name, time, description], mealIndex) => ({
+        id: index * 5 + mealIndex + 1, name, time, description
+      }))
+    }));
+    const checks = {};
+    patients.forEach((patient, index) => patient.meals.forEach((meal, mealIndex) => {
+      if (mealIndex < [3, 2, 4][index]) checks[`${meal.id}:${localDay()}`] = {
+        done: true, note: mealIndex === 2 ? 'Segui o planejamento e me senti bem.' : '',
+        checked_at: new Date().toISOString()
+      };
+    }));
+    return {users, patients, checks, invites: {}, session: 1, nextUser: 5, nextPatient: 4, nextMeal: 16};
+  }
+  let db;
+  let persistent = true;
+  try { db = JSON.parse(localStorage.getItem(key)); } catch (_) { persistent = false; }
+  if (!db || !Array.isArray(db.users) || !Array.isArray(db.patients)) db = seed();
+  function save() {
+    try { localStorage.setItem(key, JSON.stringify(db)); }
+    catch (_) { persistent = false; }
+    const warning = document.getElementById('local-demo-warning');
+    if (warning) warning.dataset.persistent = String(persistent);
+  }
+  save();
+  const response = (value, status = 200) => Promise.resolve(new Response(JSON.stringify(clone(value)), {
+    status, headers: {'Content-Type': 'application/json'}
+  }));
+  const fail = (message, status = 400) => response({error: message}, status);
+  function user() { return db.users.find(item => item.id === db.session) || null; }
+  function owner(current) {
+    if (current.role === 'nutritionist') return current.id;
+    return db.patients.find(patient => patient.user_id === current.id)?.owner_id;
+  }
+  function patientData(patient, date) {
+    const meals = patient.meals.slice().sort((a, b) => a.time.localeCompare(b.time)).map(meal => ({
+      ...meal, done: false, note: '', checked_at: null, ...db.checks[`${meal.id}:${date}`]
+    }));
+    return {...patient, has_access: !!patient.user_id, meals,
+      progress: {completed: meals.filter(meal => meal.done).length, total: meals.length}};
+  }
+  function inviteURL(token) {
+    const url = new URL(location.href);
+    url.search = ''; url.hash = ''; url.searchParams.set('invite', token);
+    return url.href;
+  }
+  function createInvite(patient) {
+    Object.keys(db.invites).forEach(token => {
+      if (db.invites[token] === patient.id) delete db.invites[token];
+    });
+    const token = 'local-' + Math.random().toString(36).slice(2) + Date.now().toString(36);
+    db.invites[token] = patient.id;
+    save();
+    return inviteURL(token);
+  }
+  // No request in this file reaches a network. This is a visual prototype, not authentication.
+  window.fetch = async (input, options = {}) => {
+    const url = new URL(String(input), 'https://local-demo.invalid');
+    const path = url.pathname;
+    const method = options.method || 'GET';
+    let body = {};
+    try { body = options.body ? JSON.parse(options.body) : {}; }
+    catch (_) { return fail('Dados inválidos para a demonstração.'); }
+    const current = user();
+    if (path === '/api/me') return response({user: current});
+    if (path === '/api/logout') { db.session = null; save(); return response({ok: true}); }
+    if (path === '/api/demo') {
+      db.session = body.role === 'patient' ? 2 : 1; save(); return response({user: user()});
+    }
+    if (path === '/api/login') {
+      const found = db.users.find(item => item.email.toLowerCase() === String(body.email).toLowerCase());
+      if (!found) return fail('Na demonstração, use o botão Conhecer demonstração. Nenhuma conta real é acessada.');
+      db.session = found.id; save(); return response({user: found});
+    }
+    if (path === '/api/register') {
+      const account = {id: db.nextUser++, name: String(body.name || 'Nutricionista de exemplo'),
+        email: String(body.email || 'nutri@exemplo.invalid'), role: 'nutritionist', is_demo: true};
+      db.users.push(account); db.session = account.id; save(); return response({user: account});
+    }
+    const invitation = path.match(/^\/api\/invites\/([^/]+)(\/accept)?$/);
+    if (invitation) {
+      const patient = db.patients.find(item => item.id === db.invites[decodeURIComponent(invitation[1])]);
+      if (!patient) return fail('Este convite local já foi utilizado ou não existe neste navegador.', 404);
+      if (invitation[2]) {
+        const account = {id: db.nextUser++, name: patient.name, email: patient.email, role: 'patient', is_demo: true};
+        db.users.push(account); patient.user_id = account.id; db.session = account.id;
+        delete db.invites[invitation[1]]; save(); return response({user: account});
+      }
+      return response({patient: {name: patient.name, email: patient.email},
+        nutritionist_name: db.users.find(item => item.id === patient.owner_id)?.name || 'Nutricionista de exemplo'});
+    }
+    if (!current) return fail('Abra a demonstração para continuar.', 401);
+    if (path === '/api/dashboard') {
+      const date = url.searchParams.get('date') || localDay();
+      const patients = db.patients.filter(patient => current.role === 'patient' ? patient.user_id === current.id : patient.owner_id === current.id).map(patient => patientData(patient, date));
+      const completed = patients.reduce((sum, patient) => sum + patient.progress.completed, 0);
+      const total = patients.reduce((sum, patient) => sum + patient.progress.total, 0);
+      return response({user: current, date, patients,
+        summary: {patients: patients.length, completed, total, adherence: total ? Math.round(completed / total * 100) : 0}});
+    }
+    if (path === '/api/patients' && method === 'POST' && current.role === 'nutritionist') {
+      const patient = {id: db.nextPatient++, owner_id: current.id, user_id: null,
+        name: String(body.name), email: String(body.email), goal: String(body.goal || ''),
+        created_at: new Date().toISOString(), meals: []};
+      db.patients.push(patient);
+      return response({patient: patientData(patient, localDay()), invite_url: createInvite(patient)});
+    }
+    const patientRoute = path.match(/^\/api\/patients\/(\d+)\/(invite|meals)$/);
+    if (patientRoute && current.role === 'nutritionist') {
+      const patient = db.patients.find(item => item.id === Number(patientRoute[1]) && item.owner_id === current.id);
+      if (!patient) return fail('Paciente não encontrado nesta demonstração.', 404);
+      if (patientRoute[2] === 'invite') {
+        if (patient.user_id) return fail('Este paciente de exemplo já tem acesso.', 409);
+        return response({invite_url: createInvite(patient)});
+      }
+      const meal = {id: db.nextMeal++, name: String(body.name), time: String(body.time), description: String(body.description || '')};
+      patient.meals.push(meal); save(); return response({meal});
+    }
+    const mealRoute = path.match(/^\/api\/meals\/(\d+)(\/check)?$/);
+    if (mealRoute) {
+      const patient = db.patients.find(item => item.meals.some(meal => meal.id === Number(mealRoute[1])));
+      if (!patient || (current.role === 'patient' ? patient.user_id !== current.id : patient.owner_id !== current.id)) return fail('Refeição não encontrada.', 404);
+      if (method === 'DELETE' && !mealRoute[2] && current.role === 'nutritionist') {
+        patient.meals = patient.meals.filter(meal => meal.id !== Number(mealRoute[1]));
+        Object.keys(db.checks).filter(key => key.startsWith(mealRoute[1] + ':')).forEach(key => delete db.checks[key]);
+        save(); return response({ok: true});
+      }
+      if (mealRoute[2] && method === 'POST') {
+        const date = body.date || localDay();
+        if (date > localDay()) return fail('Escolha hoje ou um dia anterior para registrar a refeição.');
+        db.checks[`${mealRoute[1]}:${date}`] = {done: !!body.done, note: String(body.note || ''), checked_at: body.done ? new Date().toISOString() : null};
+        save(); return response({ok: true});
+      }
+    }
+    return fail('Esta ação não está disponível na demonstração local.', 404);
+  };
+  window.addEventListener('DOMContentLoaded', () => {
+    const warning = document.getElementById('local-demo-warning');
+    if (warning) warning.dataset.persistent = String(persistent);
+  });
+})();
+
+/* NutriViva — interface sem dependências; registros persistidos pela API. */
+const icons = {
+  leaf: '<path d="M20 4c-9-2-16 2-16 9a7 7 0 0 0 7 7c7 0 11-7 9-16Z"/><path d="M4 20 15 9m-8 8v-6m0 6h6"/>',
+  grid: '<rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/>',
+  users: '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2m20 0v-2a4 4 0 0 0-3-3.87M16 3a4 4 0 0 1 0 8"/><circle cx="9" cy="7" r="4"/>',
+  meal: '<path d="M4 3v7m3-7v7m-6-7v7m0-3h6m-3 3v11M19 3c-4 4-5 9 0 9V3Zm0 9v9"/>',
+  calendar: '<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 11h18m-11 4h4"/>',
+  arrow: '<path d="M5 12h14m-6-6 6 6-6 6"/>',
+  chevron: '<path d="m9 5 7 7-7 7"/>',
+  plus: '<path d="M12 5v14M5 12h14"/>',
+  check: '<path d="m5 12 4 4L19 6"/>',
+  clock: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+  trend: '<path d="m3 17 6-6 4 4 8-10m-6 0h6v6"/>',
+  logout: '<path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4m7 14 5-5-5-5m5 5H9"/>',
+  menu: '<path d="M3 6h18M3 12h18M3 18h18"/>',
+  close: '<path d="m6 6 12 12M6 18 18 6"/>',
+  copy: '<rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V4a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h4"/>',
+  link: '<path d="m10 13 4-4m-6 7-2 2a4 4 0 0 1-6-6l5-5a4 4 0 0 1 6 0m2 1 2-2a4 4 0 0 1 6 6l-5 5a4 4 0 0 1-6 0" transform="translate(1 0)"/>',
+  sun: '<circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1 1m12 12 1 1M5 19l1-1M18 6l1-1"/>',
+  coffee: '<path d="M4 8h12v8a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V8Zm12 1h2a3 3 0 0 1 0 6h-2M7 2v3m5-3v3M2 22h16"/>',
+  moon: '<path d="M21 13a9 9 0 0 1-10-10A9 9 0 1 0 21 13Z"/>',
+  message: '<path d="M21 11a8 8 0 0 1-8 8H8l-6 3 2-6a8 8 0 1 1 17-5Z"/><path d="M8 10h8m-8 4h5"/>',
+  trash: '<path d="M3 6h18M9 6V3h6v3m4 0-1 15H6L5 6m5 4v7m4-7v7"/>',
+  shield: '<path d="M12 2 3 6v6c0 5 9 10 9 10s9-5 9-10V6l-9-4Z"/><path d="m8 12 3 3 5-6"/>',
+  heart: '<path d="M20 4a5 5 0 0 0-8 2 5 5 0 0 0-8-2c-6 6 8 16 8 16S26 10 20 4Z"/>',
+  bell: '<path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9m-12 13h6"/>',
+};
+const icon = name => `<svg viewBox="0 0 24 24" aria-hidden="true">${icons[name] || icons.leaf}</svg>`;
+const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const initials = name => String(name || '').trim().split(/\s+/).slice(0,2).map(p => p[0]).join('').toUpperCase();
+const today = () => new Intl.DateTimeFormat('en-CA', {timeZone:'America/Sao_Paulo',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
+const dateObject = date => new Date(`${date}T12:00:00-03:00`);
+const prettyDate = date => new Intl.DateTimeFormat('pt-BR', {day:'numeric', month:'long',year:'numeric',timeZone:'America/Sao_Paulo'}).format(dateObject(date));
+const state = {user:null,data:null,date:today(),view:'overview',selected:null,authMode:'login',invite:null};
+let toastTimer;
+let dashboardRequest = 0;
+
+async function api(path, body, method) {
+  const response = await fetch(`/api${path}`, {method:method || (body === undefined ? 'GET' : 'POST'), headers:body === undefined ? {} : {'Content-Type':'application/json'},body:body === undefined ? undefined : JSON.stringify(body), credentials:'same-origin'});
+  const result = await response.json().catch(() => ({}));
+  if (!response.ok) throw new Error(result.error || 'Não foi possível concluir. Tente novamente.');
+  return result;
+}
+function toast(message) { const el=document.getElementById('toast'); el.textContent=message; el.classList.add('visible');clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove('visible'),4200); }
+function errorMessage(error) { return error.message === 'Failed to fetch' ? 'Sem conexão com o servidor. Tente novamente.' : error.message; }
+function percentage(p) { return p?.progress?.total ? Math.round(p.progress.completed/p.progress.total*100) : 0; }
+function selectedPatient() { return state.data?.patients.find(p=>p.id===state.selected) || state.data?.patients[0]; }
+function patientRole() { return state.user?.role === 'patient'; }
+function brand() { return `<span class="brand-mark">${icon('leaf')}</span><span>nutri<span class="brand-light">viva</span><small>NUTRIÇÃO QUE ACOMPANHA</small></span>`; }
+function avatar(name, index=0, extra='') { return `<span class="avatar avatar-${index%4} ${extra}">${esc(initials(name))}</span>`; }
+
+function renderAuth() {
+  const signup=state.authMode==='register'; const invite=state.invite;
+  document.getElementById('app').innerHTML = `<main class="auth-layout">
+    <section class="auth-art"><div class="brand auth-brand">${brand()}</div><div class="auth-pitch"><span class="eyebrow">PEQUENOS HÁBITOS. GRANDES MUDANÇAS.</span><h1>Mais perto.<br>Todos os dias.</h1><p>O cuidado vai além da consulta. Conecte o plano alimentar à rotina real dos seus pacientes.</p></div>
+    <div class="auth-preview"><div class="auth-preview-head">${avatar('Ana Oliveira',0)}<div><strong>Ana Oliveira</strong><small>Construindo uma rotina melhor</small></div><span class="badge">Hoje</span></div><div class="preview-meal">${icon('check')}<span><strong>Café da manhã</strong><small>Um passo de cada vez.</small></span><b>07:30</b></div><div class="preview-progress"><span>Progresso do dia</span><b>3 de 5 refeições</b></div><div class="mini-progress"><span style="width:60%"></span></div></div>
+    <div class="auth-proof">${icon('heart')} <span>Mais presença no cuidado. Mais leveza na rotina.</span></div></section>
+    <section class="auth-form-side"><div class="auth-card">${invite ? `<span class="invite-icon">${icon('leaf')}</span><span class="eyebrow">SEU CUIDADO COMEÇA AQUI</span><h2>Que bom ter você aqui,<br>${esc(invite.patient.name.split(' ')[0])}.</h2><p class="auth-intro">${esc(invite.nutritionist_name)} convidou você para acompanhar seu plano alimentar.</p><div class="invite-person">${avatar(invite.patient.name)}<div><strong>${esc(invite.patient.name)}</strong><span>${esc(invite.patient.email)}</span></div></div>` : `<span class="eyebrow">BEM-VINDO À NUTRIVIVA</span><h2>${signup ? 'Cuidado que se conecta.' : 'Seu espaço de cuidado.'}</h2><p class="auth-intro">${signup ? 'Simule uma conta com dados fictícios. Não há conta ou autenticação real neste arquivo.' : 'Explore com dados fictícios. Não use e-mail, senha ou informações de pacientes reais.'}</p><div class="auth-tabs"><button class="auth-tab ${!signup?'active':''}" data-action="auth-mode" data-mode="login">Entrar</button><button class="auth-tab ${signup?'active':''}" data-action="auth-mode" data-mode="register">Sou nutricionista</button></div>`}
+    <form id="auth-form" class="form-stack">${signup&&!invite?'<div class="form-field"><label for="auth-name">Seu nome</label><input id="auth-name" name="name" autocomplete="name" placeholder="Como podemos chamar você?" required maxlength="100"></div>':''}
+    ${!invite?'<div class="form-field"><label for="auth-email">E-mail</label><input id="auth-email" name="email" type="email" autocomplete="email" placeholder="voce@exemplo.com" required maxlength="254"></div>':''}
+    <div class="form-field"><label for="auth-password">${invite?'Crie sua senha':'Senha'}</label><input id="auth-password" name="password" type="password" autocomplete="${signup||invite?'new-password':'current-password'}" placeholder="${signup||invite?'Pelo menos 8 caracteres':'Sua senha'}" ${signup||invite?'minlength="8"':''} maxlength="128" required></div>
+    <p class="form-error" id="auth-error" role="alert"></p><button class="button primary auth-submit" type="submit">${invite?'Aceitar convite e entrar':signup?'Criar minha conta':'Entrar na minha conta'} ${icon('arrow')}</button></form>
+    ${!invite?`<div class="divider"><span>ou explore antes de começar</span></div><button class="button secondary demo-button" data-action="demo">${icon('grid')} Conhecer demonstração</button><p class="auth-bottom">Para explorar sem preencher nada, use Conhecer demonstração. Nenhum dado é enviado a um servidor.</p>`:'<p class="auth-bottom">Use uma senha fictícia. Este arquivo não oferece autenticação real.</p>'}
+    <div class="auth-security">${icon('shield')} <span>Demonstração local: não insira dados pessoais, de saúde ou credenciais reais.</span></div></div><span class="auth-copyright">NutriViva · Cada refeição, uma nova conquista.</span></section></main>`;
+  document.getElementById('auth-form').addEventListener('submit', submitAuth);
+}
+async function submitAuth(event) {
+  event.preventDefault(); const form=event.currentTarget; const button=form.querySelector('button[type=submit]'); button.disabled=true; document.getElementById('auth-error').textContent='';
+  const values=Object.fromEntries(new FormData(form));
+  try { const result=await api(state.invite?`/invites/${encodeURIComponent(state.invite.token)}/accept`:state.authMode==='register'?'/register':'/login',values);state.user=result.user;state.invite=null;history.replaceState({},'',location.pathname);await loadDashboard(); }
+  catch(error) {
+    const errorElement = document.getElementById('auth-error');
+    if (errorElement) errorElement.textContent = errorMessage(error);
+    else toast(errorMessage(error));
+    button.disabled = false;
+  }
+}
+
+function renderShell() {
+  const patient=patientRole(); const user=state.user;
+  const navItems=patient?[['overview','grid','Meu dia'],['history','calendar','Meu histórico']]:[['overview','grid','Visão geral'],['patients','users','Pacientes'],['plan','meal','Plano alimentar'],['history','calendar','Histórico']];
+  document.getElementById('app').innerHTML=`<div class="app-shell"><button class="sidebar-backdrop" data-action="close-menu" aria-label="Fechar menu"></button><aside class="sidebar"><a class="brand" href="/" data-action="home">${brand()}</a><div class="sidebar-section-label">${patient?'SEU ACOMPANHAMENTO':'SEU CONSULTÓRIO'}</div><nav class="nav-links" aria-label="Navegação principal">${navItems.map(([view,i,label])=>`<button class="nav-link ${state.view===view?'active':''}" data-action="navigate" data-view="${view}"><span class="nav-icon">${icon(i)}</span>${label}${view==='patients'?`<span class="nav-count">${state.data?.patients.length||0}</span>`:''}</button>`).join('')}</nav><div class="sidebar-note">${icon('leaf')}<p>Pequenas escolhas.<br><strong>Uma vida mais leve.</strong></p><span class="sidebar-decoration"></span></div><div class="sidebar-bottom"><div class="profile-avatar">${esc(initials(user.name))}</div><div class="profile-details"><strong>${esc(user.name)}</strong><small>${patient?'Paciente':'Nutricionista'}</small></div><button class="logout" data-action="logout" title="Sair" aria-label="Sair da conta">${icon('logout')}</button></div></aside>
+  <main class="main-content"><header class="topbar"><div class="mobile-brand"><button class="icon-button mobile-menu" data-action="menu" aria-label="Abrir menu">${icon('menu')}</button><strong>nutriviva</strong></div><div class="topbar-date">${icon('calendar')} ${esc(new Intl.DateTimeFormat('pt-BR',{weekday:'long',day:'numeric',month:'long',timeZone:'America/Sao_Paulo'}).format(dateObject(today())))}</div><div class="topbar-tools"><span class="connection-status"><i></i> Demonstração neste navegador</span><span class="profile-small">${esc(initials(user.name))}</span></div></header><div id="page-content"></div><footer class="app-footer">NutriViva <span>·</span> Cuidado de verdade, todos os dias.</footer></main></div>`;
+  renderContent();
+}
+function demoBanner() { return state.user.is_demo?`<div class="demo-banner"><span>${icon('leaf')} <strong>Modo demonstração</strong><span class="demo-description"> · Dados locais de exemplo.</span></span><button data-action="switch-role">${patientRole()?'Visão do nutricionista':'Visão do paciente'} ${icon('arrow')}</button></div>`:''; }
+function dateControls() { return `<div class="date-controls"><button class="icon-button" data-action="date-prev" aria-label="Dia anterior"><span class="rotate">${icon('chevron')}</span></button><label class="date-label" for="dashboard-date">${icon('calendar')}<input type="date" id="dashboard-date" value="${state.date}" max="${today()}" aria-label="Data do acompanhamento"></label><button class="icon-button" data-action="date-next" ${state.date>=today()?'disabled':''} aria-label="Próximo dia">${icon('chevron')}</button></div>`; }
+function renderContent() {
+  if (!state.data) return;
+  const patient=patientRole(); const data=state.data;
+  const titles={overview:patient?'Cada refeição é um novo começo.':'Cuidar começa com acompanhar.',patients:'Gente de verdade. Cuidado de perto.',plan:'Um plano para cada rotina.',history:'Cada dia conta uma história.'};
+  const subtitles={overview:patient?'Seu plano, suas conquistas. Vamos cuidar de você hoje?':'Um olhar atento para a rotina e as conquistas dos seus pacientes.',patients:'Organize seus pacientes e convide-os para caminhar com você.',plan:'Monte um plano alimentar simples, claro e fácil de acompanhar.',history:'Escolha uma data para acompanhar os registros e observações.'};
+  document.getElementById('page-content').innerHTML=`${demoBanner()}<section class="page-heading"><div><span class="eyebrow">${state.view==='overview'?`OLÁ, ${esc(state.user.name.split(' ')[0]).toUpperCase()}`:({patients:'SEUS PACIENTES',plan:'PLANEJAMENTO',history:'ACOMPANHAMENTO'})[state.view]}</span><h1>${titles[state.view]}</h1><p>${subtitles[state.view]}</p></div><div class="page-actions">${!patient?`<button class="button primary" data-action="add-patient">${icon('plus')} Novo paciente</button>`:''}</div></section>${state.view==='patients'?renderPatients():`${renderStats()}<section class="content-grid ${patient?'patient-view':''}">${!patient?renderPatientList():renderPatientAside()}${renderDiary()}</section>`}`;
+  document.getElementById('dashboard-date')?.addEventListener('change',async event=>{if(!event.target.value||event.target.value>today())return;state.date=event.target.value;await refreshDashboard();});
+}
+function renderStats() {
+  const data=state.data; const total=data.summary.total||0; const done=data.summary.completed||0; const rate=total?Math.round(done/total*100):0;
+  const patient=patientRole(); const cards=[['trend',`${rate}%`,'Adesão ao plano','Das refeições planejadas para o dia','green'],['meal',`${done}<span class="stat-denominator"> / ${total}</span>`,'Refeições registradas',`${Math.max(0,total-done)} ${total-done===1?'refeição ainda aguarda':'refeições ainda aguardam'} registro`,'orange'],[patient?'calendar':'users',patient?prettyDate(state.date).split(' de ')[0]:data.patients.length,patient?'Dia de acompanhamento':'Pacientes no acompanhamento',patient?'Um dia de cada vez, no seu ritmo.':`${data.patients.filter(p=>p.progress.completed>0).length} já registraram uma refeição`,'purple']];
+  return `<section class="stats-grid" aria-label="Resumo do acompanhamento">${cards.map(([i,value,label,foot,color],index)=>`<article class="stat-card"><div class="stat-top"><span class="stat-icon ${color}">${icon(i)}</span><span class="stat-tag">${state.date===today()?'Hoje':'Dia selecionado'}</span></div><div class="stat-copy"><strong class="stat-value">${value}</strong><span>${label}</span></div><div class="stat-footer">${index===0?'<span class="stat-trend">●</span>':''}${esc(foot)}</div></article>`).join('')}</section>`;
+}
+function renderPatientList() { const patients=state.data.patients; const selected=selectedPatient();return `<aside class="panel patient-panel"><div class="panel-heading"><div><h2 class="panel-title">Seus pacientes <span class="count-badge">${patients.length}</span></h2><p class="subtle">Um olhar para cada pessoa.</p></div></div><div class="patient-list">${patients.length?patients.map((p,i)=>`<button class="patient-row ${p.id===selected?.id?'selected':''}" data-action="select-patient" data-id="${p.id}">${avatar(p.name,i)}<div class="patient-info"><strong>${esc(p.name)}</strong><span>${p.progress.completed} de ${p.progress.total} refeições</span><div class="mini-progress"><span style="width:${percentage(p)}%"></span></div></div><span class="patient-pct">${percentage(p)}%</span></button>`).join(''):`<div class="empty-state compact">${icon('users')}<h3>Seu primeiro paciente</h3><p>Convide alguém e comece a acompanhar sua rotina.</p></div>`}</div><div class="panel-footer"><button class="text-button" data-action="add-patient">${icon('plus')} Adicionar paciente</button></div><div class="insight-card">${icon('heart')}<div><strong>Presença faz a diferença</strong><p>Um registro é uma oportunidade para entender, acolher e orientar.</p></div></div></aside>`; }
+function renderPatientAside() { const p=selectedPatient();return `<aside class="panel patient-panel"><div class="panel-heading"><h2 class="panel-title">Seu caminho, seu ritmo</h2></div><div class="patient-welcome"><span class="welcome-leaf">${icon('leaf')}</span><h3>Pequenas escolhas,<br>grandes conquistas.</h3><p>Registre suas refeições e compartilhe como foi seu dia com seu nutricionista.</p>${p?.goal?`<div class="personal-goal"><span class="eyebrow">SEU OBJETIVO</span><p>${esc(p.goal)}</p></div>`:''}</div><div class="insight-card">${icon('message')}<div><strong>Como foi sua refeição?</strong><p>Use as observações para contar o que funcionou e onde precisou adaptar.</p></div></div></aside>`; }
+function renderDiary() {
+  const p=selectedPatient(); const plan=state.view==='plan';
+  if (!p) return `<section class="panel"><div class="empty-state large"><span class="empty-icon">${icon('leaf')}</span><h2>Todo cuidado começa com uma conexão.</h2><p>Adicione seu primeiro paciente, compartilhe o convite e monte o plano alimentar.</p><button class="button primary" data-action="add-patient">${icon('plus')} Adicionar primeiro paciente</button></div></section>`;
+  const progress=percentage(p); const dateIsToday=state.date===today();
+  return `<section class="panel diary-panel"><div class="panel-heading diary-header"><div><h2 class="panel-title">${plan?'Plano alimentar':state.view==='history'?'Histórico alimentar':dateIsToday?'Acompanhamento de hoje':'Acompanhamento do dia'}</h2><p class="subtle">${plan?'Refeições que se encaixam na vida real.':prettyDate(state.date)}</p></div>${dateControls()}</div><div class="diary-user">${avatar(p.name,state.data.patients.indexOf(p),'diary-avatar')}<div><strong>${esc(p.name)}</strong><span>${esc(p.goal||'Uma rotina mais saudável, um dia de cada vez.')}</span></div>${!patientRole()&&!p.has_access?`<button class="icon-button invite-button" data-action="invite" data-id="${p.id}" title="Gerar convite do paciente" aria-label="Gerar convite para ${esc(p.name)}">${icon('link')}</button>`:''}</div><div class="daily-summary"><div class="progress-ring" style="--progress:${progress}%"><div class="ring-inner"><strong>${progress}%</strong></div></div><div class="summary-detail"><strong>${progress===100&&p.meals.length?'Um dia cheio de conquistas!':progress>0?'Cada passo merece ser celebrado.':'Uma nova chance de cuidar de você.'}</strong><p>${p.progress.completed} de ${p.progress.total} refeições registradas ${dateIsToday?'hoje':'neste dia'}</p><span class="goal-tag">${icon(progress===100?'check':'leaf')} ${progress===100&&p.meals.length?'Plano do dia concluído':'Consistência vale mais que perfeição'}</span></div></div><div class="meal-list">${p.meals.length?p.meals.map((meal,i)=>renderMeal(meal,i,plan)).join(''):`<div class="empty-state"><span class="empty-icon">${icon('meal')}</span><h3>O plano está começando.</h3><p>${patientRole()?'Seu nutricionista vai adicionar suas refeições por aqui.':'Adicione as refeições e orientações para este paciente.'}</p></div>`}</div>${!patientRole()?`<div class="panel-footer diary-footer"><button class="text-button" data-action="add-meal" data-id="${p.id}">${icon('plus')} Adicionar refeição ao plano</button><span class="subtle">O plano se repete diariamente</span></div>`:`<div class="panel-footer patient-footer">${icon('shield')} Os registros ficam apenas neste navegador. Alterne a visão para conferir.</div>`}</section>`;
+}
+function renderMeal(meal,index,plan) {
+  const symbols=['coffee','sun','meal','leaf','moon']; const done=meal.done;
+  return `<article class="meal-card ${done?'completed':''}" data-meal="${meal.id}"><div class="meal-time">${esc(meal.time)}</div><span class="meal-symbol">${icon(symbols[index%symbols.length])}</span><div class="meal-content"><div class="meal-title"><h3>${esc(meal.name)}</h3><span class="meal-status ${done?'done':''}">${done?`${icon('check')} Registrada`:'A registrar'}</span></div><p>${esc(meal.description||'Siga as orientações do seu nutricionista.')}</p>${meal.note?`<div class="meal-note">${icon('message')}<span>${esc(meal.note)}</span></div>`:''}<div class="meal-actions"><button class="text-button note-button" data-action="note" data-id="${meal.id}">${icon('message')} ${meal.note?'Editar observação':'Adicionar observação'}</button>${plan&&!patientRole()?`<button class="text-button danger-text" data-action="delete-meal" data-id="${meal.id}">${icon('trash')} Excluir</button>`:''}</div></div><button class="meal-check ${done?'checked':''}" data-action="check" data-id="${meal.id}" aria-label="${done?'Desmarcar':'Registrar'} ${esc(meal.name)}" aria-pressed="${done}">${icon('check')}</button></article>`;
+}
+function renderPatients() {
+  const patients=state.data.patients;
+  return `<section class="patients-grid">${patients.map((p,i)=>`<article class="panel patient-card"><div class="patient-card-top">${avatar(p.name,i)}<span class="badge">Paciente</span></div><h2>${esc(p.name)}</h2><p class="patient-email">${esc(p.email)}</p><p class="patient-card-goal">${esc(p.goal||'Construindo uma rotina mais saudável.')}</p><div class="patient-card-progress"><span>Registros de hoje</span><strong>${percentage(p)}%</strong></div><div class="mini-progress"><span style="width:${percentage(p)}%"></span></div><div class="patient-card-actions"><button class="button secondary small" data-action="patient-plan" data-id="${p.id}">Ver plano ${icon('arrow')}</button>${!p.has_access?`<button class="icon-button" data-action="invite" data-id="${p.id}" title="Gerar convite" aria-label="Gerar convite para ${esc(p.name)}">${icon('link')}</button>`:''}</div></article>`).join('')}<button class="new-patient-card" data-action="add-patient"><span>${icon('plus')}</span><strong>Novo paciente</strong><p>Uma nova história para acompanhar.</p></button></section>`;
+}
+async function loadDashboard() { await refreshDashboard(true); }
+async function refreshDashboard(full=false) {
+  const request=++dashboardRequest;
+  try { const result=await api(`/dashboard?date=${encodeURIComponent(state.date)}`);if(request!==dashboardRequest)return;state.data=result;state.user=result.user||state.user;if(!result.patients.some(p=>p.id===state.selected))state.selected=result.patients[0]?.id||null;full?renderShell():renderContent(); }
+  catch(error) {toast(errorMessage(error));if(!state.data) { document.getElementById('app').innerHTML=`<div class="empty-state large"><h2>Não foi possível carregar seu espaço.</h2><p>${esc(errorMessage(error))}</p><button class="button primary" data-action="retry">Tentar novamente</button></div>`;}throw error;}
+}
+function closeModal() { document.getElementById('modal-root').innerHTML='';document.body.classList.remove('modal-open'); }
+function modal(title,body,footer='') {
+  document.getElementById('modal-root').innerHTML=`<div class="overlay" data-action="overlay-close"><section class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title"><header class="modal-header"><h2 id="modal-title">${esc(title)}</h2><button class="icon-button close-modal" data-action="close-modal" aria-label="Fechar">${icon('close')}</button></header><div class="modal-body">${body}</div>${footer?`<footer class="modal-footer">${footer}</footer>`:''}</section></div>`;document.body.classList.add('modal-open');setTimeout(()=>document.querySelector('.modal input, .modal textarea, .modal button')?.focus(),10);
+}
+function formError(error) { const el=document.getElementById('modal-error');if(el)el.textContent=errorMessage(error);else toast(errorMessage(error)); }
+function inviteModal(url) {
+  const absolute=new URL(url,location.href).href;
+  modal('Um convite para cuidar de perto',`<div class="invite-success">${icon('link')}</div><p>Este convite funciona apenas nesta demonstração, no mesmo navegador. Não libera acesso em outros dispositivos.</p>${state.user.is_demo?'<p class="hint demo-hint">Este convite pertence à demonstração. Use apenas dados fictícios.</p>':''}<div class="form-field"><label for="invite-link">Link de acesso pessoal</label><input id="invite-link" value="${esc(absolute)}" readonly></div><p class="hint">Use apenas nomes e e-mails fictícios. A senha é apenas ilustrativa e não é armazenada nem verificada.</p>`,`<button class="button secondary" data-action="close-modal">Concluir</button><button class="button primary" data-action="copy-invite">${icon('copy')} Copiar convite</button>`);
+}
+function addPatientModal() {
+  modal('Novo paciente',`<p class="modal-intro">O primeiro passo de uma rotina mais conectada.</p><form id="patient-form" class="form-stack"><div class="form-field"><label for="patient-name">Nome completo</label><input id="patient-name" name="name" placeholder="Nome do paciente" required maxlength="100"></div><div class="form-field"><label for="patient-email">E-mail de acesso</label><input id="patient-email" name="email" type="email" placeholder="paciente@exemplo.com" required maxlength="254"></div><div class="form-field"><label for="patient-goal">Objetivo do acompanhamento <span>(opcional)</span></label><textarea id="patient-goal" name="goal" rows="3" placeholder="Ex.: Construir uma relação mais leve com a alimentação" maxlength="500"></textarea></div><p id="modal-error" class="form-error" role="alert"></p><button class="button primary" type="submit">Adicionar e gerar convite ${icon('arrow')}</button></form>`);
+  document.getElementById('patient-form').addEventListener('submit',async e=>{e.preventDefault();const button=e.currentTarget.querySelector('button');button.disabled=true;try{const result=await api('/patients',Object.fromEntries(new FormData(e.currentTarget)));state.selected=result.patient.id;await refreshDashboard(true);inviteModal(result.invite_url);toast('Paciente adicionado. Compartilhe o convite para liberar o acesso.');}catch(error){formError(error);button.disabled=false;}});
+}
+function addMealModal(id) {
+  modal('Adicionar refeição',`<p class="modal-intro">Uma orientação clara faz toda a diferença na rotina.</p><form id="meal-form" class="form-stack"><div class="form-row"><div class="form-field"><label for="meal-name">Nome da refeição</label><input id="meal-name" name="name" placeholder="Ex.: Café da manhã" required maxlength="100"></div><div class="form-field time-field"><label for="meal-time">Horário</label><input id="meal-time" name="time" type="time" value="08:00" required></div></div><div class="form-field"><label for="meal-description">Orientações</label><textarea id="meal-description" name="description" rows="4" placeholder="Alimentos, opções e orientações para o paciente…" maxlength="2000"></textarea></div><p class="hint">Esta refeição fará parte do plano diário do paciente.</p><p id="modal-error" class="form-error" role="alert"></p><button class="button primary" type="submit">${icon('plus')} Adicionar ao plano</button></form>`);
+  document.getElementById('meal-form').addEventListener('submit',async e=>{e.preventDefault();const button=e.currentTarget.querySelector('button');button.disabled=true;try{await api(`/patients/${id}/meals`,Object.fromEntries(new FormData(e.currentTarget)));closeModal();await refreshDashboard();toast('Refeição adicionada ao plano.');}catch(error){formError(error);button.disabled=false;}});
+}
+function mealById(id) { return state.data.patients.flatMap(p=>p.meals).find(m=>String(m.id)===String(id)); }
+function noteModal(id) {
+  const meal=mealById(id);if(!meal)return;
+  modal(`Como foi ${meal.name.toLowerCase()}?`,`<p class="modal-intro">${patientRole()?'Conte como foi sua refeição. Você pode alternar a visão para conferir o registro local.':'Registre uma observação sobre esta refeição.'}</p><form id="note-form" class="form-stack"><div class="form-field"><label for="meal-note">Observação do dia</label><textarea id="meal-note" name="note" rows="5" maxlength="1000" placeholder="Ex.: Troquei a fruta por uma opção que tinha em casa.">${esc(meal.note||'')}</textarea></div><p class="hint">A observação será salva em ${prettyDate(state.date)}.</p><p id="modal-error" class="form-error" role="alert"></p><button class="button primary" type="submit">Salvar observação ${icon('check')}</button></form>`);
+  document.getElementById('note-form').addEventListener('submit',async e=>{e.preventDefault();const button=e.currentTarget.querySelector('button');button.disabled=true;try{await api(`/meals/${id}/check`,{date:state.date,done:!!meal.done,note:new FormData(e.currentTarget).get('note')});closeModal();await refreshDashboard();toast('Observação salva.');}catch(error){formError(error);button.disabled=false;}});
+}
+async function changeDate(amount) { const d=dateObject(state.date);d.setUTCDate(d.getUTCDate()+amount);const value=d.toISOString().slice(0,10);if(value>today())return;state.date=value;await refreshDashboard(); }
+
+document.addEventListener('click',async event=>{
+  const button=event.target.closest('[data-action]');if(!button)return;const action=button.dataset.action;if(button.disabled)return;
+  if(action==='overlay-close'&&event.target!==button)return;
+  try {
+    switch(action){
+      case 'auth-mode':state.authMode=button.dataset.mode;renderAuth();break;
+      case 'home':event.preventDefault();state.view='overview';renderShell();break;
+      case 'demo':button.disabled=true;state.user=(await api('/demo',{role:'nutritionist'})).user;state.view='overview';await loadDashboard();break;
+      case 'switch-role':button.disabled=true;state.user=(await api('/demo',{role:patientRole()?'nutritionist':'patient'})).user;state.view='overview';state.selected=null;await loadDashboard();break;
+      case 'logout':await api('/logout',{});state.authMode='login';state.user=null;state.data=null;state.view='overview';state.selected=null;document.body.classList.remove('menu-open');renderAuth();break;
+      case 'navigate':state.view=button.dataset.view;document.body.classList.remove('menu-open');renderShell();break;
+      case 'select-patient':state.selected=state.data.patients.find(p=>String(p.id)===button.dataset.id)?.id;renderContent();break;
+      case 'patient-plan':state.selected=state.data.patients.find(p=>String(p.id)===button.dataset.id)?.id;state.view='plan';renderShell();break;
+      case 'add-patient':addPatientModal();break;
+      case 'add-meal':addMealModal(button.dataset.id);break;
+      case 'invite':button.disabled=true;inviteModal((await api(`/patients/${button.dataset.id}/invite`,{})).invite_url);button.disabled=false;break;
+      case 'copy-invite':{const input=document.getElementById('invite-link');try{await navigator.clipboard.writeText(input.value);toast('Convite copiado. Compartilhe com seu paciente.');}catch{input.focus();input.select();toast('Selecione e copie o link de convite.');}break;}
+      case 'check':{const meal=mealById(button.dataset.id);button.disabled=true;await api(`/meals/${meal.id}/check`,{date:state.date,done:!meal.done,note:meal.note||''});await refreshDashboard();toast(meal.done?'Registro desmarcado.':'Refeição registrada. Mais um passo no seu cuidado!');break;}
+      case 'note':noteModal(button.dataset.id);break;
+      case 'delete-meal':{const meal=mealById(button.dataset.id);modal('Remover refeição do plano?',`<p>A refeição <strong>${esc(meal.name)}</strong> será removida do plano, junto com seus registros. Esta ação não pode ser desfeita.</p>`,`<button class="button secondary" data-action="close-modal">Cancelar</button><button class="button danger" data-action="confirm-delete" data-id="${meal.id}">Remover refeição</button>`);break;}
+      case 'confirm-delete':button.disabled=true;await api(`/meals/${button.dataset.id}`,undefined,'DELETE');closeModal();await refreshDashboard();toast('Refeição removida do plano.');break;
+      case 'date-prev':await changeDate(-1);break;
+      case 'date-next':await changeDate(1);break;
+      case 'close-modal':case 'overlay-close':closeModal();break;
+      case 'menu':document.body.classList.add('menu-open');break;
+      case 'close-menu':document.body.classList.remove('menu-open');break;
+      case 'retry':await loadDashboard();break;
+    }
+  }catch(error){toast(errorMessage(error));button.disabled=false;}
+});
+document.addEventListener('keydown',event=>{if(event.key==='Escape'){closeModal();document.body.classList.remove('menu-open');}if(event.key==='Tab'&&document.querySelector('.modal')){const items=[...document.querySelectorAll('.modal button,.modal input,.modal textarea')].filter(el=>!el.disabled);if(event.shiftKey&&document.activeElement===items[0]){event.preventDefault();items.at(-1)?.focus();}else if(!event.shiftKey&&document.activeElement===items.at(-1)){event.preventDefault();items[0]?.focus();}}});
+async function init() {
+  const token=new URLSearchParams(location.search).get('invite');
+  try {
+    if(token){try{state.invite={...(await api(`/invites/${encodeURIComponent(token)}`)),token};renderAuth();return;}catch(error){toast(errorMessage(error));history.replaceState({},'',location.pathname);}}
+    const {user}=await api('/me');state.user=user;if(user)await loadDashboard();else renderAuth();
+  }catch(error){renderAuth();toast(errorMessage(error));}
+}
+let refreshing = false;
+setInterval(async () => {
+  if (!state.user || !state.data || document.hidden || document.querySelector('.modal') || refreshing) return;
+  refreshing = true;
+  try {
+    const userId = state.user.id;
+    const requestedDate = state.date;
+    const requestGeneration = dashboardRequest;
+    const previous = JSON.stringify(state.data);
+    const result = await api(`/dashboard?date=${encodeURIComponent(requestedDate)}`);
+    if (!state.user || state.user.id !== userId || state.date !== requestedDate ||
+        dashboardRequest !== requestGeneration || document.querySelector('.modal')) return;
+    if (JSON.stringify(result) !== previous) {
+      state.data = result;
+      if (!result.patients.some(p => p.id === state.selected)) state.selected = result.patients[0]?.id || null;
+      renderContent();
+    }
+  } catch (_) { /* Manual actions surface errors; polling stays quiet. */ }
+  finally { refreshing = false; }
+}, 15000);
+init();
+
+</script>
+</body>
+</html>
