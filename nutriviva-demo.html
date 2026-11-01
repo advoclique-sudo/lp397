@@ -4120,31 +4120,1685 @@ textarea {
   }
 }
 
-html { scroll-padding-top: 82px; }
-body { padding-top: 66px; }
-.local-demo-warning { position: fixed; z-index: 120; inset: 0 0 auto; min-height: 66px;
+/* Patient experience: a playful, focused journey through daily habits. */
+.game-shell {
+  min-height: 100dvh;
+  background: #faf9f3;
+  color: #214334;
+  padding-bottom: 108px;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+.game-header {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 25px 34px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+.game-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  text-decoration: none;
+  color: #214a35;
+  font-size: 24px;
+  font-weight: 750;
+  letter-spacing: -1.2px;
+}
+.game-brand > svg,
+.game-brand .brand-mark svg {
+  width: 29px;
+  height: 29px;
+  color: #7caa55;
+  stroke-width: 2;
+}
+.game-brand .brand-light {
+  color: #759a4b;
+}
+.game-brand small {
+  display: none;
+}
+.game-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.game-profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #61745c;
+}
+.game-profile .avatar,
+.game-profile .profile-avatar {
+  width: 35px;
+  height: 35px;
+  background: #ede8ff;
+  color: #8b76ab;
+  border: 2px solid #e0d8f4;
+  font-size: 11px;
+}
+.game-header-actions .logout,
+.game-header-actions .icon-button {
+  width: 35px;
+  height: 35px;
+  border-radius: 10px;
+  color: #8b9b7e;
+  background: #f2f3e9;
+  border: 1px solid #e8ebdd;
+}
+.game-main {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 14px 28px 30px;
+}
+.game-main .demo-banner {
+  font-size: 11px;
+  background: #f0f1e1;
+  border-color: #e6e8d5;
+  margin-bottom: 17px;
+  border-radius: 12px;
+}
+.game-main .demo-banner button {
+  font-size: 11px;
+}
+.game-eyebrow {
+  color: #87a06e;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.game-eyebrow svg {
+  width: 15px;
+  height: 15px;
+}
+.game-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 155px;
+  align-items: center;
+  gap: 20px;
+  position: relative;
+  border: 2px solid #234e37;
+  border-bottom-width: 6px;
+  border-radius: 27px;
+  background: #244b38;
+  color: #fffef5;
+  padding: 28px 29px 27px;
+  overflow: hidden;
+}
+.game-hero::before {
+  content: "";
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border: 1px solid #82a56920;
+  border-radius: 50%;
+  right: -100px;
+  top: -125px;
+  box-shadow: 0 0 0 46px #b1c78b05, 0 0 0 90px #b1c78b04;
+  pointer-events: none;
+}
+.game-hero-copy {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+}
+.game-level-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #d7edb4;
+  background: #3d6240;
+  border: 1px solid #5c7f47;
+  box-shadow: 0 2px 0 #193e2b;
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-size: 11px;
+  font-weight: 650;
+  margin-bottom: 16px;
+}
+.game-level-pill svg {
+  width: 14px;
+  height: 14px;
+  color: #d5e78c;
+}
+.game-title {
+  font-size: 32px;
+  line-height: 1.17;
+  letter-spacing: -1.1px;
+  font-weight: 700;
+  max-width: 400px;
+  margin: 0;
+}
+.game-title span,
+.game-title em {
+  color: #d5ed9d;
+  font-style: normal;
+}
+.game-subtitle {
+  font-size: 12px;
+  line-height: 1.8;
+  color: #b5c6a5;
+  margin-top: 11px;
+  max-width: 350px;
+}
+.game-xp-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  font-size: 11px;
+  color: #b9cfab;
+  margin-top: 22px;
+  margin-bottom: 8px;
+}
+.game-xp-row strong {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: #e1f0b8;
+  font-size: 13px;
+  font-weight: 700;
+}
+.game-xp-row strong svg {
+  width: 13px;
+  height: 13px;
+  color: #e4df87;
+}
+.game-xp-row > span {
+  font-size: 11px;
+  font-weight: 450;
+  color: #94ae87;
+}
+.game-xp-track {
+  background: #173b29;
+  border: 1px solid #3d6042;
+  border-radius: 6px;
+  height: 12px;
+  overflow: hidden;
+  padding: 2px;
+}
+.game-xp-track > span {
+  display: block;
+  height: 100%;
+  border-radius: 3px;
+  background: #d4e88e;
+  box-shadow: inset 0 2px 0 #e6f4b9;
+  transition: width .4s ease;
+  min-width: 0;
+}
+.game-next-level {
+  color: #91ac83;
+  font-size: 11px;
+  margin-top: 9px;
+  line-height: 1.7;
+}
+.game-next-level strong {
+  font-weight: 500;
+  color: #b7cfa5;
+}
+.game-mascot {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  align-self: center;
+  width: 155px;
+  height: 182px;
+  filter: drop-shadow(0 7px 0 #15352635);
+  transform: rotate(4deg);
+}
+.game-mascot > svg {
+  display: block;
+  width: 155px;
+  height: 180px;
+  overflow: visible;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.game-daily-progress {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  background: #fff;
+  border: 2px solid #e9edde;
+  border-bottom-width: 4px;
+  border-radius: 17px;
+  padding: 17px 20px;
+  margin-top: 18px;
+}
+.game-progress-icon {
+  display: grid;
+  place-items: center;
+  width: 41px;
+  height: 41px;
+  flex-shrink: 0;
+  border: 1px solid #e8e4f5;
+  border-radius: 12px;
+  color: #a18abc;
+  background: #f4effb;
+}
+.game-progress-icon svg {
+  width: 22px;
+  height: 22px;
+}
+.game-progress-copy {
+  flex: 1;
+  min-width: 0;
+}
+.game-progress-copy strong {
+  font-size: 13px;
+  color: #536a49;
+  font-weight: 650;
+  display: block;
+}
+.game-progress-copy p {
+  font-size: 12px;
+  color: #8f9e81;
+  line-height: 1.75;
+  margin-top: 4px;
+}
+.game-progress-count {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 4px;
+  color: #739155;
+  background: #f0f5e5;
+  border-radius: 9px;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 9px 11px;
+  white-space: nowrap;
+}
+.game-progress-count span,
+.game-progress-count small {
+  font-size: 11px;
+  color: #a4b38e;
+  font-weight: 500;
+}
+.game-section-heading {
+  margin: 31px 0 17px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+.game-section-heading h2 {
+  font-size: 20px;
+  line-height: 1.3;
+  font-weight: 700;
+  letter-spacing: -.6px;
+  color: #37583c;
+}
+.game-section-heading p {
+  color: #9aab89;
+  font-size: 11px;
+  margin-top: 5px;
+  line-height: 1.7;
+}
+.game-section-heading > span {
+  color: #a0ad90;
+  font-size: 11px;
+  flex-shrink: 0;
+}
+.mission-list {
+  display: grid;
+  gap: 14px;
+}
+.mission-card {
+  border: 2px solid #e9edde;
+  border-bottom-width: 5px;
+  background: #fff;
+  padding: 23px 24px 21px;
+  border-radius: 19px;
+  transition: border-color .2s, background .2s;
+}
+.mission-card.completed {
+  border-color: #dce8c6;
+  background: #f7faef;
+}
+.mission-top {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+.mission-icon {
+  display: grid;
+  place-items: center;
+  width: 43px;
+  height: 43px;
+  border-radius: 13px;
+  border: 1px solid #efe5cc;
+  background: #fff6df;
+  color: #d0ad66;
+  flex-shrink: 0;
+}
+.mission-icon svg {
+  width: 23px;
+  height: 23px;
+}
+.mission-card:nth-child(2) .mission-icon {
+  background: #f2f5e6;
+  border-color: #e6edce;
+  color: #9caf62;
+}
+.mission-card:nth-child(3) .mission-icon {
+  background: #fff0e7;
+  border-color: #f5e0d3;
+  color: #d7aa87;
+}
+.mission-card:nth-child(4) .mission-icon {
+  background: #f4f0fb;
+  border-color: #e8e0f3;
+  color: #b09bc9;
+}
+.mission-card:nth-child(5) .mission-icon {
+  background: #ecf4f8;
+  border-color: #daeaf0;
+  color: #8caebb;
+}
+.mission-card.completed .mission-icon {
+  background: #eaf2d6;
+  border-color: #dce9c0;
+  color: #88a25b;
+}
+.mission-title {
+  flex: 1;
+  min-width: 0;
+}
+.mission-title h3 {
+  color: #39553c;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -.25px;
+}
+.mission-schedule {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #9fab92;
+  font-size: 11px;
+  margin-top: 5px;
+}
+.mission-schedule svg {
+  width: 12px;
+  height: 12px;
+}
+.mission-reward {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  font-weight: 750;
+  color: #a3a25f;
+  background: #f9f7e5;
+  border: 1px solid #f0ebcb;
+  padding: 5px 8px;
+  border-radius: 7px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.mission-reward svg {
+  width: 12px;
+  height: 12px;
+}
+.completed .mission-reward {
+  color: #8a9c6b;
+  background: #edf3df;
+  border-color: #e0e9ce;
+}
+.mission-description {
+  color: #7a8971;
+  font-size: 14px;
+  line-height: 1.85;
+  margin-top: 16px;
+  margin-bottom: 18px;
+  overflow-wrap: anywhere;
+}
+.mission-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+  padding: 11px 12px;
+  border: 1px solid #e9efdd;
+  background: #f6f8ef;
+  border-radius: 8px;
+  color: #8b9a7b;
+  font-size: 12px;
+  line-height: 1.8;
+  margin: 13px 0 17px;
+  overflow-wrap: anywhere;
+}
+.mission-note svg {
+  width: 14px;
+  height: 14px;
+  margin-top: 3px;
+  flex-shrink: 0;
+}
+.mission-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.mission-complete {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 10px 18px;
+  border-radius: 11px;
+  border: 2px solid #668c45;
+  border-bottom-width: 5px;
+  background: #9cbd68;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .05px;
+  transition: background .15s, transform .15s;
+}
+.mission-complete:hover {
+  background: #8faf5e;
+  transform: translateY(-1px);
+}
+.mission-complete:active {
+  transform: translateY(2px);
+  border-bottom-width: 3px;
+  margin-top: 2px;
+}
+.mission-complete svg {
+  width: 16px;
+  height: 16px;
+  stroke-width: 2.4;
+}
+.mission-undo {
+  background: transparent;
+  color: #94a382;
+  padding: 6px 0;
+  border-bottom: 1px solid #c5d2b4;
+  font-size: 11px;
+  font-weight: 500;
+  min-height: 29px;
+}
+.mission-undo:hover {
+  color: #587845;
+}
+.mission-note-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: #a0ad91;
+  background: transparent;
+  padding: 8px 0;
+  min-height: 35px;
+  font-size: 11px;
+  font-weight: 450;
+}
+.mission-note-button:hover {
+  color: #728f56;
+}
+.mission-note-button svg {
+  width: 13px;
+  height: 13px;
+}
+.mission-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #7c9b57;
+  background: #eaf2d9;
+  border: 1px solid #dfeacb;
+  border-radius: 8px;
+  padding: 8px 10px;
+  font-size: 12px;
+  font-weight: 650;
+  min-height: 35px;
+}
+.mission-status svg {
+  width: 15px;
+  height: 15px;
+  stroke-width: 2.3;
+}
+.game-nav {
+  position: fixed;
+  bottom: 21px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  width: calc(100% - 44px);
+  max-width: 405px;
+  z-index: 45;
+  border: 2px solid #e5e9d8;
+  background: #ffffffed;
+  backdrop-filter: blur(14px);
+  box-shadow: 0 5px 0 #e3e6d780, 0 10px 25px #4e603d12;
+  border-radius: 17px;
+  padding: 7px;
+}
+.game-tab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex: 1;
+  padding: 13px 15px;
+  border-radius: 10px;
+  background: transparent;
+  color: #a8b199;
+  font-size: 12px;
+  font-weight: 650;
+  min-height: 45px;
+  white-space: nowrap;
+}
+.game-tab.active {
+  background: #e6efcf;
+  color: #6e8d4f;
+  box-shadow: inset 0 -2px 0 #d3dfb8;
+}
+.game-tab:not(.active):hover {
+  background: #f6f8ee;
+  color: #8eaa6e;
+}
+.game-tab svg {
+  width: 19px;
+  height: 19px;
+  stroke-width: 1.9;
+}
+.game-journey-top {
+  margin-bottom: 24px;
+}
+.game-journey-top .game-eyebrow {
+  margin-bottom: 12px;
+}
+.game-journey-top h1 {
+  color: #365638;
+  font-size: 31px;
+  font-weight: 750;
+  letter-spacing: -.9px;
+}
+.game-journey-top p {
+  color: #98a78a;
+  font-size: 13px;
+  line-height: 1.85;
+  margin-top: 10px;
+}
+.journey-summary {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 13px;
+  margin: 22px 0;
+}
+.journey-summary > div,
+.journey-summary > article {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  border: 2px solid #e9edde;
+  border-bottom-width: 4px;
+  border-radius: 15px;
+  background: #fff;
+  padding: 19px 13px;
+}
+.journey-summary strong {
+  color: #86a563;
+  font-size: 25px;
+  font-weight: 750;
+  letter-spacing: -.7px;
+}
+.journey-summary p,
+.journey-summary span {
+  color: #9aa98b;
+  font-size: 11px;
+  line-height: 1.7;
+  text-align: center;
+}
+.journey-summary svg {
+  width: 20px;
+  height: 20px;
+  color: #c4ce9e;
+  margin-bottom: 3px;
+}
+.level-map {
+  border: 2px solid #e9edde;
+  border-bottom-width: 5px;
+  border-radius: 22px;
+  background: #fff;
+  padding: 25px 24px 28px;
+  margin-top: 23px;
+  overflow: hidden;
+}
+.level-map > h2,
+.level-map > h3 {
+  font-size: 17px;
+  color: #4b6947;
+  font-weight: 700;
+  letter-spacing: -.3px;
+}
+.level-map > p {
+  font-size: 12px;
+  color: #a3af97;
+  margin-top: 7px;
+  line-height: 1.7;
+}
+.map-levels {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 5px;
+  padding-top: 30px;
+  position: relative;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #dce5cd transparent;
+}
+.map-levels::before {
+  content: "";
+  position: absolute;
+  top: 55px;
+  left: 8%;
+  right: 8%;
+  height: 5px;
+  background: #f0f2e9;
+  border-radius: 5px;
+  pointer-events: none;
+}
+.level-node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 9px;
+  flex: 1;
+  min-width: 86px;
+  position: relative;
+  padding: 0 3px 7px;
+}
+.level-node-circle {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  background: #f1f3e9;
+  color: #c7d0b7;
+  border: 2px solid #e5ead9;
+  border-bottom-width: 5px;
+  border-radius: 18px;
+  position: relative;
+  z-index: 1;
+  font-size: 19px;
+  font-weight: 750;
+}
+.level-node-circle svg {
+  width: 26px;
+  height: 26px;
+}
+.level-node.unlocked .level-node-circle {
+  color: #8da366;
+  background: #ecf2dc;
+  border-color: #dbe7bf;
+}
+.level-node.current .level-node-circle {
+  color: #fff;
+  background: #a8c17a;
+  border-color: #84a256;
+  box-shadow: 0 0 0 5px #edf3df;
+  transform: translateY(-3px);
+}
+.level-node-title {
+  color: #a2af92;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.6;
+  max-width: 90px;
+}
+.level-node.current .level-node-title {
+  color: #7c965b;
+  font-weight: 750;
+}
+.level-node-number {
+  color: #c2cab5;
+  font-size: 10px;
+  font-weight: 500;
+  margin-top: -4px;
+}
+.level-node.current .level-node-number {
+  color: #93aa73;
+}
+.achievement-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 13px;
+  margin-top: 18px;
+}
+.achievement-card {
+  border: 2px solid #e9edde;
+  border-bottom-width: 4px;
+  border-radius: 17px;
+  background: #fff;
+  padding: 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 13px;
+}
+.achievement-card.earned {
+  background: #fffef6;
+  border-color: #ecebcf;
+}
+.achievement-icon {
+  display: grid;
+  place-items: center;
+  width: 43px;
+  height: 43px;
+  border-radius: 14px;
+  background: #f5f6ef;
+  color: #cbd2be;
+  border: 1px solid #edf0e3;
+  flex-shrink: 0;
+}
+.achievement-icon svg {
+  width: 24px;
+  height: 24px;
+}
+.achievement-card.earned .achievement-icon {
+  background: #fcf5d8;
+  color: #d0ba70;
+  border-color: #efe5b5;
+}
+.achievement-copy {
+  flex: 1;
+  min-width: 0;
+}
+.achievement-copy h3 {
+  color: #9ca98c;
+  font-size: 13px;
+  font-weight: 700;
+  margin-top: 2px;
+}
+.earned .achievement-copy h3 {
+  color: #8b9162;
+}
+.achievement-copy p {
+  color: #b3bea5;
+  font-size: 11px;
+  line-height: 1.8;
+  margin-top: 6px;
+}
+.achievement-card.earned .achievement-copy p {
+  color: #a5ab87;
+}
+.achievement-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  font-weight: 600;
+  color: #c0c8b3;
+  margin-top: 10px;
+}
+.achievement-tag svg {
+  width: 12px;
+  height: 12px;
+}
+.earned .achievement-tag {
+  color: #b1ac69;
+}
+.game-history-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 23px;
+}
+.game-history-heading h1,
+.game-history-heading h2 {
+  font-size: 26px;
+  color: #466641;
+  font-weight: 700;
+  letter-spacing: -.6px;
+}
+.game-history-heading p {
+  font-size: 12px;
+  color: #a1af93;
+  line-height: 1.8;
+  margin-top: 8px;
+}
+.game-history-heading .date-controls {
+  flex-shrink: 0;
+  padding: 3px;
+  border: 1px solid #e7ebdb;
+  background: #fff;
+  border-radius: 9px;
+}
+.game-history-heading .date-controls input {
+  border: 0;
+  color: #90a279;
+}
+.game-empty {
+  border: 2px dashed #e2e9d4;
+  border-radius: 21px;
+  padding: 42px 25px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 230px;
+  background: #fffef8;
+}
+.game-empty > svg,
+.game-empty > span > svg {
+  width: 37px;
+  height: 37px;
+  color: #bfd19d;
+  margin-bottom: 17px;
+}
+.game-empty h2,
+.game-empty h3 {
+  font-size: 19px;
+  font-weight: 650;
+  letter-spacing: -.4px;
+  color: #7f9966;
+  line-height: 1.5;
+}
+.game-empty p {
+  font-size: 13px;
+  line-height: 1.85;
+  max-width: 320px;
+  color: #a5b295;
+  margin-top: 13px;
+}
+.game-celebration {
+  position: fixed;
+  top: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  max-width: calc(100vw - 36px);
+  z-index: 150;
+  padding: 17px 22px;
+  background: #e4eebf;
+  border: 2px solid #b4ca7d;
+  border-bottom-width: 5px;
+  border-radius: 17px;
+  color: #6a8643;
+  box-shadow: 0 10px 40px #27451d18;
+  font-size: 13px;
+  font-weight: 700;
+  animation: game-celebrate .4s cubic-bezier(.18,.9,.35,1.2) both;
+}
+.game-celebration::before,
+.game-celebration::after {
+  content: "";
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  border-radius: 2px;
+  top: -6px;
+  transform: rotate(20deg);
+  background: #bea6d7;
+}
+.game-celebration::before {
+  left: 24px;
+}
+.game-celebration::after {
+  right: 21px;
+  width: 5px;
+  height: 5px;
+  top: -9px;
+  transform: rotate(-15deg);
+  background: #dfcc83;
+}
+.game-celebration > svg {
+  width: 26px;
+  height: 26px;
+  color: #91a556;
+}
+.game-celebration strong {
+  display: block;
+  font-size: 15px;
+}
+.game-celebration p,
+.game-celebration small,
+.game-celebration span {
+  font-size: 12px;
+  color: #92a867;
+  font-weight: 500;
+  display: block;
+  margin-top: 3px;
+}
+.game-shell ~ .toast,
+body:has(.game-shell) .toast {
+  left: 50%;
+  bottom: 103px;
+}
+@keyframes game-celebrate {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -10px) scale(.94);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0) scale(1);
+  }
+}
+@media (max-width: 670px) {
+  .game-shell {
+    padding-bottom: 99px;
+  }
+  .game-header {
+    padding: 20px 20px 13px;
+    gap: 12px;
+  }
+  .game-brand {
+    font-size: 22px;
+    gap: 7px;
+  }
+  .game-brand > svg,
+  .game-brand .brand-mark svg {
+    width: 25px;
+    height: 25px;
+  }
+  .game-header-actions {
+    gap: 9px;
+  }
+  .game-profile {
+    gap: 7px;
+    font-size: 11px;
+  }
+  .game-profile .avatar,
+  .game-profile .profile-avatar {
+    width: 31px;
+    height: 31px;
+    font-size: 10px;
+  }
+  .game-profile > span:not(.avatar):not(.profile-avatar),
+  .game-profile > strong {
+    max-width: 66px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .game-header-actions .logout,
+  .game-header-actions .icon-button {
+    width: 31px;
+    height: 31px;
+    border-radius: 9px;
+  }
+  .game-header-actions .logout svg,
+  .game-header-actions .icon-button svg {
+    width: 15px;
+    height: 15px;
+  }
+  .game-main {
+    padding: 11px 18px 20px;
+  }
+  .game-main .demo-banner {
+    padding: 8px 10px;
+    margin-bottom: 13px;
+    border-radius: 10px;
+  }
+  .game-main .demo-banner > span,
+  .game-main .demo-banner button {
+    font-size: 10px;
+  }
+  .game-hero {
+    grid-template-columns: minmax(0, 1fr) 83px;
+    gap: 10px;
+    padding: 21px 18px 20px;
+    border-radius: 22px;
+    border-bottom-width: 5px;
+  }
+  .game-level-pill {
+    font-size: 10px;
+    padding: 4px 7px;
+    border-radius: 7px;
+    gap: 4px;
+    margin-bottom: 12px;
+  }
+  .game-level-pill svg {
+    width: 12px;
+    height: 12px;
+  }
+  .game-title {
+    font-size: 25px;
+    letter-spacing: -.8px;
+    max-width: 270px;
+    line-height: 1.18;
+  }
+  .game-subtitle {
+    font-size: 11px;
+    line-height: 1.75;
+    margin-top: 9px;
+    max-width: 220px;
+  }
+  .game-xp-row {
+    margin-top: 17px;
+    gap: 9px;
+  }
+  .game-xp-row strong {
+    font-size: 12px;
+  }
+  .game-xp-row > span {
+    font-size: 10px;
+  }
+  .game-xp-track {
+    height: 11px;
+  }
+  .game-next-level {
+    font-size: 10px;
+    margin-top: 7px;
+  }
+  .game-mascot {
+    width: 87px;
+    height: 112px;
+    margin-top: -8px;
+    align-self: center;
+    transform: rotate(5deg);
+  }
+  .game-mascot > svg {
+    width: 90px;
+    height: 111px;
+  }
+  .game-daily-progress {
+    padding: 14px 14px;
+    gap: 10px;
+    border-radius: 15px;
+    margin-top: 14px;
+  }
+  .game-progress-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+  }
+  .game-progress-icon svg {
+    width: 19px;
+    height: 19px;
+  }
+  .game-progress-copy strong {
+    font-size: 12px;
+    line-height: 1.5;
+  }
+  .game-progress-copy p {
+    font-size: 11px;
+    margin-top: 3px;
+    line-height: 1.7;
+  }
+  .game-progress-count {
+    font-size: 13px;
+    padding: 8px;
+    border-radius: 8px;
+  }
+  .game-progress-count span,
+  .game-progress-count small {
+    font-size: 10px;
+  }
+  .game-section-heading {
+    margin-top: 25px;
+    margin-bottom: 14px;
+    gap: 10px;
+  }
+  .game-section-heading h2 {
+    font-size: 19px;
+    letter-spacing: -.5px;
+  }
+  .game-section-heading p {
+    font-size: 11px;
+    line-height: 1.7;
+  }
+  .game-section-heading > span {
+    font-size: 10px;
+  }
+  .mission-list {
+    gap: 12px;
+  }
+  .mission-card {
+    padding: 19px 17px 18px;
+    border-radius: 17px;
+    border-bottom-width: 4px;
+  }
+  .mission-top {
+    gap: 11px;
+  }
+  .mission-icon {
+    width: 37px;
+    height: 37px;
+    border-radius: 11px;
+  }
+  .mission-icon svg {
+    width: 20px;
+    height: 20px;
+  }
+  .mission-title h3 {
+    font-size: 15px;
+    letter-spacing: -.3px;
+    line-height: 1.4;
+  }
+  .mission-schedule {
+    font-size: 11px;
+    margin-top: 4px;
+  }
+  .mission-reward {
+    font-size: 10px;
+    gap: 3px;
+    padding: 4px 6px;
+  }
+  .mission-reward svg {
+    width: 11px;
+    height: 11px;
+  }
+  .mission-description {
+    font-size: 13px;
+    line-height: 1.85;
+    margin-top: 14px;
+    margin-bottom: 17px;
+  }
+  .mission-actions {
+    gap: 10px;
+  }
+  .mission-complete {
+    min-height: 45px;
+    padding: 10px 13px;
+    font-size: 12px;
+    border-radius: 10px;
+    gap: 7px;
+  }
+  .mission-complete svg {
+    width: 15px;
+    height: 15px;
+  }
+  .mission-note-button {
+    font-size: 11px;
+    min-height: 38px;
+    gap: 4px;
+  }
+  .mission-note-button svg {
+    width: 12px;
+    height: 12px;
+  }
+  .mission-undo {
+    min-height: 33px;
+    font-size: 11px;
+  }
+  .mission-note {
+    font-size: 11px;
+    padding: 10px 11px;
+    line-height: 1.85;
+  }
+  .mission-status {
+    padding: 8px;
+    font-size: 11px;
+    gap: 5px;
+  }
+  .game-nav {
+    bottom: 13px;
+    max-width: 380px;
+    width: calc(100% - 40px);
+    padding: 6px;
+    border-radius: 16px;
+    gap: 6px;
+  }
+  .game-tab {
+    min-height: 43px;
+    padding: 12px 10px;
+    font-size: 12px;
+    gap: 7px;
+    border-radius: 10px;
+  }
+  .game-tab svg {
+    width: 18px;
+    height: 18px;
+  }
+  .game-journey-top {
+    margin-top: 6px;
+    margin-bottom: 22px;
+  }
+  .game-journey-top h1 {
+    font-size: 27px;
+  }
+  .game-journey-top p {
+    font-size: 12px;
+    margin-top: 10px;
+    line-height: 1.85;
+  }
+  .journey-summary {
+    gap: 9px;
+    margin: 19px 0;
+  }
+  .journey-summary > div,
+  .journey-summary > article {
+    padding: 15px 8px;
+    border-radius: 13px;
+    gap: 4px;
+  }
+  .journey-summary strong {
+    font-size: 23px;
+  }
+  .journey-summary p,
+  .journey-summary span {
+    font-size: 10px;
+  }
+  .journey-summary svg {
+    width: 18px;
+    height: 18px;
+  }
+  .level-map {
+    border-radius: 19px;
+    padding: 21px 17px 20px;
+    margin-top: 18px;
+    border-bottom-width: 4px;
+  }
+  .level-map > h2,
+  .level-map > h3 {
+    font-size: 16px;
+  }
+  .level-map > p {
+    font-size: 11px;
+    line-height: 1.8;
+  }
+  .map-levels {
+    padding-top: 26px;
+    margin-right: -5px;
+    margin-left: -5px;
+    padding-bottom: 5px;
+    gap: 2px;
+  }
+  .map-levels::before {
+    top: 48px;
+    left: 14px;
+    right: 14px;
+  }
+  .level-node {
+    min-width: 71px;
+    gap: 10px;
+    padding-right: 1px;
+    padding-left: 1px;
+  }
+  .level-node-circle {
+    width: 47px;
+    height: 47px;
+    border-radius: 15px;
+    font-size: 17px;
+  }
+  .level-node-circle svg {
+    width: 23px;
+    height: 23px;
+  }
+  .level-node-title {
+    font-size: 10px;
+    line-height: 1.7;
+    max-width: 75px;
+  }
+  .level-node-number {
+    font-size: 10px;
+    margin-top: -5px;
+  }
+  .achievement-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 11px;
+    margin-top: 16px;
+  }
+  .achievement-card {
+    padding: 18px 17px;
+    border-radius: 16px;
+    gap: 13px;
+  }
+  .achievement-icon {
+    width: 41px;
+    height: 41px;
+    border-radius: 12px;
+  }
+  .achievement-icon svg {
+    width: 23px;
+    height: 23px;
+  }
+  .achievement-copy h3 {
+    font-size: 13px;
+  }
+  .achievement-copy p {
+    font-size: 12px;
+    line-height: 1.75;
+    margin-top: 6px;
+  }
+  .achievement-tag {
+    font-size: 10px;
+    margin-top: 9px;
+  }
+  .game-history-heading {
+    flex-wrap: wrap;
+    gap: 18px;
+    margin-top: 8px;
+    margin-bottom: 22px;
+  }
+  .game-history-heading h1,
+  .game-history-heading h2 {
+    font-size: 25px;
+  }
+  .game-history-heading p {
+    font-size: 12px;
+    margin-top: 8px;
+  }
+  .game-history-heading .date-controls {
+    margin-left: auto;
+  }
+  .game-celebration {
+    top: 16px;
+    padding: 14px 18px;
+    gap: 10px;
+    border-radius: 14px;
+    font-size: 12px;
+    min-width: 260px;
+  }
+  .game-celebration strong {
+    font-size: 14px;
+  }
+  .game-celebration p,
+  .game-celebration small,
+  .game-celebration span {
+    font-size: 11px;
+  }
+  .game-shell ~ .toast,
+  body:has(.game-shell) .toast {
+    bottom: 94px;
+  }
+}
+@media (max-width: 370px) {
+  .game-main {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+  .game-header {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .game-hero {
+    grid-template-columns: minmax(0, 1fr) 67px;
+    gap: 6px;
+    padding-left: 16px;
+    padding-right: 14px;
+  }
+  .game-title {
+    font-size: 23px;
+  }
+  .game-mascot {
+    width: 72px;
+  }
+  .game-mascot > svg {
+    width: 76px;
+    height: 100px;
+  }
+  .game-progress-copy p {
+    font-size: 10px;
+  }
+  .mission-card {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  .mission-actions {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 7px;
+  }
+  .mission-note-button {
+    justify-content: center;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .game-celebration,
+  .game-xp-track > span,
+  .mission-card,
+  .mission-complete {
+    animation: none;
+    transition: none;
+  }
+}
+
+/* Game markup details and readable mission guidance. */
+body.patient-game {
+  background: #faf9f3;
+}
+body.patient-game .toast {
+  left: 50%;
+  bottom: 103px;
+}
+.game-brand > span > strong {
+  color: #759a4b;
+  font-weight: 750;
+}
+.game-hero .game-eyebrow {
+  display: block;
+  font-size: 9px;
+  letter-spacing: 1.3px;
+  color: #9bb988;
+  margin-bottom: 12px;
+}
+.game-section-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: #94a57e;
+  font-size: 11px;
+}
+.game-section-tag svg {
+  width: 14px;
+  height: 14px;
+}
+.game-section-heading h2 {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.game-section-heading h2 svg {
+  width: 18px;
+  height: 18px;
+  color: #b2bc81;
+}
+.game-section-heading > strong {
+  font-size: 11px;
+  font-weight: 500;
+  color: #98a97e;
+}
+.level-map .game-section-heading {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.level-node small {
+  font-size: 10px;
+  color: #a5b193;
+  line-height: 1.6;
+}
+.level-node.current small {
+  color: #829b60;
+  font-weight: 600;
+}
+.game-fineprint,
+.game-map-hint {
+  font-size: 11px;
+  line-height: 1.85;
+  color: #8c9c7b;
+}
+.game-fineprint {
+  max-width: 560px;
+  text-align: center;
+  margin: 24px auto 0;
+  padding: 0 14px;
+}
+.game-map-hint {
+  border-top: 1px solid #f0f2e7;
+  padding-top: 15px;
+  margin-top: 18px;
+}
+.journey-summary {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.journey-summary > span {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  border: 2px solid #e9edde;
+  border-bottom-width: 4px;
+  border-radius: 15px;
+  background: #fff;
+  padding: 19px 13px;
+  font-size: 12px;
+  color: #8c9e78;
+}
+.journey-summary > span strong {
+  display: block;
+  font-size: 27px;
+}
+.game-history {
+  margin-top: 32px;
+}
+.mission-description {
+  color: #66775f;
+}
+.mission-schedule,
+.mission-note,
+.mission-note-button,
+.mission-undo {
+  color: #7a8c6b;
+}
+.mission-complete {
+  min-height: 46px;
+  background: #aacb76;
+  color: #34541f;
+  border-color: #88a755;
+}
+.mission-complete:hover {
+  background: #9fc367;
+}
+.mission-complete svg {
+  color: #436a28;
+}
+.mission-reward {
+  color: #8a8848;
+}
+.mission-status {
+  color: #6b8849;
+}
+.game-progress-copy p,
+.game-section-heading p,
+.achievement-copy p,
+.achievement-card.earned .achievement-copy p,
+.game-journey-top p,
+.game-history-heading p {
+  color: #82916f;
+}
+.achievement-copy h3 {
+  color: #82916e;
+}
+.achievement-card.locked {
+  background: #fcfdf8;
+}
+.achievement-card.locked .achievement-tag {
+  color: #a6b293;
+}
+.game-celebration > svg:last-child:not(:first-child) {
+  width: 17px;
+  height: 17px;
+  margin-left: 5px;
+}
+@media (max-width: 670px) {
+  body.patient-game .toast {
+    bottom: 94px;
+  }
+  .game-hero .game-eyebrow,
+  .game-hero .game-subtitle {
+    display: none;
+  }
+  .game-hero .game-eyebrow {
+    font-size: 8px;
+    letter-spacing: 1px;
+    line-height: 1.8;
+    margin-bottom: 9px;
+  }
+  .game-section-tag {
+    font-size: 10px;
+    gap: 4px;
+  }
+  .game-section-tag svg {
+    width: 12px;
+    height: 12px;
+  }
+  .game-section-heading > strong {
+    font-size: 10px;
+  }
+  .level-map .game-section-heading h2 {
+    font-size: 16px;
+  }
+  .level-map .game-section-heading h2 svg {
+    width: 16px;
+    height: 16px;
+  }
+  .journey-summary > span {
+    padding: 17px 11px;
+    border-radius: 14px;
+    font-size: 11px;
+  }
+  .journey-summary > span strong {
+    font-size: 25px;
+  }
+  .game-fineprint {
+    font-size: 11px;
+    margin-top: 21px;
+    padding: 0 6px;
+  }
+  .game-map-hint {
+    font-size: 11px;
+    margin-top: 14px;
+    line-height: 1.8;
+  }
+  .game-history {
+    margin-top: 29px;
+  }
+}
+
+html { scroll-padding-top: 60px; }
+body { padding-top: 44px; }
+.local-demo-warning { position: fixed; z-index: 120; inset: 0 0 auto; min-height: 44px;
   display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 3px 8px;
-  padding: 10px 20px; text-align: center; background: #f4f8e9; color: #214333;
-  border-bottom: 1px solid #cad9af; font: 12px/1.6 system-ui,sans-serif; }
+  padding: 7px 20px; text-align: center; background: #f4f8e9; color: #214333;
+  border-bottom: 1px solid #cad9af; font: 11px/1.5 system-ui,sans-serif; }
 .local-demo-warning strong { font-weight: 700; }
-.local-demo-warning small { font-size: 11px; flex-basis: 100%; }
+.local-demo-warning small { display: none; font-size: 11px; flex-basis: 100%; }
+.local-demo-warning[data-persistent="false"] { position: static; }
+body:has(.local-demo-warning[data-persistent="false"]) { padding-top: 0; }
+.local-demo-warning[data-persistent="false"] small { display: block; }
 .local-demo-warning[data-persistent="false"] small::after {
   content: ' O navegador bloqueou o armazenamento: alterações só duram enquanto esta página estiver aberta.';
   color: #9b3f29;
 }
-.sidebar { top: 66px; }
-.auth-layout { min-height: calc(100dvh - 66px); }
+.sidebar { top: 44px; }
+.auth-layout { min-height: calc(100dvh - 44px); }
 @media (max-width: 670px) {
-  body { padding-top: 100px; }
-  .local-demo-warning { min-height: 100px; padding: 9px 14px; font-size: 11px; }
-  .local-demo-warning small { font-size: 10px; }
-  .sidebar { top: 100px; }
+  body { padding-top: 56px; }
+  .local-demo-warning { min-height: 56px; padding: 8px 14px; font-size: 11px; }
+  .sidebar { top: 56px; }
 }
 
 </style>
 </head>
 <body>
-<aside id="local-demo-warning" class="local-demo-warning" role="note"><strong>Demonstração local</strong><span>· Dados ficam neste navegador. Sem sincronização com outros dispositivos.</span><small>Use somente dados fictícios. Este arquivo não cria contas reais e não envia informações pela internet.</small></aside>
+<aside id="local-demo-warning" class="local-demo-warning" role="note"><strong>Demonstração</strong><span>· Dados fictícios só neste navegador, sem sincronização.</span><small>Não cria contas reais nem envia dados pela internet.</small></aside>
   <div id="app"><div class="loading" role="status">Preparando seu espaço…</div></div>
   <div id="modal-root"></div>
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
@@ -4186,12 +5840,18 @@ body { padding-top: 66px; }
         checked_at: new Date().toISOString()
       };
     }));
-    return {users, patients, checks, invites: {}, session: 1, nextUser: 5, nextPatient: 4, nextMeal: 16};
+    return {users, patients, checks, invites: {}, session: 2, experience_version: 2,
+      nextUser: 5, nextPatient: 4, nextMeal: 16};
   }
   let db;
   let persistent = true;
   try { db = JSON.parse(localStorage.getItem(key)); } catch (_) { persistent = false; }
   if (!db || !Array.isArray(db.users) || !Array.isArray(db.patients)) db = seed();
+  // Show the new patient journey once without deleting earlier demo records.
+  if (db.experience_version !== 2) {
+    if (db.users.some(item => item.id === 2 && item.role === 'patient')) db.session = 2;
+    db.experience_version = 2;
+  }
   function save() {
     try { localStorage.setItem(key, JSON.stringify(db)); }
     catch (_) { persistent = false; }
@@ -4208,11 +5868,29 @@ body { padding-top: 66px; }
     if (current.role === 'nutritionist') return current.id;
     return db.patients.find(patient => patient.user_id === current.id)?.owner_id;
   }
+  function patientGame(patient) {
+    const mealIds = new Set(patient.meals.map(meal => String(meal.id)));
+    const entries = Object.entries(db.checks).filter(([key, check]) => {
+      const [mealId, date] = key.split(':');
+      return mealIds.has(mealId) && check.done && date <= localDay();
+    });
+    const completed_meals = entries.length;
+    const active_days = new Set(entries.map(([key]) => key.split(':')[1])).size;
+    const xp = completed_meals * 20;
+    return {xp, level: Math.floor(xp / 100) + 1, xp_in_level: xp % 100,
+      xp_to_next: 100 - xp % 100, level_size: 100, completed_meals, active_days,
+      badges: [
+        {id: 'first_meal', name: 'Primeiro passo', description: 'Registre sua primeira refeição.', earned: completed_meals >= 1},
+        {id: 'five_meals', name: 'Pegando o ritmo', description: 'Registre 5 refeições.', earned: completed_meals >= 5},
+        {id: 'twenty_meals', name: 'Rotina em construção', description: 'Registre 20 refeições.', earned: completed_meals >= 20},
+        {id: 'three_days', name: 'Um dia de cada vez', description: 'Registre refeições em 3 dias diferentes.', earned: active_days >= 3}
+      ]};
+  }
   function patientData(patient, date) {
     const meals = patient.meals.slice().sort((a, b) => a.time.localeCompare(b.time)).map(meal => ({
       ...meal, done: false, note: '', checked_at: null, ...db.checks[`${meal.id}:${date}`]
     }));
-    return {...patient, has_access: !!patient.user_id, meals,
+    return {...patient, has_access: !!patient.user_id, meals, game: patientGame(patient),
       progress: {completed: meals.filter(meal => meal.done).length, total: meals.length}};
   }
   function inviteURL(token) {
@@ -4342,6 +6020,10 @@ const icons = {
   shield: '<path d="M12 2 3 6v6c0 5 9 10 9 10s9-5 9-10V6l-9-4Z"/><path d="m8 12 3 3 5-6"/>',
   heart: '<path d="M20 4a5 5 0 0 0-8 2 5 5 0 0 0-8-2c-6 6 8 16 8 16S26 10 20 4Z"/>',
   bell: '<path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9m-12 13h6"/>',
+  star: '<path d="m12 2 3 6.1 6.7 1-4.9 4.8 1.2 6.8-6-3.2-6 3.2 1.2-6.8-4.9-4.8 6.7-1L12 2Z"/>',
+  trophy: '<path d="M8 3h8v7a4 4 0 0 1-8 0V3Zm0 2H4v3a4 4 0 0 0 4 4m8-7h4v3a4 4 0 0 1-4 4m-4 2v5m-4 2h8m-6-2h4"/>',
+  bolt: '<path d="m14 2-10 12h7l-1 8 10-12h-7l1-8Z"/>',
+  lock: '<rect x="5" y="10" width="14" height="11" rx="3"/><path d="M8 10V7a4 4 0 0 1 8 0v3m-4 5v2"/>',
 };
 const icon = name => `<svg viewBox="0 0 24 24" aria-hidden="true">${icons[name] || icons.leaf}</svg>`;
 const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -4368,6 +6050,7 @@ function brand() { return `<span class="brand-mark">${icon('leaf')}</span><span>
 function avatar(name, index=0, extra='') { return `<span class="avatar avatar-${index%4} ${extra}">${esc(initials(name))}</span>`; }
 
 function renderAuth() {
+  document.body.classList.remove('patient-game');
   const signup=state.authMode==='register'; const invite=state.invite;
   document.getElementById('app').innerHTML = `<main class="auth-layout">
     <section class="auth-art"><div class="brand auth-brand">${brand()}</div><div class="auth-pitch"><span class="eyebrow">PEQUENOS HÁBITOS. GRANDES MUDANÇAS.</span><h1>Mais perto.<br>Todos os dias.</h1><p>O cuidado vai além da consulta. Conecte o plano alimentar à rotina real dos seus pacientes.</p></div>
@@ -4395,16 +6078,129 @@ async function submitAuth(event) {
 }
 
 function renderShell() {
+  if (patientRole()) { renderPatientShell(); return; }
+  document.body.classList.remove('patient-game');
   const patient=patientRole(); const user=state.user;
   const navItems=patient?[['overview','grid','Meu dia'],['history','calendar','Meu histórico']]:[['overview','grid','Visão geral'],['patients','users','Pacientes'],['plan','meal','Plano alimentar'],['history','calendar','Histórico']];
   document.getElementById('app').innerHTML=`<div class="app-shell"><button class="sidebar-backdrop" data-action="close-menu" aria-label="Fechar menu"></button><aside class="sidebar"><a class="brand" href="/" data-action="home">${brand()}</a><div class="sidebar-section-label">${patient?'SEU ACOMPANHAMENTO':'SEU CONSULTÓRIO'}</div><nav class="nav-links" aria-label="Navegação principal">${navItems.map(([view,i,label])=>`<button class="nav-link ${state.view===view?'active':''}" data-action="navigate" data-view="${view}"><span class="nav-icon">${icon(i)}</span>${label}${view==='patients'?`<span class="nav-count">${state.data?.patients.length||0}</span>`:''}</button>`).join('')}</nav><div class="sidebar-note">${icon('leaf')}<p>Pequenas escolhas.<br><strong>Uma vida mais leve.</strong></p><span class="sidebar-decoration"></span></div><div class="sidebar-bottom"><div class="profile-avatar">${esc(initials(user.name))}</div><div class="profile-details"><strong>${esc(user.name)}</strong><small>${patient?'Paciente':'Nutricionista'}</small></div><button class="logout" data-action="logout" title="Sair" aria-label="Sair da conta">${icon('logout')}</button></div></aside>
   <main class="main-content"><header class="topbar"><div class="mobile-brand"><button class="icon-button mobile-menu" data-action="menu" aria-label="Abrir menu">${icon('menu')}</button><strong>nutriviva</strong></div><div class="topbar-date">${icon('calendar')} ${esc(new Intl.DateTimeFormat('pt-BR',{weekday:'long',day:'numeric',month:'long',timeZone:'America/Sao_Paulo'}).format(dateObject(today())))}</div><div class="topbar-tools"><span class="connection-status"><i></i> Demonstração neste navegador</span><span class="profile-small">${esc(initials(user.name))}</span></div></header><div id="page-content"></div><footer class="app-footer">NutriViva <span>·</span> Cuidado de verdade, todos os dias.</footer></main></div>`;
   renderContent();
 }
+
+// The patient experience deliberately has only two destinations: today and
+// their personal journey. The professional keeps the full management console.
+function renderPatientShell() {
+  document.body.classList.add('patient-game');
+  const user = state.user;
+  document.getElementById('app').innerHTML = `<div class="game-shell">
+    <header class="game-header">
+      <a class="game-brand" href="/" data-action="home">${icon('leaf')}<span>nutri<strong>viva</strong></span></a>
+      <div class="game-header-actions"><span class="game-profile">${avatar(user.name)}<span>${esc(user.name.split(' ')[0])}</span></span><button class="icon-button" data-action="logout" title="Sair" aria-label="Sair da conta">${icon('logout')}</button></div>
+    </header>
+    <main class="game-main" id="page-content"></main>
+    <nav class="game-nav" aria-label="Sua jornada"><button class="game-tab ${state.view==='overview'?'active':''}" data-action="navigate" data-view="overview" ${state.view==='overview'?'aria-current="page"':''}>${icon('sun')} Hoje</button><button class="game-tab ${state.view==='history'?'active':''}" data-action="navigate" data-view="history" ${state.view==='history'?'aria-current="page"':''}>${icon('trophy')} Minha jornada</button></nav>
+  </div>`;
+  renderGameContent();
+}
+
+const levelTitles = ['Semente', 'Broto', 'Explorador', 'Cultivador', 'Guardião', 'Mestre'];
+const badgeDefinitions = [
+  {id:'first_meal', name:'Primeiro passo', description:'Conclua sua primeira missão.', symbol:'star'},
+  {id:'five_meals', name:'Ganhando ritmo', description:'Conclua 5 missões na sua jornada.', symbol:'bolt'},
+  {id:'twenty_meals', name:'Cultivando cuidado', description:'Conclua 20 missões na sua jornada.', symbol:'leaf'},
+  {id:'three_days', name:'Presença que cresce', description:'Registre refeições em 3 dias diferentes.', symbol:'trophy'}
+];
+function gameFor(patient) {
+  const game = patient?.game || {};
+  const number = (key, fallback=0) => Number.isFinite(Number(game[key])) ? Math.max(0, Number(game[key])) : fallback;
+  return {
+    xp: number('xp'), level: Math.max(1, number('level',1)), xp_in_level: number('xp_in_level'),
+    xp_to_next: number('xp_to_next',100), level_size: Math.max(1,number('level_size',100)),
+    completed_meals: number('completed_meals'), active_days: number('active_days'),
+    badges: Array.isArray(game.badges) ? game.badges : []
+  };
+}
+function levelTitle(level) { return levelTitles[Math.min(levelTitles.length-1, Math.max(0,level-1))]; }
+function sproutMascot() {
+  return `<svg class="sprout-mascot" viewBox="0 0 180 190" role="img" aria-label="Brotinho, seu companheiro de jornada">
+    <ellipse cx="93" cy="176" rx="51" ry="8" fill="#12372e" opacity=".17"/>
+    <path d="M89 78C62 82 42 64 46 41c25-4 45 9 43 37Z" fill="#d8ef98" stroke="#123d30" stroke-width="4"/>
+    <path d="M91 73c-4-32 18-48 44-43 3 27-14 48-44 43Z" fill="#9fd57e" stroke="#123d30" stroke-width="4"/>
+    <path d="M91 90V68" stroke="#123d30" stroke-width="5" stroke-linecap="round"/>
+    <path d="M54 104c-14 1-22 13-18 22m96-22c13-1 24 10 22 22" fill="none" stroke="#123d30" stroke-width="5" stroke-linecap="round"/>
+    <path d="M61 145v21m55-21v21" stroke="#123d30" stroke-width="7" stroke-linecap="round"/>
+    <path d="M54 167h11m46 0h11" stroke="#123d30" stroke-width="7" stroke-linecap="round"/>
+    <rect x="47" y="78" width="88" height="78" rx="31" fill="#e1f2ac" stroke="#123d30" stroke-width="4"/>
+    <circle cx="74" cy="108" r="4" fill="#123d30"/><circle cx="108" cy="108" r="4" fill="#123d30"/>
+    <ellipse cx="63" cy="118" rx="8" ry="4" fill="#edb6a3"/><ellipse cx="119" cy="118" rx="8" ry="4" fill="#edb6a3"/>
+    <path d="M81 120c5 7 14 7 20 0" fill="none" stroke="#123d30" stroke-width="3.5" stroke-linecap="round"/>
+    <path d="m145 54 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1 3-6Z" fill="#f5d876"/>
+    <path d="m27 82 2 4 5 1-4 3 1 5-4-2-4 2 1-5-4-3 5-1 2-4Z" fill="#c8bbef"/>
+  </svg>`;
+}
+function renderGameContent() {
+  if (!state.data) return;
+  const patient = selectedPatient();
+  const game = gameFor(patient);
+  const journey = state.view === 'history';
+  document.getElementById('page-content').innerHTML = `${demoBanner()}${journey ? renderJourney(patient,game) : renderGameToday(patient,game)}`;
+  document.getElementById('dashboard-date')?.addEventListener('change', async event => {
+    if (!event.target.value || event.target.value > today()) return;
+    state.date = event.target.value;
+    await refreshDashboard();
+  });
+}
+function renderGameToday(patient, game) {
+  const xpProgress = Math.min(100,Math.round(game.xp_in_level/game.level_size*100));
+  const total = patient?.progress.total || 0;
+  const completed = patient?.progress.completed || 0;
+  return `<section class="game-hero" aria-label="Seu nível e experiência">
+    <div class="game-hero-copy"><span class="game-eyebrow">OLÁ, ${esc(state.user.name.split(' ')[0]).toUpperCase()}! VAMOS CRESCER?</span><span class="game-level-pill">${icon('star')} Nível ${game.level} · ${levelTitle(game.level)}</span><h1 class="game-title">Um cuidado de cada vez.</h1><p class="game-subtitle">Suas refeições viram missões. Cada passo faz você evoluir.</p><div class="game-xp-row"><strong id="game-xp-total">${game.xp} XP</strong><span>${game.xp_in_level} / ${game.level_size} XP neste nível</span></div><div class="game-xp-track" role="progressbar" aria-label="Experiência do nível" aria-valuenow="${game.xp_in_level}" aria-valuemin="0" aria-valuemax="${game.level_size}"><span style="width:${xpProgress}%"></span></div><p class="game-next-level">Faltam <strong>${game.xp_to_next} XP</strong> para o nível ${game.level+1}</p></div><div class="game-mascot">${sproutMascot()}</div>
+  </section>
+  <section class="game-daily-progress" aria-label="Progresso das missões de hoje"><span class="game-progress-icon">${icon(total&&completed===total?'trophy':'bolt')}</span><div class="game-progress-copy"><strong>${total&&completed===total?'Você concluiu todas as missões!':'Seu progresso de hoje'}</strong><p>${total&&completed===total?'Celebre seu cuidado. Amanhã tem mais!':'No seu ritmo. Consistência vale mais que perfeição.'}</p></div><strong class="game-progress-count">${completed}<span> / ${total}</span></strong></section>
+  <section><header class="game-section-heading"><div><h2>Missões de hoje</h2><p>${esc(prettyDate(state.date))} · +20 XP por refeição registrada</p></div><span class="game-section-tag">${icon('leaf')} Seu plano</span></header>${renderMissions(patient)}</section>
+  <p class="game-fineprint">Se precisar adaptar uma refeição, conte nas observações. Seu nutricionista acompanha com você.</p>`;
+}
+function renderMissions(patient) {
+  if (!patient?.meals.length) return `<div class="game-empty">${icon('leaf')}<h3>Suas missões estão sendo preparadas.</h3><p>Seu nutricionista vai adicionar suas refeições por aqui. Você já pode explorar sua jornada.</p></div>`;
+  const meals = patient.meals.slice().sort((a,b)=>Number(a.done)-Number(b.done)||a.time.localeCompare(b.time));
+  return `<div class="mission-list">${meals.map((meal,index)=>renderMission(meal,index)).join('')}</div>`;
+}
+function renderMission(meal, index) {
+  const symbols = ['coffee','sun','meal','leaf','moon'];
+  const symbol = Number(meal.time.slice(0,2))<10?'coffee':Number(meal.time.slice(0,2))>=18?'moon':symbols[index%symbols.length];
+  return `<article class="mission-card ${meal.done?'completed':''}" data-meal="${meal.id}">
+    <div class="mission-top"><span class="mission-icon">${icon(meal.done?'check':symbol)}</span><div class="mission-title"><h3>${esc(meal.name)}</h3><span class="mission-schedule">${icon('clock')} ${esc(meal.time)}</span></div>${meal.done?`<span class="mission-status">${icon('check')} Concluída</span>`:`<span class="mission-reward">${icon('bolt')} +20 XP</span>`}</div>
+    <p class="mission-description">${esc(meal.description||'Siga as orientações do seu nutricionista.')}</p>
+    ${meal.note?`<div class="mission-note">${icon('message')}<span>${esc(meal.note)}</span></div>`:''}
+    <div class="mission-actions"><button class="mission-note-button" data-action="note" data-id="${meal.id}">${icon('message')} ${meal.note?'Editar observação':'Adicionar observação'}</button>${meal.done?`<button class="mission-undo" data-action="check" data-id="${meal.id}" aria-label="Desfazer ${esc(meal.name)}">Desfazer</button>`:`<button class="mission-complete" data-action="check" data-id="${meal.id}" aria-label="Concluir missão: ${esc(meal.name)}">Concluir missão ${icon('check')}</button>`}</div>
+  </article>`;
+}
+function renderJourney(patient, game) {
+  const firstLevel = Math.max(1,game.level-2);
+  const levels = Array.from({length:6},(_,index)=>firstLevel+index);
+  return `<section class="game-journey-top"><span class="game-eyebrow">CADA PASSO CONTA</span><h1>Minha jornada</h1><p>Você não precisa ser perfeito. Só continuar crescendo.</p></section>
+  <section class="level-map" aria-label="Mapa de níveis"><div class="game-section-heading"><h2>${icon('star')} Seu caminho</h2><strong>${game.xp} XP no total</strong></div><div class="map-levels">${levels.map(level=>`<div class="level-node ${level===game.level?'current':level<game.level?'unlocked':'locked'}"><span class="level-node-circle">${icon(level<game.level?'check':level===game.level?'leaf':'lock')}</span><span class="level-node-number">Nível ${level}</span><strong class="level-node-title">${levelTitle(level)}</strong><small>${level===game.level?'Você está aqui':level<game.level?'Conquistado':`${(level-1)*game.level_size} XP`}</small></div>`).join('')}</div><p class="game-map-hint">${game.xp_to_next} XP para o seu próximo nível. Cada missão concluída vale 20 XP.</p></section>
+  <section class="game-achievements"><header class="game-section-heading"><div><h2>Suas conquistas</h2><p>Pequenos marcos de uma grande jornada.</p></div>${icon('trophy')}</header><div class="achievement-grid">${badgeDefinitions.map(definition=>{const earned=game.badges.find(badge=>badge.id===definition.id)?.earned===true;return `<article class="achievement-card ${earned?'earned':'locked'}"><span class="achievement-icon">${icon(earned?definition.symbol:'lock')}</span><div class="achievement-copy"><h3>${esc(definition.name)}</h3><p>${esc(definition.description)}</p><span class="achievement-tag">${earned?'Conquistada':'A conquistar'}</span></div></article>`;}).join('')}</div></section>
+  <div class="journey-summary"><span><strong>${game.completed_meals}</strong> missões concluídas</span><span><strong>${game.active_days}</strong> ${game.active_days===1?'dia de cuidado':'dias de cuidado'}</span></div>
+  <section class="game-history"><header class="game-history-heading"><div><h2>Histórico de missões</h2><p>${esc(prettyDate(state.date))}</p></div>${dateControls()}</header>${renderMissions(patient)}</section><p class="game-fineprint">Os níveis somam suas refeições registradas em todos os dias. Desfazer um registro também recalcula o XP e as conquistas.</p>`;
+}
+function celebrateGame(previous, next) {
+  const earned = Math.max(0,next.xp-previous.xp);
+  if (!earned) { toast('Missão registrada. Um passo de cada vez!'); return; }
+  document.querySelector('.game-celebration')?.remove();
+  const celebration = document.createElement('div');
+  celebration.className = 'game-celebration';
+  celebration.setAttribute('role','status');
+  celebration.innerHTML = `${icon(next.level>previous.level?'trophy':'star')}<div><strong>${next.level>previous.level?`Você chegou ao nível ${next.level}!`:`+${earned} XP. Boa, ${esc(state.user.name.split(' ')[0])}!`}</strong><span>${next.level>previous.level?`${levelTitle(next.level)} · mais um passo na sua jornada.`:'Missão concluída. Seu cuidado está crescendo.'}</span></div>${icon('bolt')}`;
+  document.body.appendChild(celebration);
+  setTimeout(()=>celebration.remove(),3000);
+}
 function demoBanner() { return state.user.is_demo?`<div class="demo-banner"><span>${icon('leaf')} <strong>Modo demonstração</strong><span class="demo-description"> · Dados locais de exemplo.</span></span><button data-action="switch-role">${patientRole()?'Visão do nutricionista':'Visão do paciente'} ${icon('arrow')}</button></div>`:''; }
 function dateControls() { return `<div class="date-controls"><button class="icon-button" data-action="date-prev" aria-label="Dia anterior"><span class="rotate">${icon('chevron')}</span></button><label class="date-label" for="dashboard-date">${icon('calendar')}<input type="date" id="dashboard-date" value="${state.date}" max="${today()}" aria-label="Data do acompanhamento"></label><button class="icon-button" data-action="date-next" ${state.date>=today()?'disabled':''} aria-label="Próximo dia">${icon('chevron')}</button></div>`; }
 function renderContent() {
   if (!state.data) return;
+  if (patientRole()) { renderGameContent(); return; }
   const patient=patientRole(); const data=state.data;
   const titles={overview:patient?'Cada refeição é um novo começo.':'Cuidar começa com acompanhar.',patients:'Gente de verdade. Cuidado de perto.',plan:'Um plano para cada rotina.',history:'Cada dia conta uma história.'};
   const subtitles={overview:patient?'Seu plano, suas conquistas. Vamos cuidar de você hoje?':'Um olhar atento para a rotina e as conquistas dos seus pacientes.',patients:'Organize seus pacientes e convide-os para caminhar com você.',plan:'Monte um plano alimentar simples, claro e fácil de acompanhar.',history:'Escolha uma data para acompanhar os registros e observações.'};
@@ -4469,18 +6265,30 @@ document.addEventListener('click',async event=>{
   try {
     switch(action){
       case 'auth-mode':state.authMode=button.dataset.mode;renderAuth();break;
-      case 'home':event.preventDefault();state.view='overview';renderShell();break;
+      case 'home':event.preventDefault();state.view='overview';if(patientRole()){state.date=today();await refreshDashboard(true);}else renderShell();break;
       case 'demo':button.disabled=true;state.user=(await api('/demo',{role:'nutritionist'})).user;state.view='overview';await loadDashboard();break;
-      case 'switch-role':button.disabled=true;state.user=(await api('/demo',{role:patientRole()?'nutritionist':'patient'})).user;state.view='overview';state.selected=null;await loadDashboard();break;
+      case 'switch-role':button.disabled=true;state.user=(await api('/demo',{role:patientRole()?'nutritionist':'patient'})).user;state.view='overview';state.date=today();state.selected=null;await loadDashboard();break;
       case 'logout':await api('/logout',{});state.authMode='login';state.user=null;state.data=null;state.view='overview';state.selected=null;document.body.classList.remove('menu-open');renderAuth();break;
-      case 'navigate':state.view=button.dataset.view;document.body.classList.remove('menu-open');renderShell();break;
+      case 'navigate':state.view=button.dataset.view;document.body.classList.remove('menu-open');if(patientRole()){if(state.view==='overview')state.date=today();await refreshDashboard(true);}else renderShell();break;
       case 'select-patient':state.selected=state.data.patients.find(p=>String(p.id)===button.dataset.id)?.id;renderContent();break;
       case 'patient-plan':state.selected=state.data.patients.find(p=>String(p.id)===button.dataset.id)?.id;state.view='plan';renderShell();break;
       case 'add-patient':addPatientModal();break;
       case 'add-meal':addMealModal(button.dataset.id);break;
       case 'invite':button.disabled=true;inviteModal((await api(`/patients/${button.dataset.id}/invite`,{})).invite_url);button.disabled=false;break;
       case 'copy-invite':{const input=document.getElementById('invite-link');try{await navigator.clipboard.writeText(input.value);toast('Convite copiado. Compartilhe com seu paciente.');}catch{input.focus();input.select();toast('Selecione e copie o link de convite.');}break;}
-      case 'check':{const meal=mealById(button.dataset.id);button.disabled=true;await api(`/meals/${meal.id}/check`,{date:state.date,done:!meal.done,note:meal.note||''});await refreshDashboard();toast(meal.done?'Registro desmarcado.':'Refeição registrada. Mais um passo no seu cuidado!');break;}
+      case 'check':{
+        const meal=mealById(button.dataset.id);
+        const patientUser = patientRole() ? state.user.id : null;
+        const previousGame = gameFor(selectedPatient());
+        button.disabled=true;
+        await api(`/meals/${meal.id}/check`,{date:state.date,done:!meal.done,note:meal.note||''});
+        await refreshDashboard();
+        if(patientRole() && state.user.id===patientUser){
+          if(meal.done)toast('Missão desfeita. Seu XP foi recalculado.');
+          else celebrateGame(previousGame,gameFor(selectedPatient()));
+        }else toast(meal.done?'Registro desmarcado.':'Refeição registrada. Mais um passo no seu cuidado!');
+        break;
+      }
       case 'note':noteModal(button.dataset.id);break;
       case 'delete-meal':{const meal=mealById(button.dataset.id);modal('Remover refeição do plano?',`<p>A refeição <strong>${esc(meal.name)}</strong> será removida do plano, junto com seus registros. Esta ação não pode ser desfeita.</p>`,`<button class="button secondary" data-action="close-modal">Cancelar</button><button class="button danger" data-action="confirm-delete" data-id="${meal.id}">Remover refeição</button>`);break;}
       case 'confirm-delete':button.disabled=true;await api(`/meals/${button.dataset.id}`,undefined,'DELETE');closeModal();await refreshDashboard();toast('Refeição removida do plano.');break;
