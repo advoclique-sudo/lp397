@@ -6,6 +6,58 @@
   <meta name="theme-color" content="#163d31">
   <meta name="description" content="NutriViva: nutricionistas e pacientes conectados em uma rotina mais saudável.">
   <title>NutriViva · Demonstração local</title>
+  <script>
+/* Apply the saved theme before styles load, independently of account/demo data. */
+(() => {
+  const key = 'nutriviva.theme';
+  const valid = value => value === 'dark' || value === 'light';
+  const media = window.matchMedia?.('(prefers-color-scheme: dark)');
+  let preference = null;
+  try {
+    const saved = localStorage.getItem(key);
+    if (valid(saved)) preference = saved;
+  } catch (_) { /* The toggle also works when browser storage is unavailable. */ }
+
+  const effective = () => preference || (media?.matches ? 'dark' : 'light');
+  const label = () => document.documentElement.dataset.theme === 'dark' ? 'Ativar modo claro' : 'Ativar modo escuro';
+  const glyph = () => document.documentElement.dataset.theme === 'dark'
+    ? '<circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1 1m12 12 1 1M5 19l1-1M18 6l1-1"/>'
+    : '<path d="M21 13a9 9 0 0 1-10-10A9 9 0 1 0 21 13Z"/>';
+  const svg = () => `<svg viewBox="0 0 24 24" aria-hidden="true">${glyph()}</svg>`;
+
+  function apply() {
+    const theme = effective();
+    document.documentElement.dataset.theme = theme;
+    const meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.content = theme === 'dark' ? '#101a18' : '#163d31';
+    document.querySelectorAll('[data-action="toggle-theme"]').forEach(button => {
+      button.setAttribute('aria-label', label());
+      button.setAttribute('title', label());
+      button.setAttribute('aria-pressed', String(theme === 'dark'));
+      button.innerHTML = svg();
+    });
+  }
+
+  window.NutriTheme = {
+    button() {
+      return `<button type="button" class="icon-button theme-toggle" data-action="toggle-theme" aria-label="${label()}" title="${label()}" aria-pressed="${document.documentElement.dataset.theme === 'dark'}">${svg()}</button>`;
+    },
+    toggle() {
+      preference = effective() === 'dark' ? 'light' : 'dark';
+      try { localStorage.setItem(key, preference); } catch (_) { /* Keep it for this page. */ }
+      apply();
+    },
+  };
+  media?.addEventListener?.('change', () => { if (!preference) apply(); });
+  window.addEventListener('storage', event => {
+    if (event.key !== key && event.key !== null) return;
+    preference = valid(event.newValue) ? event.newValue : null;
+    apply();
+  });
+  apply();
+})();
+
+</script>
   <style>
 :root {
   --bg:#f7f8fa;
@@ -5772,6 +5824,922 @@ body.patient-game .toast {
   }
 }
 
+/* Theme controls remain available before and after signing in. */
+:root {
+  color-scheme: light;
+}
+.theme-toggle,
+.game-header-actions .theme-toggle,
+.topbar-tools .theme-toggle {
+  display: inline-grid;
+  place-items: center;
+  width: 46px;
+  min-width: 46px;
+  height: 46px;
+  min-height: 46px;
+  padding: 0;
+  flex-shrink: 0;
+  border: 1px solid #e1e8d8;
+  border-radius: 13px;
+  background: #f3f6ec;
+  color: #708b58;
+  transition: background .15s, border-color .15s;
+}
+.theme-toggle:hover,
+.game-header-actions .theme-toggle:hover,
+.topbar-tools .theme-toggle:hover {
+  background: #e9f0dc;
+  border-color: #cbdcb5;
+}
+.theme-toggle svg {
+  width: 20px;
+  height: 20px;
+}
+.theme-toggle:focus-visible {
+  outline: 3px solid #9fc56b;
+  outline-offset: 3px;
+}
+.theme-toggle:disabled {
+  opacity: .5;
+  cursor: not-allowed;
+}
+.auth-theme-toggle {
+  position: fixed;
+  top: 23px;
+  right: 25px;
+  z-index: 15;
+}
+
+/* Shared dark surfaces, form controls and text. */
+html[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #101a18;
+  --paper: #192824;
+  --ink: #e8efe6;
+  --muted: #aab9aa;
+  --line: #33483c;
+  --soft: #213329;
+  --danger: #edaca3;
+  --shadow: 0 5px 22px #00000012;
+}
+html[data-theme="dark"] body,
+html[data-theme="dark"] body.patient-game {
+  color: #e8efe6;
+  background: #101a18;
+}
+html[data-theme="dark"] .main-content,
+html[data-theme="dark"] .app-shell {
+  color: #e8efe6;
+  background: #101a18;
+}
+html[data-theme="dark"] .panel,
+html[data-theme="dark"] .stat-card,
+html[data-theme="dark"] .patient-card,
+html[data-theme="dark"] .modal {
+  color: #e8efe6;
+  background: #192824;
+  border-color: #33483c;
+}
+html[data-theme="dark"] .panel-heading,
+html[data-theme="dark"] .panel-title,
+html[data-theme="dark"] .page-heading h1,
+html[data-theme="dark"] .stat-value,
+html[data-theme="dark"] .diary-user strong,
+html[data-theme="dark"] .summary-detail > strong,
+html[data-theme="dark"] .summary-detail h3,
+html[data-theme="dark"] .meal-title h3,
+html[data-theme="dark"] .patient-info strong,
+html[data-theme="dark"] .patient-card h2,
+html[data-theme="dark"] .patient-card h3,
+html[data-theme="dark"] .patient-welcome h3,
+html[data-theme="dark"] .modal-header h2,
+html[data-theme="dark"] .empty-state h2,
+html[data-theme="dark"] .empty-state h3 {
+  color: #e0eadb;
+}
+html[data-theme="dark"] .topbar-date,
+html[data-theme="dark"] .topbar-date svg,
+html[data-theme="dark"] .connection-status,
+html[data-theme="dark"] .page-heading p,
+html[data-theme="dark"] .eyebrow,
+html[data-theme="dark"] .subtle,
+html[data-theme="dark"] .stat-copy > span,
+html[data-theme="dark"] .stat-footer,
+html[data-theme="dark"] .stat-denominator,
+html[data-theme="dark"] .patient-info > span,
+html[data-theme="dark"] .patient-info small,
+html[data-theme="dark"] .diary-user > div > span,
+html[data-theme="dark"] .meal-content p,
+html[data-theme="dark"] .meal-time,
+html[data-theme="dark"] .meal-time small,
+html[data-theme="dark"] .meal-content .meal-note,
+html[data-theme="dark"] .meal-title .meal-status,
+html[data-theme="dark"] .meal-actions .text-button,
+html[data-theme="dark"] .summary-detail p,
+html[data-theme="dark"] .patient-card p,
+html[data-theme="dark"] .patient-card .patient-email,
+html[data-theme="dark"] .patient-card .patient-card-goal,
+html[data-theme="dark"] .patient-card-progress,
+html[data-theme="dark"] .patient-welcome > p,
+html[data-theme="dark"] .modal-body > p,
+html[data-theme="dark"] .modal-intro,
+html[data-theme="dark"] .hint,
+html[data-theme="dark"] .empty-state p,
+html[data-theme="dark"] .history-intro,
+html[data-theme="dark"] .plan-heading p {
+  color: #aab9aa;
+}
+html[data-theme="dark"] .panel-footer,
+html[data-theme="dark"] .modal-footer,
+html[data-theme="dark"] .diary-header {
+  color: #aab9aa;
+  border-color: #2c4135;
+}
+html[data-theme="dark"] .app-footer,
+html[data-theme="dark"] .app-footer span {
+  color: #7e9380;
+}
+html[data-theme="dark"] .badge,
+html[data-theme="dark"] .count-badge,
+html[data-theme="dark"] .goal-tag {
+  color: #b5ce91;
+  background: #2a3b29;
+  border-color: #3b5032;
+}
+html[data-theme="dark"] .form-field label {
+  color: #c4d4bb;
+}
+html[data-theme="dark"] .form-field label span {
+  color: #91a48c;
+}
+html[data-theme="dark"] .form-field input,
+html[data-theme="dark"] .form-field textarea,
+html[data-theme="dark"] .form-field select,
+html[data-theme="dark"] .date-controls input[type="date"],
+html[data-theme="dark"] .search-field input,
+html[data-theme="dark"] .inline-filters select {
+  color: #d8e5d1;
+  background: #13211b;
+  border-color: #3b5140;
+}
+html[data-theme="dark"] .form-field input::placeholder,
+html[data-theme="dark"] .form-field textarea::placeholder,
+html[data-theme="dark"] .search-field input::placeholder {
+  color: #7f967d;
+}
+html[data-theme="dark"] .form-field input:focus,
+html[data-theme="dark"] .form-field textarea:focus,
+html[data-theme="dark"] .form-field select:focus {
+  border-color: #8fa968;
+}
+html[data-theme="dark"] .form-field input[readonly] {
+  color: #b1c698;
+  background: #1d2d22;
+}
+html[data-theme="dark"] .form-error {
+  background: #3c2520;
+  border-color: #664037;
+  color: #e9b0a3;
+}
+html[data-theme="dark"] .icon-button,
+html[data-theme="dark"] .close-modal {
+  color: #a6bc98;
+}
+html[data-theme="dark"] .icon-button:hover,
+html[data-theme="dark"] .close-modal {
+  background: #26382c;
+  border-color: #3c5140;
+}
+html[data-theme="dark"] .text-button {
+  color: #b4d193;
+}
+html[data-theme="dark"] .text-button:hover {
+  color: #d4e7ab;
+}
+html[data-theme="dark"] .button.primary {
+  background: #b4ce89;
+  color: #233b1a;
+  border-color: #b4ce89;
+  box-shadow: 0 3px 0 #7f9d55;
+}
+html[data-theme="dark"] .button.primary:hover {
+  background: #c5dea0;
+  border-color: #c5dea0;
+}
+html[data-theme="dark"] .button.secondary,
+html[data-theme="dark"] .button.ghost {
+  background: #223329;
+  color: #c2d6ad;
+  border-color: #42563a;
+}
+html[data-theme="dark"] .button.secondary:hover,
+html[data-theme="dark"] .button.ghost:hover {
+  background: #30452f;
+  border-color: #687f50;
+}
+html[data-theme="dark"] .button.danger {
+  color: #e1aa9b;
+  background: #402b24;
+  border-color: #654636;
+}
+html[data-theme="dark"] .meal-actions .danger-text {
+  color: #daa598;
+}
+html[data-theme="dark"] .overlay {
+  background: #030c09aa;
+}
+html[data-theme="dark"] .toast {
+  color: #e2edce;
+  background: #2e4830;
+  border-color: #5e7b45;
+  box-shadow: 0 8px 35px #00000030;
+}
+html[data-theme="dark"] .demo-banner {
+  background: #273525;
+  border-color: #3b4c31;
+  color: #adc097;
+}
+html[data-theme="dark"] .demo-banner button {
+  color: #c0d79f;
+}
+html[data-theme="dark"] .demo-hint {
+  background: #283725;
+  color: #a8be92;
+}
+html[data-theme="dark"] .theme-toggle,
+html[data-theme="dark"] .game-header-actions .theme-toggle,
+html[data-theme="dark"] .topbar-tools .theme-toggle {
+  color: #d0e5a4;
+  background: #23372b;
+  border-color: #425a3d;
+}
+html[data-theme="dark"] .theme-toggle:hover,
+html[data-theme="dark"] .game-header-actions .theme-toggle:hover,
+html[data-theme="dark"] .topbar-tools .theme-toggle:hover {
+  color: #e4edbd;
+  background: #344a31;
+  border-color: #718a53;
+}
+html[data-theme="dark"] .theme-toggle:focus-visible {
+  outline-color: #b7d488;
+}
+html[data-theme="dark"] button:disabled,
+html[data-theme="dark"] .button:disabled,
+html[data-theme="dark"] .icon-button:disabled,
+html[data-theme="dark"] .theme-toggle:disabled {
+  opacity: .5;
+  cursor: not-allowed;
+}
+html[data-theme="dark"] .loading {
+  color: #acc19e;
+}
+html[data-theme="dark"] .loading::before {
+  border-color: #3c5138;
+  border-top-color: #bfda94;
+}
+
+/* Professional workspace. */
+html[data-theme="dark"] .sidebar {
+  background: #142d24;
+  color: #afc3ac;
+}
+html[data-theme="dark"] .brand,
+html[data-theme="dark"] .mobile-brand {
+  color: #ecf4e2;
+}
+html[data-theme="dark"] .brand-light,
+html[data-theme="dark"] .brand-mark,
+html[data-theme="dark"] .mobile-brand em {
+  color: #c0db90;
+}
+html[data-theme="dark"] .sidebar-section-label,
+html[data-theme="dark"] .brand small {
+  color: #829f7c;
+}
+html[data-theme="dark"] .nav-link {
+  color: #b4c9ab;
+}
+html[data-theme="dark"] .nav-link:hover {
+  color: #deebce;
+  background: #253e2d;
+}
+html[data-theme="dark"] .nav-link.active {
+  color: #243d1b;
+  background: #c0d995;
+}
+html[data-theme="dark"] .nav-count {
+  background: #2c4430;
+  color: #adc59e;
+}
+html[data-theme="dark"] .nav-link.active .nav-count {
+  color: #3b5724;
+  background: #abc57e;
+}
+html[data-theme="dark"] .sidebar-note {
+  background: #1a3528;
+  border-color: #35513a;
+}
+html[data-theme="dark"] .sidebar-note p {
+  color: #9db592;
+}
+html[data-theme="dark"] .sidebar-note strong {
+  color: #d2e2bf;
+}
+html[data-theme="dark"] .sidebar-bottom,
+html[data-theme="dark"] .profile-row {
+  border-color: #36523a;
+}
+html[data-theme="dark"] .profile-details strong {
+  color: #e0ebd4;
+}
+html[data-theme="dark"] .profile-details small {
+  color: #99b38b;
+}
+html[data-theme="dark"] .profile-avatar,
+html[data-theme="dark"] .profile-small {
+  color: #c8dda6;
+  background: #3a5130;
+  border-color: #5d7449;
+}
+html[data-theme="dark"] .logout {
+  color: #a4bd95;
+}
+html[data-theme="dark"] .stat-icon,
+html[data-theme="dark"] .stat-icon.green {
+  background: #2a3d25;
+  color: #adc88b;
+}
+html[data-theme="dark"] .stat-card:nth-child(2) .stat-icon,
+html[data-theme="dark"] .stat-icon.orange {
+  background: #403827;
+  color: #d5b478;
+}
+html[data-theme="dark"] .stat-card:nth-child(3) .stat-icon,
+html[data-theme="dark"] .stat-icon.purple {
+  background: #332f43;
+  color: #b7a4d5;
+}
+html[data-theme="dark"] .stat-tag {
+  color: #9eb58b;
+  background: #223329;
+  border-color: #344837;
+}
+html[data-theme="dark"] .stat-trend,
+html[data-theme="dark"] .stat-card .stat-trend {
+  color: #b3d18a;
+}
+html[data-theme="dark"] .patient-row:hover {
+  background: #25392b;
+}
+html[data-theme="dark"] .patient-row.selected {
+  background: #2b402d;
+  border-color: #455d3d;
+}
+html[data-theme="dark"] .avatar,
+html[data-theme="dark"] .avatar-0 {
+  color: #c4d79c;
+  background: #35462b;
+}
+html[data-theme="dark"] .avatar-1 {
+  color: #d2ba98;
+  background: #443a2c;
+}
+html[data-theme="dark"] .avatar-2 {
+  color: #c4aedb;
+  background: #3a3145;
+}
+html[data-theme="dark"] .avatar-3 {
+  color: #a6c2ca;
+  background: #2e4145;
+}
+html[data-theme="dark"] .mini-progress {
+  background: #2d4029;
+}
+html[data-theme="dark"] .mini-progress span {
+  background: #9cbd72;
+}
+html[data-theme="dark"] .patient-pct,
+html[data-theme="dark"] .patient-card-progress strong {
+  color: #b5ce8d;
+}
+html[data-theme="dark"] .daily-summary {
+  background: #213123;
+  border-color: #34472d;
+}
+html[data-theme="dark"] .progress-ring {
+  background: conic-gradient(#adc981 var(--progress), #374a2d 0);
+}
+html[data-theme="dark"] .ring-inner {
+  background: #213123;
+  color: #d0e1b3;
+}
+html[data-theme="dark"] .ring-inner small {
+  color: #a0b58c;
+}
+html[data-theme="dark"] .meal-card {
+  background: #192824;
+  border-color: #304535;
+}
+html[data-theme="dark"] .meal-card.completed {
+  background: #213223;
+  border-color: #3d5334;
+}
+html[data-theme="dark"] .meal-symbol {
+  color: #c6b184;
+  background: #393a2b;
+}
+html[data-theme="dark"] .meal-card:nth-child(2) .meal-symbol {
+  color: #b4c78b;
+  background: #2e4029;
+}
+html[data-theme="dark"] .meal-card:nth-child(3) .meal-symbol {
+  color: #d2b486;
+  background: #3c3627;
+}
+html[data-theme="dark"] .meal-card:nth-child(4) .meal-symbol {
+  color: #bca3d0;
+  background: #382f40;
+}
+html[data-theme="dark"] .meal-card:nth-child(5) .meal-symbol {
+  color: #98b7be;
+  background: #2b3b3f;
+}
+html[data-theme="dark"] .meal-check {
+  background: #15211b;
+  border-color: #4a6142;
+}
+html[data-theme="dark"] .meal-check:hover {
+  background: #2b3e25;
+  border-color: #8daa65;
+}
+html[data-theme="dark"] .completed .meal-check {
+  color: #243b1a;
+  background: #adc783;
+  border-color: #adc783;
+}
+html[data-theme="dark"] .meal-title .meal-status.done {
+  color: #b7ce94;
+}
+html[data-theme="dark"] .diary-user .invite-button,
+html[data-theme="dark"] .patient-card-actions .icon-button {
+  background: #233429;
+  border-color: #3d5238;
+}
+html[data-theme="dark"] .diary-user .invite-button svg {
+  color: #b1c598;
+}
+html[data-theme="dark"] .insight-card,
+html[data-theme="dark"] .patient-panel > .insight-card,
+html[data-theme="dark"] .personal-goal {
+  background: #243222;
+  border-color: #3a4a2e;
+}
+html[data-theme="dark"] .insight-card p,
+html[data-theme="dark"] .personal-goal p {
+  color: #a7ba92;
+}
+html[data-theme="dark"] .insight-card strong,
+html[data-theme="dark"] .insight-card h3,
+html[data-theme="dark"] .personal-goal .eyebrow {
+  color: #c1d39e;
+}
+html[data-theme="dark"] .insight-card > svg,
+html[data-theme="dark"] .welcome-leaf,
+html[data-theme="dark"] .empty-icon {
+  color: #b7ce8e;
+  background: #2c3d26;
+}
+html[data-theme="dark"] .new-patient-card {
+  color: #bcd39b;
+  background: #19271e;
+  border-color: #42553a;
+}
+html[data-theme="dark"] .new-patient-card:hover {
+  background: #253a28;
+  border-color: #718a51;
+}
+html[data-theme="dark"] .new-patient-card > span {
+  color: #bad295;
+  background: #283b29;
+  border-color: #445c3a;
+}
+html[data-theme="dark"] .new-patient-card p {
+  color: #98af86;
+}
+
+/* Sign-in, invitation and registration screens. */
+html[data-theme="dark"] .auth-layout,
+html[data-theme="dark"] .auth-form-side {
+  background: #101a18;
+  color: #e8efe6;
+}
+html[data-theme="dark"] .auth-art {
+  background: #142e23;
+}
+html[data-theme="dark"] .auth-card h1,
+html[data-theme="dark"] .auth-card h2 {
+  color: #e2edd8;
+}
+html[data-theme="dark"] .auth-card > p,
+html[data-theme="dark"] .auth-card .auth-intro,
+html[data-theme="dark"] .auth-bottom,
+html[data-theme="dark"] .auth-card .auth-bottom,
+html[data-theme="dark"] .auth-card .eyebrow,
+html[data-theme="dark"] .auth-security,
+html[data-theme="dark"] .auth-copyright {
+  color: #a2b497;
+}
+html[data-theme="dark"] .auth-tabs {
+  background: #17261e;
+  border-color: #30432f;
+}
+html[data-theme="dark"] .auth-tab {
+  color: #95ad85;
+}
+html[data-theme="dark"] .auth-tab.active {
+  color: #cfdfa9;
+  background: #2d412c;
+  box-shadow: 0 2px 4px #00000014;
+}
+html[data-theme="dark"] .divider {
+  color: #849d76;
+}
+html[data-theme="dark"] .divider::before,
+html[data-theme="dark"] .divider::after {
+  background: #2e432e;
+}
+html[data-theme="dark"] .invite-person,
+html[data-theme="dark"] .auth-card > .invite-icon,
+html[data-theme="dark"] .invite-success {
+  color: #bdd69a;
+  background: #263923;
+  border-color: #3d5333;
+}
+html[data-theme="dark"] .invite-person > div > strong {
+  color: #d1e1ba;
+}
+html[data-theme="dark"] .invite-person > div > span {
+  color: #9fb98b;
+}
+
+/* Patient game: dark surfaces with clear rewards and completed missions. */
+html[data-theme="dark"] .game-shell {
+  color: #e8efe6;
+  background: #101a18;
+}
+html[data-theme="dark"] .game-brand {
+  color: #d8e5ca;
+}
+html[data-theme="dark"] .game-brand > span > strong,
+html[data-theme="dark"] .game-brand > svg {
+  color: #aacb7d;
+}
+html[data-theme="dark"] .game-profile {
+  color: #a9bf9c;
+}
+html[data-theme="dark"] .game-profile .avatar,
+html[data-theme="dark"] .game-profile .profile-avatar {
+  color: #c6b3df;
+  background: #3c3249;
+  border-color: #58436c;
+}
+html[data-theme="dark"] .game-header-actions .logout,
+html[data-theme="dark"] .game-header-actions .icon-button {
+  color: #b1c99c;
+  background: #24382b;
+  border-color: #3d5338;
+}
+html[data-theme="dark"] .game-header-actions .theme-toggle {
+  color: #d0e5a4;
+  background: #23372b;
+  border-color: #425a3d;
+}
+html[data-theme="dark"] .game-header-actions .theme-toggle:hover {
+  background: #344a31;
+  border-color: #718a53;
+}
+html[data-theme="dark"] .game-main .demo-banner {
+  color: #acc196;
+  background: #233322;
+  border-color: #3e5030;
+}
+html[data-theme="dark"] .game-hero {
+  color: #eff5df;
+  background: #19382a;
+  border-color: #38573a;
+}
+html[data-theme="dark"] .game-hero .game-eyebrow {
+  color: #a6c68a;
+}
+html[data-theme="dark"] .game-level-pill {
+  color: #d1e6ad;
+  background: #355133;
+  border-color: #526d3e;
+  box-shadow: 0 2px 0 #102b1d;
+}
+html[data-theme="dark"] .game-subtitle,
+html[data-theme="dark"] .game-next-level {
+  color: #a7bf96;
+}
+html[data-theme="dark"] .game-next-level strong,
+html[data-theme="dark"] .game-xp-row > span {
+  color: #bbd2a6;
+}
+html[data-theme="dark"] .game-xp-row strong {
+  color: #d9e9ad;
+}
+html[data-theme="dark"] .game-xp-track {
+  background: #10291c;
+  border-color: #49613a;
+}
+html[data-theme="dark"] .game-xp-track > span {
+  background: #c8dd8a;
+  box-shadow: inset 0 2px 0 #e1efb4;
+}
+html[data-theme="dark"] .game-daily-progress,
+html[data-theme="dark"] .mission-card,
+html[data-theme="dark"] .level-map,
+html[data-theme="dark"] .achievement-card,
+html[data-theme="dark"] .journey-summary > span,
+html[data-theme="dark"] .journey-summary > div,
+html[data-theme="dark"] .journey-summary > article {
+  color: #e0ead6;
+  background: #192824;
+  border-color: #33483c;
+}
+html[data-theme="dark"] .game-progress-icon {
+  color: #bca7db;
+  background: #342c40;
+  border-color: #4d3d60;
+}
+html[data-theme="dark"] .game-progress-copy strong,
+html[data-theme="dark"] .game-section-heading h2,
+html[data-theme="dark"] .mission-title h3,
+html[data-theme="dark"] .game-journey-top h1,
+html[data-theme="dark"] .game-history-heading h1,
+html[data-theme="dark"] .game-history-heading h2,
+html[data-theme="dark"] .level-map > h2,
+html[data-theme="dark"] .level-map > h3 {
+  color: #dce8d0;
+}
+html[data-theme="dark"] .game-progress-copy p,
+html[data-theme="dark"] .game-section-heading p,
+html[data-theme="dark"] .game-section-heading > span,
+html[data-theme="dark"] .game-section-heading > strong,
+html[data-theme="dark"] .game-section-tag,
+html[data-theme="dark"] .mission-description,
+html[data-theme="dark"] .mission-schedule,
+html[data-theme="dark"] .mission-note-button,
+html[data-theme="dark"] .mission-undo,
+html[data-theme="dark"] .game-fineprint,
+html[data-theme="dark"] .game-map-hint,
+html[data-theme="dark"] .game-journey-top p,
+html[data-theme="dark"] .game-history-heading p,
+html[data-theme="dark"] .level-map > p {
+  color: #aab9a0;
+}
+html[data-theme="dark"] .game-progress-count {
+  color: #c4dca2;
+  background: #2b3e28;
+}
+html[data-theme="dark"] .game-progress-count span,
+html[data-theme="dark"] .game-progress-count small {
+  color: #9eb58a;
+}
+html[data-theme="dark"] .mission-card.completed {
+  color: #d4e2c3;
+  background: #1e3024;
+  border-color: #3d5537;
+}
+html[data-theme="dark"] .mission-icon {
+  color: #d8be85;
+  background: #3b3826;
+  border-color: #514c30;
+}
+html[data-theme="dark"] .mission-card:nth-child(2) .mission-icon {
+  color: #bbcd8a;
+  background: #303f27;
+  border-color: #46572e;
+}
+html[data-theme="dark"] .mission-card:nth-child(3) .mission-icon {
+  color: #d6ac8f;
+  background: #413227;
+  border-color: #594431;
+}
+html[data-theme="dark"] .mission-card:nth-child(4) .mission-icon {
+  color: #bda9d8;
+  background: #352c41;
+  border-color: #4a3b5b;
+}
+html[data-theme="dark"] .mission-card:nth-child(5) .mission-icon {
+  color: #a3c0cb;
+  background: #2a3d42;
+  border-color: #3a5159;
+}
+html[data-theme="dark"] .mission-card.completed .mission-icon {
+  color: #c0d89a;
+  background: #304628;
+  border-color: #496134;
+}
+html[data-theme="dark"] .mission-reward {
+  color: #d9cb91;
+  background: #3b3827;
+  border-color: #55502f;
+}
+html[data-theme="dark"] .completed .mission-reward,
+html[data-theme="dark"] .mission-status {
+  color: #bed799;
+  background: #2c4327;
+  border-color: #465c34;
+}
+html[data-theme="dark"] .mission-note {
+  color: #b4c6a4;
+  background: #253622;
+  border-color: #3b5030;
+}
+html[data-theme="dark"] .mission-note-button:hover,
+html[data-theme="dark"] .mission-undo:hover {
+  color: #d1e3ae;
+}
+html[data-theme="dark"] .mission-undo {
+  border-color: #5f774b;
+}
+html[data-theme="dark"] .mission-complete {
+  color: #2b421a;
+  background: #b8d48a;
+  border-color: #8aa45f;
+}
+html[data-theme="dark"] .mission-complete:hover {
+  background: #c7df9d;
+}
+html[data-theme="dark"] .mission-complete svg {
+  color: #3c5a25;
+}
+html[data-theme="dark"] .game-nav {
+  color: #a8bf97;
+  background: #1b2a22f2;
+  border-color: #3d5236;
+  box-shadow: 0 5px 0 #0a150c50, 0 10px 25px #00000020;
+}
+html[data-theme="dark"] .game-tab {
+  color: #9fb48f;
+}
+html[data-theme="dark"] .game-tab.active {
+  color: #cce3aa;
+  background: #3c542d;
+  box-shadow: inset 0 -2px 0 #526d3c;
+}
+html[data-theme="dark"] .game-tab:not(.active):hover {
+  color: #c5dca6;
+  background: #2d422b;
+}
+html[data-theme="dark"] .map-levels::before {
+  background: #2e412c;
+}
+html[data-theme="dark"] .level-node-circle {
+  color: #819574;
+  background: #253528;
+  border-color: #3b4d35;
+}
+html[data-theme="dark"] .level-node.unlocked .level-node-circle {
+  color: #c1d49c;
+  background: #3c512d;
+  border-color: #5b7440;
+}
+html[data-theme="dark"] .level-node.current .level-node-circle {
+  color: #253e18;
+  background: #bdd58e;
+  border-color: #8fa85f;
+  box-shadow: 0 0 0 5px #304828;
+}
+html[data-theme="dark"] .level-node-title,
+html[data-theme="dark"] .level-node-number,
+html[data-theme="dark"] .level-node small {
+  color: #9baf89;
+}
+html[data-theme="dark"] .level-node.current .level-node-title,
+html[data-theme="dark"] .level-node.current .level-node-number,
+html[data-theme="dark"] .level-node.current small {
+  color: #c3daa0;
+}
+html[data-theme="dark"] .game-map-hint {
+  border-color: #2f442f;
+}
+html[data-theme="dark"] .achievement-card.locked {
+  background: #17231d;
+  border-color: #30432f;
+}
+html[data-theme="dark"] .achievement-card.earned {
+  background: #293121;
+  border-color: #4c5432;
+}
+html[data-theme="dark"] .achievement-icon {
+  color: #819672;
+  background: #273628;
+  border-color: #394b32;
+}
+html[data-theme="dark"] .achievement-card.earned .achievement-icon {
+  color: #d9c784;
+  background: #41412a;
+  border-color: #5d5a34;
+}
+html[data-theme="dark"] .achievement-copy h3 {
+  color: #b8c7a9;
+}
+html[data-theme="dark"] .earned .achievement-copy h3 {
+  color: #dcdfa9;
+}
+html[data-theme="dark"] .achievement-copy p,
+html[data-theme="dark"] .achievement-card.earned .achievement-copy p {
+  color: #a2b194;
+}
+html[data-theme="dark"] .achievement-tag,
+html[data-theme="dark"] .achievement-card.locked .achievement-tag {
+  color: #819673;
+}
+html[data-theme="dark"] .earned .achievement-tag {
+  color: #c7c384;
+}
+html[data-theme="dark"] .journey-summary strong,
+html[data-theme="dark"] .journey-summary > span strong {
+  color: #bdd59a;
+}
+html[data-theme="dark"] .journey-summary > span,
+html[data-theme="dark"] .journey-summary p,
+html[data-theme="dark"] .journey-summary span {
+  color: #9db48b;
+}
+html[data-theme="dark"] .game-history-heading .date-controls {
+  background: #213124;
+  border-color: #3d5135;
+}
+html[data-theme="dark"] .game-history-heading .date-controls input {
+  color: #b1c99a;
+  background: #213124;
+}
+html[data-theme="dark"] .game-empty {
+  color: #c7d9ae;
+  background: #19271f;
+  border-color: #425737;
+}
+html[data-theme="dark"] .game-empty h2,
+html[data-theme="dark"] .game-empty h3 {
+  color: #bfd49d;
+}
+html[data-theme="dark"] .game-empty p {
+  color: #a0b68b;
+}
+html[data-theme="dark"] .game-empty > svg {
+  color: #a8c080;
+}
+html[data-theme="dark"] .game-celebration {
+  color: #dce9ba;
+  background: #354a2c;
+  border-color: #728b4f;
+  box-shadow: 0 10px 40px #00000030;
+}
+html[data-theme="dark"] .game-celebration > svg {
+  color: #c5d88d;
+}
+html[data-theme="dark"] .game-celebration p,
+html[data-theme="dark"] .game-celebration small,
+html[data-theme="dark"] .game-celebration span {
+  color: #b4c998;
+}
+@media (max-width: 670px) {
+  .game-header-actions {
+    gap: 6px;
+  }
+  .game-header-actions .theme-toggle {
+    width: 46px;
+    height: 46px;
+    min-width: 46px;
+    min-height: 46px;
+  }
+  .game-profile > span:not(.avatar):not(.profile-avatar),
+  .game-profile > strong {
+    display: none;
+  }
+  .topbar-tools .theme-toggle {
+    display: inline-grid;
+  }
+  .auth-theme-toggle {
+    top: 17px;
+    right: 17px;
+  }
+  html[data-theme="dark"] .patient-row {
+    border-color: #32482f;
+  }
+  html[data-theme="dark"] .patient-row.selected {
+    border-color: #5a7345;
+  }
+  html[data-theme="dark"] .mobile-menu {
+    color: #bfdaa0;
+    background: #24382a;
+    border-color: #3e5536;
+  }
+}
+
 html { scroll-padding-top: 60px; }
 body { padding-top: 44px; }
 .local-demo-warning { position: fixed; z-index: 120; inset: 0 0 auto; min-height: 44px;
@@ -5789,10 +6757,18 @@ body:has(.local-demo-warning[data-persistent="false"]) { padding-top: 0; }
 }
 .sidebar { top: 44px; }
 .auth-layout { min-height: calc(100dvh - 44px); }
+.auth-theme-toggle { top: 60px; }
+html[data-theme="dark"] .local-demo-warning {
+  background: #16271e; color: #ceddc5; border-color: #3b523b;
+}
+html[data-theme="dark"] .local-demo-warning[data-persistent="false"] small::after {
+  color: #ffb9a0;
+}
 @media (max-width: 670px) {
   body { padding-top: 56px; }
   .local-demo-warning { min-height: 56px; padding: 8px 14px; font-size: 11px; }
   .sidebar { top: 56px; }
+  .auth-theme-toggle { top: 72px; }
 }
 
 </style>
@@ -6052,7 +7028,7 @@ function avatar(name, index=0, extra='') { return `<span class="avatar avatar-${
 function renderAuth() {
   document.body.classList.remove('patient-game');
   const signup=state.authMode==='register'; const invite=state.invite;
-  document.getElementById('app').innerHTML = `<main class="auth-layout">
+  document.getElementById('app').innerHTML = `<main class="auth-layout"><div class="auth-theme-toggle">${window.NutriTheme.button()}</div>
     <section class="auth-art"><div class="brand auth-brand">${brand()}</div><div class="auth-pitch"><span class="eyebrow">PEQUENOS HÁBITOS. GRANDES MUDANÇAS.</span><h1>Mais perto.<br>Todos os dias.</h1><p>O cuidado vai além da consulta. Conecte o plano alimentar à rotina real dos seus pacientes.</p></div>
     <div class="auth-preview"><div class="auth-preview-head">${avatar('Ana Oliveira',0)}<div><strong>Ana Oliveira</strong><small>Construindo uma rotina melhor</small></div><span class="badge">Hoje</span></div><div class="preview-meal">${icon('check')}<span><strong>Café da manhã</strong><small>Um passo de cada vez.</small></span><b>07:30</b></div><div class="preview-progress"><span>Progresso do dia</span><b>3 de 5 refeições</b></div><div class="mini-progress"><span style="width:60%"></span></div></div>
     <div class="auth-proof">${icon('heart')} <span>Mais presença no cuidado. Mais leveza na rotina.</span></div></section>
@@ -6083,7 +7059,7 @@ function renderShell() {
   const patient=patientRole(); const user=state.user;
   const navItems=patient?[['overview','grid','Meu dia'],['history','calendar','Meu histórico']]:[['overview','grid','Visão geral'],['patients','users','Pacientes'],['plan','meal','Plano alimentar'],['history','calendar','Histórico']];
   document.getElementById('app').innerHTML=`<div class="app-shell"><button class="sidebar-backdrop" data-action="close-menu" aria-label="Fechar menu"></button><aside class="sidebar"><a class="brand" href="/" data-action="home">${brand()}</a><div class="sidebar-section-label">${patient?'SEU ACOMPANHAMENTO':'SEU CONSULTÓRIO'}</div><nav class="nav-links" aria-label="Navegação principal">${navItems.map(([view,i,label])=>`<button class="nav-link ${state.view===view?'active':''}" data-action="navigate" data-view="${view}"><span class="nav-icon">${icon(i)}</span>${label}${view==='patients'?`<span class="nav-count">${state.data?.patients.length||0}</span>`:''}</button>`).join('')}</nav><div class="sidebar-note">${icon('leaf')}<p>Pequenas escolhas.<br><strong>Uma vida mais leve.</strong></p><span class="sidebar-decoration"></span></div><div class="sidebar-bottom"><div class="profile-avatar">${esc(initials(user.name))}</div><div class="profile-details"><strong>${esc(user.name)}</strong><small>${patient?'Paciente':'Nutricionista'}</small></div><button class="logout" data-action="logout" title="Sair" aria-label="Sair da conta">${icon('logout')}</button></div></aside>
-  <main class="main-content"><header class="topbar"><div class="mobile-brand"><button class="icon-button mobile-menu" data-action="menu" aria-label="Abrir menu">${icon('menu')}</button><strong>nutriviva</strong></div><div class="topbar-date">${icon('calendar')} ${esc(new Intl.DateTimeFormat('pt-BR',{weekday:'long',day:'numeric',month:'long',timeZone:'America/Sao_Paulo'}).format(dateObject(today())))}</div><div class="topbar-tools"><span class="connection-status"><i></i> Demonstração neste navegador</span><span class="profile-small">${esc(initials(user.name))}</span></div></header><div id="page-content"></div><footer class="app-footer">NutriViva <span>·</span> Cuidado de verdade, todos os dias.</footer></main></div>`;
+  <main class="main-content"><header class="topbar"><div class="mobile-brand"><button class="icon-button mobile-menu" data-action="menu" aria-label="Abrir menu">${icon('menu')}</button><strong>nutriviva</strong></div><div class="topbar-date">${icon('calendar')} ${esc(new Intl.DateTimeFormat('pt-BR',{weekday:'long',day:'numeric',month:'long',timeZone:'America/Sao_Paulo'}).format(dateObject(today())))}</div><div class="topbar-tools">${window.NutriTheme.button()}<span class="connection-status"><i></i> Demonstração neste navegador</span><span class="profile-small">${esc(initials(user.name))}</span></div></header><div id="page-content"></div><footer class="app-footer">NutriViva <span>·</span> Cuidado de verdade, todos os dias.</footer></main></div>`;
   renderContent();
 }
 
@@ -6095,7 +7071,7 @@ function renderPatientShell() {
   document.getElementById('app').innerHTML = `<div class="game-shell">
     <header class="game-header">
       <a class="game-brand" href="/" data-action="home">${icon('leaf')}<span>nutri<strong>viva</strong></span></a>
-      <div class="game-header-actions"><span class="game-profile">${avatar(user.name)}<span>${esc(user.name.split(' ')[0])}</span></span><button class="icon-button" data-action="logout" title="Sair" aria-label="Sair da conta">${icon('logout')}</button></div>
+      <div class="game-header-actions">${window.NutriTheme.button()}<span class="game-profile">${avatar(user.name)}<span>${esc(user.name.split(' ')[0])}</span></span><button class="icon-button" data-action="logout" title="Sair" aria-label="Sair da conta">${icon('logout')}</button></div>
     </header>
     <main class="game-main" id="page-content"></main>
     <nav class="game-nav" aria-label="Sua jornada"><button class="game-tab ${state.view==='overview'?'active':''}" data-action="navigate" data-view="overview" ${state.view==='overview'?'aria-current="page"':''}>${icon('sun')} Hoje</button><button class="game-tab ${state.view==='history'?'active':''}" data-action="navigate" data-view="history" ${state.view==='history'?'aria-current="page"':''}>${icon('trophy')} Minha jornada</button></nav>
@@ -6264,6 +7240,7 @@ document.addEventListener('click',async event=>{
   if(action==='overlay-close'&&event.target!==button)return;
   try {
     switch(action){
+      case 'toggle-theme':window.NutriTheme.toggle();break;
       case 'auth-mode':state.authMode=button.dataset.mode;renderAuth();break;
       case 'home':event.preventDefault();state.view='overview';if(patientRole()){state.date=today();await refreshDashboard(true);}else renderShell();break;
       case 'demo':button.disabled=true;state.user=(await api('/demo',{role:'nutritionist'})).user;state.view='overview';await loadDashboard();break;
